@@ -1,6 +1,6 @@
 NAME = printf
 
-SRC = main.c ft_printf.c
+SRC = main.c ft_printf.c ft_calc.c ft_conv_char.c ft_lst.c ft_conv.c
 
 HEADER = printf.h
 
