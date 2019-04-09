@@ -20,7 +20,7 @@ int main()
 	printf("reel printf: %c\n",'d');
 	ft_printf("mine: %c\n",'d');
 
-	/*printf("reel printf:  %s\n","lol");
+	printf("reel printf:  %s\n","lol");
 	ft_printf("mine:  %s\n","lol");
 
 	printf("reel printf:  caratctere = %c || chaine = %s\n",'d',"lol");
@@ -29,19 +29,19 @@ int main()
 	printf("reel printf: pointer -> %p\n",&a);
 	ft_printf("mine: pointer -> %p\n",&a);
 
-	/*printf("reel printf: d -> %d\n",2147483647);
+	printf("reel printf: d -> %d\n",2147483647);
 	ft_printf("mine : d -> %d\n",2147483647);
 
-	printf("reel printf: d -> %d\n",0);
-	ft_printf("mine : d -> %d\n",0);
+	printf("reel printf: hhd -> %hhd\n",b);
+	ft_printf("mine : hhd -> %hhd\n",b);
 
 	printf("reel printf: d -> %d\n",-1);
-	ft_printf("mine : d -> %d\n",-1);*/
+	ft_printf("mine : d -> %d\n",-1);
 
-	printf("reel printf: d -> %hd\n",32768);
-	ft_printf("mine : d -> %hd\n",32768);
+	//printf("reel printf: hd -> %hd\n",32768);
+	//ft_printf("mine : hd -> %hd\n",32768);
 
-	printf("reel printf: d -> %ld\n",1);
-	ft_printf("mine : d -> %ld\n",1);
+	printf("reel printf: ld -> %ld\n",2147483650);
+	ft_printf("mine : ld -> %ld\n",2147483650);
 	return (0);
 }

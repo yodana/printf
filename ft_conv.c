@@ -1,16 +1,45 @@
 #include "printf.h"
 #include <stdio.h>
 
-int    ft_conv_d(va_list args, int flags)
-{
-    int d;
-    if (flags == HH)
-        d = (char)va_arg(args, int);
+void    ft_conv_dwf(va_list args, int flags, void(*display)(long long))
+{  
+   short int hd;
+   char hhd;
+   long ld;
+   long long lld;
+
+   if (flags == HH)
+    {
+       hhd = (char)va_arg(args, char*);
+       display(hhd);
+    }
     else if (flags == H)
-        d = (short int)va_arg(args, int);
-    //else if (flags == L)
-    else
-        d = va_arg(args, int);
-    ft_putnbr(d);
-    return (0);
+    {
+       hd = (short)va_arg(args, int);
+       display(hd);
+    }    
+    else if (flags == L)
+    {
+       ld = (long)va_arg(args, long);
+       display(ld);
+    }
+    else if (flags == LL)
+    {
+        lld = (long long)va_arg(args, long long);
+         display(lld);
+    }
+}
+
+int    ft_conv_d(va_list args, int flags, void(*display)(long long))
+{
+   int d;
+     
+   if (flags > 0)
+   {
+      ft_conv_dwf(args, flags,*display);
+      return (0);
+   }
+   d = (int)va_arg(args, int);
+   display(d);
+   return (0);
 }

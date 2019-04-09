@@ -45,7 +45,7 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 	while (lst_fct != NULL)
 	{
 		if (format[i] == lst_fct->type)
-			lst_fct->f(args, flags);
+			lst_fct->f(args, flags, lst_fct->display);
 		lst_fct = lst_fct->next;
 	}
 	return ((flags % 3) + 1);

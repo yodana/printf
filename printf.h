@@ -24,16 +24,17 @@
 typedef struct s_conv
 {
     char type;
-    int (*f)(va_list,int );
+    int (*f)(va_list,int , void(*display)(long long));
+    void (*display)(long long);
     struct  s_conv *next;
 }               t_conv;
 
 int     ft_printf(const char *format, ...);
-int     ft_char(va_list args,int flags);
-int     ft_str(va_list args,int flags);
-int     ft_pointer(va_list args, int flags);
+int     ft_char(va_list args,int flags, void(*display)(long long));
+int     ft_str(va_list args,int flags, void(*display)(long long));
+int     ft_pointer(va_list args, int flags, void(*display)(long long));
 t_conv  *ft_create_lst(void);
 void    ft_free_lst(t_conv *list);
 void     ft_calc_hexa(unsigned long nbr);
-int   ft_conv_d(va_list args, int flags);
+int   ft_conv_d(va_list args, int flags,void(*display)(long long));
 #endif
