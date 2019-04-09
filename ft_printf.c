@@ -13,18 +13,42 @@
 #include "printf.h"
 #include "stdio.h"
 
-void	ft_check_conv(char c, t_conv *lst_fct, va_list args)
+int		ft_check_flags(const char *format)
 {
-	if (c == '\0')
-		return ;
+	int flags;
+
+	flags = 0;
+	if (format[0] == 'h')
+	{
+		flags = 1;
+		if (format[1] == 'h')
+			flags++;		
+	}
+	if (format[0] == 'l')
+	{
+		flags = 4;
+		if (format[1] == 'l')
+			flags++;
+	}
+	return (flags);
+}
+
+int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
+{
+	int	flags;
+	int i;
+
+	if (format[0] == '\0')
+		return (0);
+	flags = ft_check_flags(format);
+	i = flags % 3;
 	while (lst_fct != NULL)
 	{
-		if (c == lst_fct->type)
-		{
-			lst_fct->f(args);
-		}
+		if (format[i] == lst_fct->type)
+			lst_fct->f(args, flags);
 		lst_fct = lst_fct->next;
 	}
+	return ((flags % 3) + 1);
 }
 
 int		ft_printf(const char *format, ...)
@@ -40,11 +64,8 @@ int		ft_printf(const char *format, ...)
 	while (format[i])
 	{
 		if (format[i] == '%')
-		{
-			ft_check_conv(format[i + 1], lst_fct, args);
-			i = i + 2;
-		}
-		if (format[i] != '%')
+			i = i + ft_check_conv(&format[i + 1], lst_fct, args) + 1;
+		if (format[i] && format[i] != '%')
 			ft_putchar(format[i++]);
 	}
 	ft_free_lst(lst_fct);
