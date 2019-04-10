@@ -52,8 +52,22 @@ t_conv	*ft_create_lst(void)
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
 		return (NULL);
 	next->type = 'd';
-	next->f = ft_conv_d;
+	next->f = ft_conv;
 	next->display = ft_putnbr;
+	next->next = NULL;
+	ft_conv_lst_add(&new, next);
+	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
+		return (NULL);
+	next->type = 'i';
+	next->f = ft_conv;
+	next->display = ft_putnbr;
+	next->next = NULL;
+	ft_conv_lst_add(&new, next);
+	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
+		return (NULL);
+	next->type = 'o';
+	next->f = ft_conv;
+	next->display = ft_calc_octa;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	return (new);

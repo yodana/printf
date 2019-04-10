@@ -36,5 +36,6 @@ int     ft_pointer(va_list args, int flags, void(*display)(long long));
 t_conv  *ft_create_lst(void);
 void    ft_free_lst(t_conv *list);
 void     ft_calc_hexa(unsigned long nbr);
-int   ft_conv_d(va_list args, int flags,void(*display)(long long));
+int   ft_conv(va_list args, int flags,void(*display)(long long));
+void     ft_calc_octa(long long nbr);
 #endif

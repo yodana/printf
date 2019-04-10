@@ -1,7 +1,7 @@
 #include "printf.h"
 #include <stdio.h>
 
-void    ft_conv_dwf(va_list args, int flags, void(*display)(long long))
+void    ft_conv_wf(va_list args, int flags, void(*display)(long long))
 {  
    short int hd;
    char hhd;
@@ -30,13 +30,13 @@ void    ft_conv_dwf(va_list args, int flags, void(*display)(long long))
     }
 }
 
-int    ft_conv_d(va_list args, int flags, void(*display)(long long))
+int    ft_conv(va_list args, int flags, void(*display)(long long))
 {
    int d;
      
    if (flags > 0)
    {
-      ft_conv_dwf(args, flags,*display);
+      ft_conv_wf(args, flags,*display);
       return (0);
    }
    d = (int)va_arg(args, int);
