@@ -38,4 +38,8 @@ void    ft_free_lst(t_conv *list);
 void     ft_calc_hexa(unsigned long nbr);
 int   ft_conv(va_list args, int flags,void(*display)(long long));
 void     ft_calc_octa(long long nbr);
+int    ft_conv_2(va_list args, int flags, void(*display)(long long));
+void     ft_calc_long_hexa(long long nbr);
+void     ft_calc_long_hexam(long long nbr);
+int    ft_conv_f(va_list args, int flags, void(*display)(long long));
 #endif
