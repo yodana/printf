@@ -29,6 +29,13 @@ typedef struct s_conv
     struct  s_conv *next;
 }               t_conv;
 
+typedef struct s_float
+{
+    char *mantisse;
+    int   exposant;
+    char *format;
+}              t_float;
+
 int     ft_printf(const char *format, ...);
 int     ft_char(va_list args,int flags, void(*display)(long long));
 int     ft_str(va_list args,int flags, void(*display)(long long));

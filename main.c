@@ -128,7 +128,7 @@ int main()
 	double s = 3.45;
 	double ss = 3.09;
 
-	printf("reel printf: f -> %f\n",i);
+	printf("reel printf: f -> %.64f\n",i);
 	ft_printf("mine : f -> %f\n\n",i);
 
 	printf("reel printf: f -> %f\n",s);
