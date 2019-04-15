@@ -114,7 +114,6 @@ void ft_dtoa(double nbr, int size)
         printf("%d",j);
         nbr = nbr - j;
         //ft_putnbr(nbr);
-        i++;
     }
 }
 
