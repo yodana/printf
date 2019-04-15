@@ -25,8 +25,8 @@ char *ft_calc_d_bi(double nbr)
     char *b;
 
     int i = 0;
-    b = ft_strnew(53);
-    while (i <= 52)
+    b = ft_strnew(54);
+    while (i < 54)
     {
         nbr = nbr * 2;
         if (nbr < 1)
@@ -41,6 +41,7 @@ char *ft_calc_d_bi(double nbr)
         i++;
     }
     b[i] = '\0';
+    printf("taille mantisse == %zu\n",ft_strlen(b));
     return (b);
 }
 
@@ -100,13 +101,19 @@ void ft_dtoa(double nbr, int size)
     int i;
 
     i = 0;
+    int j;
     while (nbr > 1)
         nbr = nbr / 10;
     printf("float test = %f\n",nbr);
+   // nbr = nbr * 10;
+    //ft_putnbr(nbr);
     while (i != size)
     {
         nbr = nbr * 10;
-        printf("float dans while = %f\n",nbr);
+        j = (int)nbr;
+        printf("%d",j);
+        nbr = nbr - j;
+        //ft_putnbr(nbr);
         i++;
     }
 }
@@ -120,6 +127,7 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     char *bi_part;
     f = (t_float*)malloc(sizeof(t_float));
     i = va_arg(args, double);
+    ft_dtoa(i,54);
     int d = (int)i;
     printf("tests == %d\n",d);
     i = i - (double)d;
@@ -128,7 +136,7 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     printf("%s\n",ft_calc_d_bi(i));
     bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
     int exposant;
-    exposant = 1023 - ft_strlen(ft_calc_i_bi(d)) - 1;
+    exposant = ft_strlen(ft_calc_i_bi(d)) - 1;
     f->mantisse = &bi_part[1];
     //ft_mantisse(bi_part);
         printf("toute la partie binaore == %s\n",bi_part);
@@ -139,8 +147,7 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
    printf("test power = %f\n",(1 / (double)ft_power(2,3)));
    printf("reel power = %f\n",(1 / (double)pow(2,3)));
    double res_final;
-   res_final = (1 + res) * ft_power(2,ft_strlen(ft_calc_i_bi(d)) - 1);
-   printf("%s\n",ft_itoa(res_final));
-   //ft_dtoa(res_final,64);
+   res_final = (1 + res) * ft_power(2,(double)exposant);
+   printf("%.54f\n",res_final);
     return (0);
 }
