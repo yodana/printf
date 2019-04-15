@@ -100,13 +100,13 @@ void ft_dtoa(double nbr, int size)
     int i;
 
     i = 0;
-    while (nbr > 1)
-        nbr = nbr / 10;
-    printf("float test = %f\n",nbr);
+    //while (nbr > 1)
+       // nbr = nbr / 10;
+    printf("float test = %.64f\n",nbr);
     while (i != size)
     {
         nbr = nbr * 10;
-        printf("float dans while = %f\n",nbr);
+       //printf("float dans while = %f\n",nbr);
         i++;
     }
 }
@@ -139,8 +139,8 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
    printf("test power = %f\n",(1 / (double)ft_power(2,3)));
    printf("reel power = %f\n",(1 / (double)pow(2,3)));
    double res_final;
-   res_final = (1 + res) * ft_power(2,ft_strlen(ft_calc_i_bi(d)) - 1);
+   res_final = (1 + res) * ft_power(2,7);
    printf("%s\n",ft_itoa(res_final));
-   //ft_dtoa(res_final,64);
-    return (0);
+   ft_dtoa(res_final,64);
+   return (0);
 }
