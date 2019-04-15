@@ -124,14 +124,13 @@ int main()
 	printf("reel printf: llX -> %llX\n",c);
 	ft_printf("mine : llX -> %llX\n\n",c);
 	
-	double i = 253.9;
-	double s = 3.45;
+	double i = 253.000000099;
 	double ss = 3.09;
 
 	printf("reel printf: f -> %f\n",i);
 	ft_printf("mine : f -> %f\n\n",i);
 
-	printf("reel printf: f -> %f\n",s);
+	printf("reel printf: f -> %.26f\n",i);
 	printf("reel printf: f -> %f\n",ss);
 	return (0);
 }

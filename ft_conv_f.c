@@ -25,10 +25,12 @@ char *ft_calc_d_bi(double nbr)
     char *b;
 
     int i = 0;
+    
     b = ft_strnew(54);
     while (i < 54)
     {
-        nbr = nbr * 2;
+
+        nbr = nbr * 2;   
         if (nbr < 1)
         {
             b[i] = '0';
@@ -87,11 +89,11 @@ double     ft_bi_to_dec(char *m)
     res = 0;
     while(m[i])
     {
-        res = res + ((m[i] - '0') * (1 / ft_power(2, power)));
+        res = res + ((m[i] - '0') * (1 / (double)ft_power(2, power)));
         i++;
         power++;
     }
-    printf("mantisse ? %f\n",res);
+    printf("mantisse ? %.54f\n",res);
     return (res);
 }
 
@@ -109,10 +111,11 @@ void ft_dtoa(double nbr, int size)
     //ft_putnbr(nbr);
     while (i != size)
     {
-        nbr = nbr * 10;
+        nbr = nbr * 100;
         j = (int)nbr;
-        printf("%d",j);
+        ft_putnbr(j);
         nbr = nbr - j;
+        i++;
         //ft_putnbr(nbr);
     }
 }
@@ -126,9 +129,9 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     char *bi_part;
     f = (t_float*)malloc(sizeof(t_float));
     i = va_arg(args, double);
-    ft_dtoa(i,54);
     int d = (int)i;
     printf("tests == %d\n",d);
+    ft_dtoa(i,2);
     i = i - (double)d;
     printf("| re == %f\n",i);
     printf("%s\n",ft_calc_i_bi(d));
@@ -141,12 +144,13 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
         printf("toute la partie binaore == %s\n",bi_part);
         printf("matisse part == %s\n",f->mantisse);
         printf("exposant == %d\n",exposant);
-   double res;
+  double res;
    res = ft_bi_to_dec(f->mantisse);
-   printf("test power = %f\n",(1 / (double)ft_power(2,3)));
-   printf("reel power = %f\n",(1 / (double)pow(2,3)));
+   printf("test power = %.70f\n",(1 / (double)ft_power(2,3)));
+   printf("reel power = %.70f\n",(1 / (double)pow(2,3)));
    double res_final;
-   res_final = (1 + res) * ft_power(2,(double)exposant);
-   printf("%.54f\n",res_final);
+    res_final = (1 + res) * ft_power(2,(double)exposant);
+   printf("resuktat = %f\n",res_final);
+   ft_dtoa(res_final,7);
     return (0);
 }
