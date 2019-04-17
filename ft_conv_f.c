@@ -25,25 +25,24 @@ char *ft_calc_d_bi(double nbr)
     char *b;
 
     int i = 0;
-    
+    int i_nbr = nbr * 10;
     b = ft_strnew(54);
     while (i < 54)
     {
 
-        nbr = nbr * 2;   
-        if (nbr < 1)
+        i_nbr = i_nbr * 2;   
+        if (i_nbr < 10)
         {
             b[i] = '0';
         }
         else
         {
             b[i] = '1';
-            nbr = nbr - 1;
+            i_nbr = i_nbr - 10;
         }
         i++;
     }
     b[i] = '\0';
-    printf("taille mantisse == %zu\n",ft_strlen(b));
     return (b);
 }
 
@@ -55,7 +54,7 @@ char *ft_calc_i_bi(int nbr)
     while (nbr >= 1)
     {
         bi[i] = (nbr % 2) + '0';
-        bi = ft_realloc(bi, i + 1);
+        //bi = ft_realloc(bi, i + 1);
         nbr = nbr / 2;
         i++;
     }
@@ -79,7 +78,6 @@ double         ft_power(double nbr, double power)
     return (res);
 }
 
-#include <math.h>
 double     ft_bi_to_dec(char *m)
 {
     int i;
@@ -93,30 +91,44 @@ double     ft_bi_to_dec(char *m)
         i++;
         power++;
     }
-    printf("mantisse ? %.54f\n",res);
     return (res);
 }
 
-
-void ft_dtoa(double nbr, int size)
+int     ft_test(double i)
 {
-    int i;
+    if (i * 10 >= 10)
+        return 1;
+    return 0;
+}
+void ft_dtoa(int d, double i, int size)
+{
+    int k;
 
-    i = 0;
+    k = 0;
     int j;
-    while (nbr > 1)
-        nbr = nbr / 10;
-    printf("float test = %f\n",nbr);
+    ft_putnbr(d);
+    ft_putchar('.');
+    j = 0;
    // nbr = nbr * 10;
     //ft_putnbr(nbr);
-    while (i != size)
+    printf("i == %.64f\n",i);
+    while (k != size)
     {
-        nbr = nbr * 100;
-        j = (int)nbr;
+        i = i * 10;
+        //printf("i == %.64f\n",i);
+        j = (int)i;
         ft_putnbr(j);
-        nbr = nbr - j;
-        i++;
-        //ft_putnbr(nbr);
+        k++;
+        /*(if (k == size)
+        {
+            i = i - j;
+            i = i * 10;
+            if (i >= 5)
+                j++;
+        }*/
+       // ft_putnbr(j);
+       i = i - j;
+       j = 0;
     }
 }
 
@@ -125,32 +137,23 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     double i;
     (void)flags;
     (void)(*display);
-    t_float *f;
-    char *bi_part;
-    f = (t_float*)malloc(sizeof(t_float));
+    /*char *bi_part;
+    f = (t_float*)malloc(sizeof(t_float));*/
     i = va_arg(args, double);
     int d = (int)i;
-    printf("tests == %d\n",d);
-    ft_dtoa(i,2);
     i = i - (double)d;
-    printf("| re == %f\n",i);
-    printf("%s\n",ft_calc_i_bi(d));
-    printf("%s\n",ft_calc_d_bi(i));
-    bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
+    printf("i == %f\n",i);
+    double test = 9.000000;
+    int j = (int)test;
+    /*bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
     int exposant;
     exposant = ft_strlen(ft_calc_i_bi(d)) - 1;
     f->mantisse = &bi_part[1];
-    //ft_mantisse(bi_part);
-        printf("toute la partie binaore == %s\n",bi_part);
-        printf("matisse part == %s\n",f->mantisse);
-        printf("exposant == %d\n",exposant);
-  double res;
-   res = ft_bi_to_dec(f->mantisse);
-   printf("test power = %.70f\n",(1 / (double)ft_power(2,3)));
-   printf("reel power = %.70f\n",(1 / (double)pow(2,3)));
-   double res_final;
-    res_final = (1 + res) * ft_power(2,(double)exposant);
-   printf("resuktat = %f\n",res_final);
-   ft_dtoa(res_final,7);
+    double res;
+    res = ft_bi_to_dec(f->mantisse);
+    double res_final;
+    res_final = (1 + res) * ft_power(2,(double)exposant);*/
+    ft_dtoa(d, i, 10);
+   // printf("example = %d",j);
     return (0);
 }
