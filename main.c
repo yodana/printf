@@ -124,13 +124,29 @@ int main()
 	printf("reel printf: llX -> %llX\n",c);
 	ft_printf("mine : llX -> %llX\n\n",c);
 	
-	double i = 253.09999;
+	double i = -253.99999;
 	float k = 253.999999;
+	double inf = 1.0/0.0;
+	double inf_neg = -1.0/0.0;
+	double test = 1.0/0.1;
+	double test2 = 1.0/10;
 
 	printf("reel printf: f -> %f\n",i);
 	ft_printf("mine :    f -> %f\n\n",i);
 
 	printf("reel printf: f -> %f\n",k);
-	ft_printf("mine:     f -> %f\n",k);
+	ft_printf("mine:     f -> %f\n\n",k);
+
+	printf("reel printf : f -> %f\n",inf);
+	ft_printf("mine : f -> %f\n\n",inf);
+
+	printf("reel printf : f -> %f\n",inf_neg);
+	ft_printf("mine : f -> %f\n\n",inf_neg);
+
+	printf("reel printf : f -> %f\n",test);
+	ft_printf("mine : f -> %f\n\n",test);
+	
+	printf("reel printf : f -> %f\n",test2);
+	ft_printf("mine : f -> %f\n\n",test2);
 	return (0);
 }

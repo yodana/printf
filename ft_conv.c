@@ -5,8 +5,8 @@ void    ft_conv_wf_2(va_list args, int flags, void(*display)(long long))
 {  
    unsigned short int hd;
    unsigned char hhd;
-    unsigned long ld;
-    unsigned long long lld;
+   unsigned long ld;
+   unsigned long long lld;
 
    if (flags == HH)
     {

@@ -49,7 +49,7 @@ char *ft_calc_d_bi(double nbr)
 char *ft_calc_i_bi(int nbr)
 {
     char *bi;
-    int i = 0;
+    int i = 1;
     bi = malloc(sizeof(char) * 1);
     while (nbr >= 1)
     {
@@ -58,6 +58,7 @@ char *ft_calc_i_bi(int nbr)
         nbr = nbr / 2;
         i++;
     }
+    bi[0] = '.';
     bi[i] = '\0';
     bi = ft_strrev_fr(bi);
     return (bi);
@@ -100,7 +101,21 @@ int     ft_test(double i)
         return 1;
     return 0;
 }
-void ft_dtoa(int d, double i, int size)
+
+void ft_putfloat(char *res, int comma)
+{
+    int i;
+
+    i = 0;
+    while (res[i])
+    {
+        if (i == comma)
+            ft_putchar('.');
+        ft_putnbr(res[i] - '0');
+        i++;
+    }
+}
+void ft_dtoa(int d, double i, int size, int signe)
 {
     int k;
 
@@ -114,58 +129,63 @@ void ft_dtoa(int d, double i, int size)
     j = 0;
     res = ft_itoa(d);
     k = comma;
-   // nbr = nbr * 10;
-    //ft_putnbr(nbr);
+    if (signe == 0)
+        ft_putchar('-');
     while (k - comma != size)
     {
         i = i * 10;
         j = (int)i;
         res[k] = j  + '0';
         k++;
-        /*(if (k == size)
-        {
-            i = i - j;
-            i = i * 10;
-            if (i >= 5)
-                j++;
-        }*/
-       // ft_putnbr(j);
-       i = i - j;
+       i = i - (double)j;
        j = 0;
     }
     res[k] ='\0';
-    printf("res == %s",res);
     char *rev_res = ft_strrev_fr(res);
     k = 0;
-    while(rev_res[0] == '9'  || rev_res[k] == '9' + 1)
+    while((rev_res[0] == '9'  || rev_res[k] == '9' + 1) && size <= 6)
     {
         rev_res[k] = '0';
         rev_res[k + 1] = rev_res[k + 1] + 1;
         k++;
     }
-    printf("res == %s",ft_strrev_fr(rev_res));
+     ft_putfloat(ft_strrev_fr(rev_res),comma);
 }
 
 int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 {
     double i;
+    t_float *f;
+    int signe;
+    long long d;
+    char *bi_part;
+    
+    f = (t_float*)malloc(sizeof(t_float));
     (void)flags;
-    (void)(*display);
-    /*char *bi_part;
-    f = (t_float*)malloc(sizeof(t_float));*/
+    (void)(*display);    
     i = va_arg(args, double);
-    int d = (int)i;
+    if (i <= 0)
+    {
+        signe = 0;
+        i = i * -1;
+    }
+    else
+        signe = 1;
+    d = (long long)i;
     i = i - (double)d;
-    printf("i == %f\n",i);
-    /*bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
-    int exposant;
-    exposant = ft_strlen(ft_calc_i_bi(d)) - 1;
+    bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
+    f->exposant = 1023 + ft_strlen(ft_calc_i_bi(d)) - 1;
+   if (f->exposant == 1023 && signe == 0)
+    {
+        ft_putstr("-inf");
+        return (0);
+    }
+    else if (f->exposant == 1023 && signe == 1)
+     {
+        ft_putstr("inf");
+        return (0);
+     }
     f->mantisse = &bi_part[1];
-    double res;
-    res = ft_bi_to_dec(f->mantisse);
-    double res_final;
-    res_final = (1 + res) * ft_power(2,(double)exposant);*/
-    ft_dtoa(d, i, 6);
-   // printf("example = %d",j);
+    ft_dtoa(d, i, 6, signe);
     return (0);
 }
