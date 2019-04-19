@@ -46,11 +46,18 @@ char *ft_calc_d_bi(double nbr)
     return (b);
 }
 
-char *ft_calc_i_bi(int nbr)
+char *ft_calc_i_bi(long long nbr)
 {
     char *bi;
     int i = 1;
     bi = malloc(sizeof(char) * 1);
+    printf("nbr == %lld\n",nbr);
+    if (nbr < 0)
+    {
+        nbr = nbr * -1;
+        printf("fdp\n");
+    }
+    printf("nbr == %lld\n",nbr);
     while (nbr >= 1)
     {
         bi[i] = (nbr % 2) + '0';
@@ -93,13 +100,6 @@ double     ft_bi_to_dec(char *m)
         power++;
     }
     return (res);
-}
-
-int     ft_test(double i)
-{
-    if (i * 10 >= 10)
-        return 1;
-    return 0;
 }
 
 void ft_putfloat(char *res, int comma)
@@ -173,9 +173,14 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
         signe = 1;
     d = (long long)i;
     i = i - (double)d;
+    printf("d == %lld\n",d);
     bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
+    printf("bi_part == %s\n",bi_part);
     f->exposant = 1023 + ft_strlen(ft_calc_i_bi(d)) - 1;
-   if (f->exposant == 1023 && signe == 0 && i >= 1)
+    f->mantisse = &bi_part[1];
+    printf("mantisse == %s\n",f->mantisse);
+    printf("exposant == %d\n",f->exposant);
+    if (f->exposant == 1023 && signe == 0 && i >= 1)
     {
         ft_putstr("-inf");
         return (0);
@@ -185,7 +190,6 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
         ft_putstr("inf");
         return (0);
      }
-    f->mantisse = &bi_part[1];
     ft_dtoa(d, i, 6, signe);
     return (0);
 }
