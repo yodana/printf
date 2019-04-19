@@ -164,7 +164,7 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     (void)flags;
     (void)(*display);    
     i = va_arg(args, double);
-    if (i <= 0)
+    if (i < 0)
     {
         signe = 0;
         i = i * -1;
@@ -175,12 +175,12 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     i = i - (double)d;
     bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
     f->exposant = 1023 + ft_strlen(ft_calc_i_bi(d)) - 1;
-   if (f->exposant == 1023 && signe == 0)
+   if (f->exposant == 1023 && signe == 0 && i >= 1)
     {
         ft_putstr("-inf");
         return (0);
     }
-    else if (f->exposant == 1023 && signe == 1)
+    else if (f->exposant == 1023 && signe == 1 && i >= 1)
      {
         ft_putstr("inf");
         return (0);
