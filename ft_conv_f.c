@@ -29,7 +29,6 @@ char *ft_calc_d_bi(double nbr)
     b = ft_strnew(54);
     while (i < 54)
     {
-
         i_nbr = i_nbr * 2;   
         if (i_nbr < 10)
         {
@@ -115,7 +114,7 @@ void ft_putfloat(char *res, int comma)
         i++;
     }
 }
-void ft_dtoa(int d, double i, int size, int signe)
+void ft_dtoa(long long d, long double i, int size, int signe)
 {
     int k;
 
@@ -127,6 +126,7 @@ void ft_dtoa(int d, double i, int size, int signe)
     char *res;
     res = malloc(sizeof(char) * (size + comma + 1));
     j = 0;
+    //ft_putnbr(d);
     res = ft_itoa(d);
     k = comma;
     if (signe == 0)
@@ -152,6 +152,17 @@ void ft_dtoa(int d, double i, int size, int signe)
      ft_putfloat(ft_strrev_fr(rev_res),comma);
 }
 
+int     ft_test_nan(long long d)
+{
+    long long test;
+
+    test = d;
+    if (d < 0)
+        d = d * -1;
+    if (test < 0 && test == d)
+        return (1);
+    return (0);
+}
 int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 {
     double i;
@@ -173,6 +184,11 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
         signe = 1;
     d = (long long)i;
     i = i - (double)d;
+    if (ft_test_nan(d) == 1)
+    {
+        ft_putstr("nan\n");
+        return (0);
+    }
     printf("d == %lld\n",d);
     bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
     printf("bi_part == %s\n",bi_part);

@@ -25,7 +25,7 @@
 
 int				ft_sqrt(int nbr);
 char			*ft_strjoin_fr(char *s1, char *s2, int i);
-char			*ft_itoa(int c);
+char			*ft_itoa(long long c);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 int				ft_strequ(char const *s1, char const *s2);
 char			*ft_strmapi(char const *s, char(*f)(unsigned int, char));
