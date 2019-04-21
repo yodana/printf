@@ -129,7 +129,9 @@ int main()
 	double inf = 1.0/0.0;
 	double inf_neg = -1.0/0.0;
 	double test = 1.0/0.1;
-	double test2 = 1.0/10;
+	double test2 = -0.1;
+	double zero = 0;
+	double zero_neg = -0;
 
 	printf("reel printf: f -> %f\n",i);
 	ft_printf("mine :    f -> %f\n\n",i);
@@ -148,5 +150,11 @@ int main()
 	
 	printf("reel printf : f -> %f\n",test2);
 	ft_printf("mine : f -> %f\n\n",test2);
+
+	printf("reel printf : f -> %f\n",zero);
+	ft_printf("mine : f -> %f\n\n",zero);
+
+	printf("reel printf : f -> %f\n",zero_neg);
+	ft_printf("mine : f -> %f\n\n",zero_neg);
 	return (0);
 }
