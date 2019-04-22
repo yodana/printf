@@ -48,15 +48,12 @@ char *ft_calc_d_bi(double nbr)
 char *ft_calc_i_bi(long long nbr)
 {
     char *bi;
-    int i = 1;
+    int i = 0;
     bi = malloc(sizeof(char) * 1);
-    printf("nbr == %lld\n",nbr);
     if (nbr < 0)
     {
         nbr = nbr * -1;
-        printf("fdp\n");
     }
-    printf("nbr == %lld\n",nbr);
     while (nbr >= 1)
     {
         bi[i] = (nbr % 2) + '0';
@@ -64,7 +61,7 @@ char *ft_calc_i_bi(long long nbr)
         nbr = nbr / 2;
         i++;
     }
-    bi[0] = '.';
+    //bi[0] = '.';
     bi[i] = '\0';
     bi = ft_strrev_fr(bi);
     return (bi);
@@ -114,6 +111,7 @@ void ft_putfloat(char *res, int comma)
         i++;
     }
 }
+
 void ft_dtoa(long long d, long double i, int size, int signe)
 {
     int k;
@@ -168,8 +166,8 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     double i;
     t_float *f;
     int signe;
-    long long d;
-    char *bi_part;
+   int64_t d;
+   //char *bi_part;
     
     f = (t_float*)malloc(sizeof(t_float));
     (void)flags;
@@ -182,21 +180,26 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     }
     else
         signe = 1;
-    d = (long long)i;
-    i = i - (double)d;
-    if (ft_test_nan(d) == 1)
-    {
-        ft_putstr("nan\n");
-        return (0);
-    }
-    printf("d == %lld\n",d);
-    bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
-    printf("bi_part == %s\n",bi_part);
-    f->exposant = 1023 + ft_strlen(ft_calc_i_bi(d)) - 1;
+        d = *(int64_t*)&i;
+        intmax_t t = *(uint64_t*)&i;
+    printf("pointeur == %jd\n",t);
+    //i = i - d;
+    //bi_part = ft_calc_i_bi(d);
+    //printf("size of == %lu\n",sizeof(long double));
+    //printf("bi_part == %s\n",bi_part);
+    //if (ft_test_nan(d) == 1)
+    //{
+     //   ft_putstr("nan\n");
+      //  return (0);
+    //}
+   // printf("d == %lld\n",d);
+    //bi_part = ft_strjoin(ft_calc_i_bi(d),ft_calc_d_bi(i));
+    //printf("bi_part == %s\n",bi_part);
+   /* f->exposant = 1023 + ft_strlen(ft_calc_i_bi(d)) - 1;
     f->mantisse = &bi_part[1];
-    printf("mantisse == %s\n",f->mantisse);
-    printf("exposant == %d\n",f->exposant);
-    if (f->exposant == 1023 && signe == 0 && i >= 1)
+    //printf("mantisse == %s\n",f->mantisse);
+    //printf("exposant == %d\n",f->exposant);
+   if (f->exposant == 1023 && signe == 0 && i >= 1)
     {
         ft_putstr("-inf");
         return (0);
@@ -206,6 +209,6 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
         ft_putstr("inf");
         return (0);
      }
-    ft_dtoa(d, i, 6, signe);
+    ft_dtoa(d, i, 6, signe);*/
     return (0);
 }
