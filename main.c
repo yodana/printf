@@ -12,7 +12,7 @@
 
 #include "printf.h"
 #include <stdio.h>
-
+#include <math.h>
 int main()
 {
 	char	*a = "trolol";
@@ -123,16 +123,16 @@ int main()
 
 	printf("reel printf: llX -> %llX\n",c);
 	ft_printf("mine : llX -> %llX\n\n",c);
-	
+
 	double i = -253.99999;
 	float k = 253.999999;
 	double inf = 1.0/0.0;
 	double inf_neg = -1.0/0.0;
 	double test = 1.0/0.1;
-	double test2 = -0.1;
+	double test2 = 1.0/10;
 	double zero = 0;
-	double zero_neg = -0;
-
+	double not_number = sqrt(-10);
+	//long double test3 = -9223372036854775808;
 	printf("reel printf: f -> %f\n",i);
 	ft_printf("mine :    f -> %f\n\n",i);
 
@@ -154,7 +154,14 @@ int main()
 	printf("reel printf : f -> %f\n",zero);
 	ft_printf("mine : f -> %f\n\n",zero);
 
-	printf("reel printf : f -> %f\n",zero_neg);
-	ft_printf("mine : f -> %f\n\n",zero_neg);
+	printf("reel printf : f -> %f\n",not_number);
+	ft_printf("mine : f -> %f\n\n",not_number);
+
+	printf("reel printf : f -> %f\n",-92.0);
+	ft_printf("mine : f -> %f\n\n",-92.0);
+
+	printf("reel printf : f -> %f\n",-9223372036854775808.4);
+	ft_printf("mine : f -> %f\n",-9223372036854775808.0);
+
 	return (0);
 }

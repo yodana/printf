@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char	*ft_create(int size, int n, int neg)
+static char	*ft_create(int size, long long n, int neg)
 {
 	char *new;
 
@@ -31,9 +31,9 @@ static char	*ft_create(int size, int n, int neg)
 	return (new);
 }
 
-char		*ft_itoa(int n)
+char		*ft_itoa(long long n)
 {
-	int i;
+	long long i;
 	int size;
 	int neg;
 
