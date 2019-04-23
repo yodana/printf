@@ -36,6 +36,16 @@ typedef struct s_float
     char *format;
 }              t_float;
 
+typedef union {
+  long double f;
+  struct {
+    unsigned int mantissa1:32;
+    unsigned int mantissa0:20;
+	unsigned int exponent:11;
+	unsigned int negative:1;
+  } parts;
+} float_cast;
+
 int     ft_printf(const char *format, ...);
 int     ft_char(va_list args,int flags, void(*display)(long long));
 int     ft_str(va_list args,int flags, void(*display)(long long));

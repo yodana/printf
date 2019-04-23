@@ -171,8 +171,6 @@ int main()
 	printf("reel printf : f -> %f\n",1.9999998);
 	ft_printf("mine : f -> %f\n\n",1.9999998);
 
-	printf("reel printf : f -> %f\n",DBL_MAX);
-	ft_printf("reel printf : f %f\n",DBL_MAX);
 
 	return (0);
 }

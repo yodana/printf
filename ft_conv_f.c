@@ -166,7 +166,6 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     double i;
     t_float *f;
     int signe;
-   int64_t d;
    //char *bi_part;
     
     f = (t_float*)malloc(sizeof(t_float));
@@ -180,9 +179,11 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     }
     else
         signe = 1;
-        d = *(int64_t*)&i;
-        intmax_t t = *(uint64_t*)&i;
-    printf("pointeur == %jd\n",t);
+  float_cast d1 = { .f = i };
+  printf("sign = %d\n", d1.parts.negative);
+  printf("exponent = %d\n", d1.parts.exponent);
+  printf("mantisa = %d\n", d1.parts.mantissa0);
+  printf("mantisa = %d\n", d1.parts.mantissa1);
     //i = i - d;
     //bi_part = ft_calc_i_bi(d);
     //printf("size of == %lu\n",sizeof(long double));
