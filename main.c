@@ -13,6 +13,7 @@
 #include "printf.h"
 #include <stdio.h>
 #include <math.h>
+#include <float.h>
 int main()
 {
 	char	*a = "trolol";
@@ -162,6 +163,13 @@ int main()
 
 	printf("reel printf : f -> %f\n",-9223372036854775808.4);
 	ft_printf("mine : f -> %f\n",-9223372036854775808.0);
+
+
+	printf("reel printf : f -> %f\n",FLT_MAX);
+	ft_printf("mine : f -> %f\n\n",FLT_MAX);
+
+	printf("reel printf : f -> %f\n",1.9999998);
+	ft_printf("mine : f -> %f\n\n",1.9999998);
 
 	return (0);
 }
