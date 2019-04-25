@@ -26,8 +26,8 @@ char *ft_calc_d_bi(double nbr)
 
     int i = 0;
     int i_nbr = nbr * 10;
-    b = ft_strnew(54);
-    while (i < 54)
+    b = ft_strnew(65);
+    while (i < 65)
     {
         i_nbr = i_nbr * 2;   
         if (i_nbr < 10)
@@ -45,15 +45,11 @@ char *ft_calc_d_bi(double nbr)
     return (b);
 }
 
-char *ft_calc_i_bi(long long nbr)
+char *ft_calc_i_bi(unsigned long long nbr)
 {
     char *bi;
     int i = 0;
-    bi = malloc(sizeof(char) * 1);
-    if (nbr < 0)
-    {
-        nbr = nbr * -1;
-    }
+    bi = malloc(sizeof(char) * 64 + 1);
     while (nbr >= 1)
     {
         bi[i] = (nbr % 2) + '0';
@@ -162,29 +158,34 @@ int     ft_test_nan(long long d)
         return (1);
     return (0);
 }
+
+
 int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 {
     double i;
     t_float *f;
-    int signe;
-   //char *bi_part;
-    
+    float_cast d1;
+
     f = (t_float*)malloc(sizeof(t_float));
     (void)flags;
     (void)(*display);    
     i = va_arg(args, double);
-    if (i < 0)
+    /*f (i < 0)
     {
         signe = 0;
         i = i * -1;
     }
     else
-        signe = 1;
-  float_cast d1 = { .f = i };
-  printf("sign = %d\n", d1.parts.negative);
-  printf("exponent = %d\n", d1.parts.exponent);
-  printf("mantisa = %d\n", d1.parts.mantissa0);
-  printf("mantisa = %d\n", d1.parts.mantissa1);
+        signe = 1;*/
+    d1.f = i;
+    f->signe = d1.parts.sign;
+    f->mantisse = ft_calc_i_bi(d1.parts.mantissa);
+    printf("matissea before === %s",f->mantisse);
+    f->exposant = d1.parts.exponent - 16383;
+    f->res_mantisse = ft_bi_to_dec(f->mantisse) + 1;
+  printf("sign = %d\n", f->signe);
+  printf("exponent = %d\n", f->exposant);
+  printf("mantisa = %f\n", f->res_mantisse);
     //i = i - d;
     //bi_part = ft_calc_i_bi(d);
     //printf("size of == %lu\n",sizeof(long double));

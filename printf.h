@@ -32,19 +32,22 @@ typedef struct s_conv
 typedef struct s_float
 {
     char *mantisse;
-    int   exposant;
+    double res_mantisse;
+    unsigned int   exposant;
+    int signe;
     char *format;
 }              t_float;
 
 typedef union {
   long double f;
   struct {
-    unsigned int mantissa1:32;
-    unsigned int mantissa0:20;
-	unsigned int exponent:11;
-	unsigned int negative:1;
+  unsigned long long int mantissa:64;
+	unsigned int exponent:15;
+	unsigned int sign:1;
+    unsigned int empty:16;
   } parts;
 } float_cast;
+
 
 int     ft_printf(const char *format, ...);
 int     ft_char(va_list args,int flags, void(*display)(long long));
