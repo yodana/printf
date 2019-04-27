@@ -100,5 +100,8 @@ int main(void)
   printf("res_mantisse == %f\n",res_mantisse);
   char *b = ft_calc_d_bi(res_mantisse);
   printf("matisse final binaire == %s\n",b);
+  double res = 1.99999;
+  int j = (int)res;
+  printf("j == %d\n",j);
  // printf("resultat i == %.9f\n",i);
 }

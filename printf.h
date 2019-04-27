@@ -33,7 +33,7 @@ typedef struct s_float
 {
     char *mantisse;
     double res_mantisse;
-    unsigned int   exposant;
+    int   exposant;
     int signe;
     char *format;
 }              t_float;
