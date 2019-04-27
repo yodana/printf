@@ -88,7 +88,6 @@ double     ft_bi_to_dec(char *m)
     while(m[i])
     {
         res = res + ((m[i] - '0') * (1 / (double)ft_power(2, power)));
-        printf("res == %.64f\n",res);
         i++;
         power++;
     }
@@ -167,7 +166,10 @@ char    *ft_bi_comma(double res, int exposant)
     int i;
     int size;
     (void)exposant;
-    size = 66;
+    if (exposant <= 64)
+        size = 66;
+    else
+        size = exposant;
     i = 0;
     j = 0;
     j = (int)res;
@@ -181,7 +183,7 @@ char    *ft_bi_comma(double res, int exposant)
             bi[i] = '0';
         else
             bi[i] = '1';
-        if (exposant <= 62 && exposant == i)
+        if (exposant == i)
          {
             i++;
             bi[i] = '.';
@@ -195,7 +197,6 @@ char    *ft_bi_comma(double res, int exposant)
 
 long double ft_bi_to_tabd(char *res)
 {
-    long double *tab_double;
     int i;
     double power;
     long double res_final;
@@ -203,17 +204,14 @@ long double ft_bi_to_tabd(char *res)
     res_final = 0;
     power = 5;
     i = 0;
-    tab_double = malloc(sizeof(long double) * 6);
+    while (res[i] != '.')
+        i++;
+    power = i - 1;
+    i = 0;
     while (res[i] != '.')
     {
-        tab_double[i] = (res[i] - '0') * (double)ft_power(2,power);
+        res_final = res_final + (res[i] - '0') * (double)ft_power(2,power);
         power--;
-        i++;
-    }
-    i = 0;
-    while (i != 6)
-    {
-        res_final = res_final + tab_double[i];
         i++;
     }
     return (res_final);
@@ -242,7 +240,7 @@ double ft_decimal(char *res)
 char    *ft_joindouble(long double integer, double decimal)
 {
     int i = 0;
-    char *final = malloc(sizeof(char) * 1000);
+    char *final = malloc(sizeof(char) * 10000000);
     int stop = 0;
     int j;
     (void)decimal;
@@ -301,6 +299,7 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     f->mantisse = ft_calc_i_bi(d1.parts.mantissa);
     printf("mantisse decimal == %llu\n",d1.parts.mantissa);
     printf("matissea before === %s\n",f->mantisse);
+    printf("exposant before == %u\n",d1.parts.exponent);
     f->exposant = d1.parts.exponent - 16383;
     f->res_mantisse = ft_bi_to_dec(f->mantisse) + 1;
   printf("sign = %d\n", f->signe);

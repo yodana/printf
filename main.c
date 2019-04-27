@@ -126,19 +126,19 @@ int main()
 	ft_printf("mine : llX -> %llX\n\n",c);
 
 	double i = -253.99999;
-	float k = 253.999999;
+	/*float k = 253.999999;
 	double inf = 1.0/0.0;
 	double inf_neg = -1.0/0.0;
 	double test = 1.0/0.1;
 	double test2 = 1.0/10;
-	double zero = 0;
-	double not_number = sqrt(-10);
+	double zero = 0;*/
+	//double not_number = sqrt(-10);
 	//long double test3 = -9223372036854775808;
 	printf("reel printf: f -> %f\n",i);
 	ft_printf("mine :    f -> %f\n\n",i);
 
-	printf("reel printf: f -> %f\n",k);
-	ft_printf("mine:     f -> %f\n\n",k);
+	/*printf("reel printf: f -> %f\n",0.0);
+	ft_printf("mine:     f -> %f\n\n",0.0);
 
 	printf("reel printf : f -> %f\n",inf);
 	ft_printf("mine : f -> %f\n\n",inf);
@@ -155,8 +155,8 @@ int main()
 	printf("reel printf : f -> %f\n",zero);
 	ft_printf("mine : f -> %f\n\n",zero);
 
-	printf("reel printf : f -> %f\n",not_number);
-	ft_printf("mine : f -> %f\n\n",not_number);
+	printf("reel printf : f -> %f\n",k);
+	ft_printf("mine : f -> %f\n\n",k);
 
 	printf("reel printf : f -> %f\n",-92.0);
 	ft_printf("mine : f -> %f\n\n",-92.0);
@@ -165,7 +165,7 @@ int main()
 	ft_printf("mine : f -> %f\n",-9223372036854775808.0);
 
 	printf("reel printf : f -> %f\n",FLT_MAX);
-	ft_printf("mine : f -> %f\n\n",FLT_MAX);
+	ft_printf("mine : f -> %f\n\n",FLT_MAX);*/
 
 	printf("reel printf : f -> %.64f\n",42.42);
 	ft_printf("mine : f -> %f\n\n",42.42);
