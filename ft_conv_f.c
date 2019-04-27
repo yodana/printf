@@ -169,13 +169,13 @@ char    *ft_bi_comma(double res, int exposant)
     if (exposant <= 64)
         size = 66;
     else
-        size = exposant;
+        size = exposant + 2;
     i = 0;
     j = 0;
     j = (int)res;
     res = res - j;
     bi = ft_strnew(size);
-    while (i != 64)
+    while (i != size)
     {
         res = res * 2;
         j = (int)res;
@@ -248,7 +248,7 @@ char    *ft_joindouble(long double integer, double decimal)
     while (integer >= 1)
      {
             integer = integer / 10;
-            printf("integer == %Lf\n",integer);
+            printf("integer == %.64Lf\n",integer);
             stop++;
      }
      printf("stop == %d\n",stop);
@@ -256,7 +256,7 @@ char    *ft_joindouble(long double integer, double decimal)
     {
         integer = integer * 10;
         j = (int)integer;
-        printf("integer dans stop == %Lf\n",integer);
+        //printf("integer dans stop == %.64Lf || j == %d\n",integer,j);
         final[i] = (integer + '0');
         integer = integer - j;
         i++;
@@ -265,7 +265,7 @@ char    *ft_joindouble(long double integer, double decimal)
     i++;
     stop = 0;
     while (stop != 6)
-    {
+    {                                                                  
         decimal = decimal * 10;
         j = (int)decimal;
         final[i] = decimal + '0';
@@ -296,8 +296,8 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     char *res_final;
     d1.f = i;
     f->signe = d1.parts.sign;
-    f->mantisse = ft_calc_i_bi(d1.parts.mantissa);
-    printf("mantisse decimal == %llu\n",d1.parts.mantissa);
+    f->mantisse = ft_calc_i_bi(d1.parts.mantissa0);
+    printf("mantisse decimal == %u\n",d1.parts.mantissa0);
     printf("matissea before === %s\n",f->mantisse);
     printf("exposant before == %u\n",d1.parts.exponent);
     f->exposant = d1.parts.exponent - 16383;
