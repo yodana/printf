@@ -41,8 +41,7 @@ typedef struct s_float
 typedef union {
   long double f;
   struct {
-  unsigned int mantissa0:32;
-  unsigned int mantissa1:32;
+    long long unsigned int mantisse:64;
 	unsigned int exponent:15;
 	unsigned int sign:1;
     unsigned int empty:16;

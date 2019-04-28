@@ -108,57 +108,6 @@ void ft_putfloat(char *res, int comma)
     }
 }
 
-void ft_dtoa(long long d, long double i, int size, int signe)
-{
-    int k;
-
-    k = 0;
-    int j;
-    int comma;
-
-    comma = ft_strlen(ft_itoa(d));
-    char *res;
-    res = malloc(sizeof(char) * (size + comma + 1));
-    j = 0;
-    //ft_putnbr(d);
-    res = ft_itoa(d);
-    k = comma;
-    if (signe == 0)
-        ft_putchar('-');
-    while (k - comma != size)
-    {
-        i = i * 10;
-        j = (int)i;
-        res[k] = j  + '0';
-        k++;
-       i = i - (double)j;
-       j = 0;
-    }
-    res[k] ='\0';
-    char *rev_res = ft_strrev_fr(res);
-    k = 0;
-    while((rev_res[0] == '9'  || rev_res[k] == '9' + 1) && size <= 6)
-    {
-        rev_res[k] = '0';
-        rev_res[k + 1] = rev_res[k + 1] + 1;
-        k++;
-    }
-     ft_putfloat(ft_strrev_fr(rev_res),comma);
-}
-
-int     ft_test_nan(long long d)
-{
-    long long test;
-    test = d;
-    printf("before == %lld\n",d);
-    if (d < 0)
-        d = d * -1;
-    printf("after == %lld\n",d);
-    if (test < 0 && test == d)
-        return (1);
-    return (0);
-}
-
 char    *ft_bi_comma(double res, int exposant)
 {
     char *bi;
@@ -276,6 +225,60 @@ char    *ft_joindouble(long double integer, double decimal)
     final[i] = '\0';
     return (final);
 }
+
+char    *ft_dtoa(long double mantisse)
+{
+
+    int i;
+    char *res;
+    int j;
+
+    i = 0;
+    j = 0;
+    res = ft_strnew(65);
+    j = (int)mantisse;
+    while (i != 65)
+    {
+        if (i == 1)
+        {
+            res[i] = '.';
+            i++;
+        }
+        res[i] = j + '0';
+        mantisse = mantisse - j;
+        mantisse = mantisse * 10;
+        j = (int)mantisse;
+        i++;
+    }
+    return (res);
+}
+
+char    *ft_calc_exposant(char *res, int exposant)
+{
+    int i;
+    i = ft_strlen(res) - 1;
+    int j;
+    int hold;
+    hold = 0;
+    (void)exposant;
+    while (exposant != 0)
+    {
+    while (i >= 0)
+    {
+        j = (res[i] - '0') * 2;
+        if (j >= 0)
+        {
+                res[i] = (j % 10 + '0');
+        }
+        printf("res dans ftoa == %s\n",res);
+        i--;
+    }
+    i = ft_strlen(res) - 1;
+    exposant--;
+    }
+    return (res);
+}
+
 int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 {
     double i;
@@ -296,25 +299,17 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     char *res_final;
     d1.f = i;
     f->signe = d1.parts.sign;
-    f->mantisse = ft_calc_i_bi(d1.parts.mantissa0);
-    printf("mantisse decimal == %u\n",d1.parts.mantissa0);
+    f->mantisse = ft_calc_i_bi(d1.parts.mantisse);
+    printf("mantisse decimal == %llu\n",d1.parts.mantisse);
     printf("matissea before === %s\n",f->mantisse);
     printf("exposant before == %u\n",d1.parts.exponent);
     f->exposant = d1.parts.exponent - 16383;
     f->res_mantisse = ft_bi_to_dec(f->mantisse) + 1;
   printf("sign = %d\n", f->signe);
   printf("exponent = %d\n", f->exposant);
-  printf("mantisa = %f\n", f->res_mantisse);
-  res_final = ft_bi_comma(f->res_mantisse,f->exposant);
-  long double tab_double = ft_bi_to_tabd(res_final);
-    printf("tab double == %Lf\n",tab_double);
-    int j = 0;
-    while (res_final[j] != '.')
-        j++;
-        j++;
-double decimal = ft_decimal(&res_final[j]);
-printf("decinal == %.64f\n",decimal);
-char *final = ft_joindouble(tab_double,decimal);
-ft_putstr(final);
+  printf("mantisa = %.64f\n", f->res_mantisse);
+  res_final = ft_dtoa(f->res_mantisse);
+  char *final = ft_calc_exposant(res_final,f->exposant);
+  (void)final;
     return (0);
 }
