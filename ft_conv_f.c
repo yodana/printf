@@ -253,6 +253,26 @@ char    *ft_dtoa(long double mantisse)
     return (res);
 }
 
+void    ft_print_float(char *res, int precision)
+{
+    int i;
+    int stop;
+
+    stop = 0;
+    i = 0;
+
+    while (res[i] != '.')
+    {
+        ft_putchar(res[i]);
+        i++;
+    }
+    while (stop != precision + 1)
+    {
+         ft_putchar(res[i]);
+         stop++;
+         i++;
+    }
+}
 char    *ft_calc_exposant(char *res, int exposant)
 {
     int i;
@@ -261,19 +281,23 @@ char    *ft_calc_exposant(char *res, int exposant)
     int hold;
     hold = 0;
     (void)exposant;
-    while (exposant != 0)
+    while (exposant + 1 != 0)
     {
     while (i >= 0)
     {
         j = (res[i] - '0') * 2;
         if (j >= 0)
-        {
-                res[i] = (j % 10 + '0');
-        }
-        printf("res dans ftoa == %s\n",res);
+            res[i] = (j % 10 + '0') + hold;
+        if (j >= 10)
+          hold = 1;
+        else if (j >= 0)
+          hold = 0;
+        if (i == 0 && j >= 10)
+            res= ft_strjoin_fr("1",res, 2);
         i--;
     }
     i = ft_strlen(res) - 1;
+    hold = 0;
     exposant--;
     }
     return (res);
@@ -304,12 +328,12 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     printf("matissea before === %s\n",f->mantisse);
     printf("exposant before == %u\n",d1.parts.exponent);
     f->exposant = d1.parts.exponent - 16383;
-    f->res_mantisse = ft_bi_to_dec(f->mantisse) + 1;
+    f->res_mantisse = ft_bi_to_dec(f->mantisse);
   printf("sign = %d\n", f->signe);
   printf("exponent = %d\n", f->exposant);
   printf("mantisa = %.64f\n", f->res_mantisse);
   res_final = ft_dtoa(f->res_mantisse);
   char *final = ft_calc_exposant(res_final,f->exposant);
-  (void)final;
+  ft_print_float(final, 6);
     return (0);
 }
