@@ -197,10 +197,8 @@ char    *ft_joindouble(long double integer, double decimal)
     while (integer >= 1)
      {
             integer = integer / 10;
-            printf("integer == %.64Lf\n",integer);
             stop++;
      }
-     printf("stop == %d\n",stop);
     while (i != stop)
     {
         integer = integer * 10;
@@ -253,26 +251,53 @@ char    *ft_dtoa(long double mantisse)
     return (res);
 }
 
-void    ft_print_float(char *res, int precision)
+void    ft_print_float(char *res, int precision, int sign)
 {
     int i;
     int stop;
+    char *print;
+    int comma;
 
+    comma = 0;
     stop = 0;
     i = 0;
-
+    print = ft_strnew(precision + 1);
     while (res[i] != '.')
     {
-        ft_putchar(res[i]);
+        print[i] = res[i];
         i++;
+        comma++;
     }
-    while (stop != precision + 1)
+    while (stop != precision + 2)
     {
-         ft_putchar(res[i]);
+         print[i] = res[i];
          stop++;
          i++;
     }
+    i--;
+    if (print[i] >= '5')
+    {
+        i--;
+        while (i != 0 && (print[i] == '9' || print[i] == '.'))
+        {
+            if (print[i] != '.')   
+                print[i] = '0';
+            i--;
+        }
+        if (print[i] == '9' && i == 0)
+        {
+            print[i] = '0';
+            print = ft_strjoin("1",print);
+        }
+        else
+            print[i] = print[i] + 1;
+    }
+    if (sign == 1)
+        ft_putchar('-');
+    res = ft_strsub(print, 0, comma + precision + 1);
+    ft_putstr(res);
 }
+
 char    *ft_calc_exposant(char *res, int exposant)
 {
     int i;
@@ -305,7 +330,7 @@ char    *ft_calc_exposant(char *res, int exposant)
 
 int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 {
-    double i;
+    long double i;
     t_float *f;
     float_cast d1;
 
@@ -313,13 +338,6 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     (void)flags;
     (void)(*display);    
     i = va_arg(args, double);
-    /*f (i < 0)
-    {
-        signe = 0;
-        i = i * -1;
-    }
-    else
-        signe = 1;*/
     char *res_final;
     d1.f = i;
     f->signe = d1.parts.sign;
@@ -329,11 +347,11 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
     printf("exposant before == %u\n",d1.parts.exponent);
     f->exposant = d1.parts.exponent - 16383;
     f->res_mantisse = ft_bi_to_dec(f->mantisse);
-  printf("sign = %d\n", f->signe);
-  printf("exponent = %d\n", f->exposant);
-  printf("mantisa = %.64f\n", f->res_mantisse);
-  res_final = ft_dtoa(f->res_mantisse);
-  char *final = ft_calc_exposant(res_final,f->exposant);
-  ft_print_float(final, 6);
+    printf("sign = %d\n", f->signe);
+    printf("exponent = %d\n", f->exposant);
+    printf("mantisa = %f\n", f->res_mantisse);
+    res_final = ft_dtoa(f->res_mantisse);
+    char *final = ft_calc_exposant(res_final,f->exposant);
+    ft_print_float(final, 6, f->signe);
     return (0);
 }

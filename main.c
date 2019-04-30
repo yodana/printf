@@ -134,7 +134,7 @@ int main()
 	double zero = 0;*/
 	//double not_number = sqrt(-10);
 	//long double test3 = -9223372036854775808;
-	printf("reel printf: f -> %.64f\n",i);
+	printf("reel printf: f -> %f\n",i);
 	ft_printf("mine :    f -> %f\n\n",i);
 
 	/*printf("reel printf: f -> %f\n",0.0);
@@ -164,12 +164,14 @@ int main()
 	printf("reel printf : f -> %f\n",-9223372036854775808.4);
 	ft_printf("mine : f -> %f\n",-9223372036854775808.0);*/
 
-	printf("reel printf : f -> %Lf\n",LDBL_MAX);
-	ft_printf("minefdp : f -> %f\n\n",LDBL_MAX);
+	printf("reel printf : f -> %f\n",DBL_MAX);
+	ft_printf("minefdp : f -> %f\n\n",DBL_MAX);
 
-	printf("reel printf : f -> %.64f\n",42.42);
+	printf("reel printf : f -> %f\n",42.42);
 	ft_printf("mine : f -> %f\n\n",42.42);
 
+	printf("reel print : f -> %f\n",253.999999);
+	ft_printf("mine : f ->%f\n",253.999999);
 	//printf("reel printf : f -> %f\n",pow(2,64));
 	//ft_printf("mine : f -> %f\n\n",pow(2,64));
 	return (0);
