@@ -170,8 +170,10 @@ int main()
 	printf("reel printf : f -> %f\n",42.42);
 	ft_printf("mine : f -> %f\n\n",42.42);
 
-	printf("reel print : f -> %f\n",253.999999);
-	ft_printf("mine : f ->%f\n",253.999999);
+	printf("reel printf : f -> %f\n",0.1);
+	ft_printf("mine : f -> %f\n\n",0.1);
+	//printf("reel print : f -> %f\n",253.999999);
+	//ft_printf("mine : f ->%f\n",253.999999);
 	//printf("reel printf : f -> %f\n",pow(2,64));
 	//ft_printf("mine : f -> %f\n\n",pow(2,64));
 	return (0);

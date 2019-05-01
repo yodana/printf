@@ -46,7 +46,7 @@ typedef union {
 	unsigned int sign:1;
     unsigned int empty:16;
   } parts;
-} float_cast;
+}     float_cast;
 
 
 int     ft_printf(const char *format, ...);

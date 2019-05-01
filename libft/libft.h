@@ -103,4 +103,5 @@ int				ft_abs(int c);
 void			ft_printcolor(char *str, char *color);
 int				get_next_line(const int fd, char **line);
 void			ft_strrdel(char **arr);
+double			ft_power(double nbr, double power);
 #endif
