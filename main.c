@@ -126,18 +126,18 @@ int main()
 	ft_printf("mine : llX -> %llX\n\n",c);
 
 	double i = -253.99999;
-	/*float k = 253.999999;
+	float k = 253.999999;
 	double inf = 1.0/0.0;
 	double inf_neg = -1.0/0.0;
-	double test = 1.0/0.1;
+	//double test = 1.0/0.1;
 	double test2 = 1.0/10;
-	double zero = 0;*/
-	//double not_number = sqrt(-10);
-	//long double test3 = -9223372036854775808;
+	double zero = 0;
+	double not_number = sqrt(-1);
+	
 	printf("reel printf: f -> %f\n",i);
 	ft_printf("mine :    f -> %f\n\n",i);
 
-	/*printf("reel printf: f -> %f\n",0.0);
+	printf("reel printf: f -> %f\n",0.0);
 	ft_printf("mine:     f -> %f\n\n",0.0);
 
 	printf("reel printf : f -> %f\n",inf);
@@ -146,8 +146,8 @@ int main()
 	printf("reel printf : f -> %f\n",inf_neg);
 	ft_printf("mine : f -> %f\n\n",inf_neg);
 
-	printf("reel printf : f -> %f\n",test);
-	ft_printf("mine : f -> %f\n\n",test);
+	printf("reel printf : f -> %f\n",not_number);
+	ft_printf("mine : f -> %f\n\n",not_number);
 	
 	printf("reel printf : f -> %f\n",test2);
 	ft_printf("mine : f -> %f\n\n",test2);
@@ -162,19 +162,26 @@ int main()
 	ft_printf("mine : f -> %f\n\n",-92.0);
 
 	printf("reel printf : f -> %f\n",-9223372036854775808.4);
-	ft_printf("mine : f -> %f\n",-9223372036854775808.0);*/
+	ft_printf("mine : f -> %f\n\n",-9223372036854775808.0);
 
-	printf("reel printf : f -> %f\n",DBL_MAX);
-	ft_printf("minefdp : f -> %f\n\n",DBL_MAX);
+	long double lol = DBL_MAX + 10;
+	printf("reel printf : f -> %Lf\n",lol);
+	ft_printf("minefdp : f -> %f\n\n",lol);
 
 	printf("reel printf : f -> %f\n",42.42);
 	ft_printf("mine : f -> %f\n\n",42.42);
 
 	printf("reel printf : f -> %f\n",0.1);
 	ft_printf("mine : f -> %f\n\n",0.1);
-	//printf("reel print : f -> %f\n",253.999999);
-	//ft_printf("mine : f ->%f\n",253.999999);
-	//printf("reel printf : f -> %f\n",pow(2,64));
-	//ft_printf("mine : f -> %f\n\n",pow(2,64));
+	
+	printf("reel print : f -> %f\n",253.999999);
+	ft_printf("mine : f -> %f\n\n",253.999999);
+
+	printf("reel printf : f -> %f\n",42.25648985585);
+	ft_printf("mine : f -> %f\n\n",42.25648985585);
+
+	double maxi = DBL_MIN;
+	printf("reel printf : f ->%f\n",maxi);
+	ft_printf("reel printf : f -> %f\n\n",maxi);
 	return (0);
 }

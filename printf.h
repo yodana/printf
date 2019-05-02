@@ -39,10 +39,11 @@ typedef struct s_float
 }              t_float;
 
 typedef union {
-  long double f;
+ double f;
   struct {
-    long long unsigned int mantisse:64;
-	unsigned int exponent:15;
+    unsigned int mantisse:32;
+    unsigned int mantisse1:20;
+	unsigned int exponent:11;
 	unsigned int sign:1;
     unsigned int empty:16;
   } parts;
@@ -62,4 +63,8 @@ int    ft_conv_2(va_list args, int flags, void(*display)(long long));
 void     ft_calc_long_hexa(long long nbr);
 void     ft_calc_long_hexam(long long nbr);
 int    ft_conv_f(va_list args, int flags, void(*display)(long long));
+char *ft_calc_i_bi(unsigned long long nbr);
+double     ft_bi_to_dec(char *m);
+char    *ft_calc_exposant_neg(char *res, int stop, int hold);
+char    *ft_calc_exposant_pos(char *res, int exposant);
 #endif
