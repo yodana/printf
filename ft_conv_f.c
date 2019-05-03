@@ -110,7 +110,7 @@ int		ft_check_excep(int exposant, char *mantisse, int signe)
 
 int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 {
-	double i;
+	long double i;
 	t_float		*f;
 	float_cast	d1;
 	char		*final;
@@ -123,17 +123,20 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 	d1.f = i;
 	f->signe = d1.parts.sign;
 	f->mantisse = ft_calc_i_bi(d1.parts.mantisse);
-	f->exposant = d1.parts.exponent - 1023;
+	f->exposant = d1.parts.exponent - 16383;
 	if (ft_check_excep(d1.parts.exponent, f->mantisse, f->signe))
 		return (0);
 	char *mantisse1 = ft_calc_i_bi(d1.parts.mantisse1);
+	char *mantisse_final = ft_strjoin(f->mantisse, mantisse1);
+	printf("matisse final == %s\n",mantisse_final);
 	double mantisse2 = ft_bi_to_dec(mantisse1);
-	f->res_mantisse = ft_bi_to_dec(f->mantisse);
+	f->res_mantisse = ft_bi_to_dec(mantisse_final);
+	//0101001000001101010010101010000100001110000000100010;
 	//char *empty = ft_calc_i_bi(d1.parts.empty);
 	//double empty2 = ft_bi_to_dec(empty);
 	//printf("empty == %u\n",d1.parts.empty);
 	printf("first mantisse == %.64f\n second mantisse == %.64f\n",f->res_mantisse,mantisse2);
-	double resultat = f->res_mantisse * mantisse2;
+	double resultat = f->res_mantisse;
 	printf("resultat = %.128f\n",resultat);
 	res_final = ft_dtoa(resultat);
 	if (i >= 0 && i < 1)

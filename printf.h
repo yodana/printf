@@ -39,11 +39,11 @@ typedef struct s_float
 }              t_float;
 
 typedef union {
- double f;
+ long double f;
   struct {
     unsigned int mantisse:32;
-    unsigned int mantisse1:20;
-	unsigned int exponent:11;
+    unsigned int mantisse1:32;
+	unsigned int exponent:15;
 	unsigned int sign:1;
     unsigned int empty:16;
   } parts;
