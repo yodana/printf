@@ -41,14 +41,22 @@ typedef struct s_float
 typedef union {
  long double f;
   struct {
-    unsigned int mantisse:32;
-    unsigned int mantisse1:32;
+    unsigned long long mantisse:32;
+    unsigned long long mantisse1:32;
 	unsigned int exponent:15;
 	unsigned int sign:1;
     unsigned int empty:16;
   } parts;
 }     float_cast;
 
+typedef union{
+    long double f;
+    struct {
+        unsigned long long mantisse:64;
+        unsigned int exponent:15;
+        unsigned int sign:1;
+    } parts1;
+}      float_cast1;
 
 int     ft_printf(const char *format, ...);
 int     ft_char(va_list args,int flags, void(*display)(long long));

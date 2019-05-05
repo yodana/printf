@@ -115,30 +115,38 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 	float_cast	d1;
 	char		*final;
 	char		*res_final;
+	float_cast1 d2;
 
 	(void)flags;
 	f = (t_float*)malloc(sizeof(t_float));
 	(void)(*display);
-	i = va_arg(args, double);
+	i = va_arg(args, long double);
 	d1.f = i;
+	d2.f = i;
 	f->signe = d1.parts.sign;
 	f->mantisse = ft_calc_i_bi(d1.parts.mantisse);
 	f->exposant = d1.parts.exponent - 16383;
 	if (ft_check_excep(d1.parts.exponent, f->mantisse, f->signe))
 		return (0);
+		printf("mantisse par0A == %llu || mantisse part0B == %llu || mantisse part1 == %llu\n",d1.parts.mantisse,d1.parts.mantisse1,d2.parts1.mantisse);
 	char *mantisse1 = ft_calc_i_bi(d1.parts.mantisse1);
-	char *mantisse_final = ft_strjoin(f->mantisse, mantisse1);
-	printf("matisse final == %s\n",mantisse_final);
-	double mantisse2 = ft_bi_to_dec(mantisse1);
+	char *mantisse_final = ft_strjoin(mantisse1, f->mantisse);
+
+	//char *matisse_real = ft_calc_i_bi(d2.parts1.mantisse);
+	//printf("reel matisse_rel = %s\n",matisse_real);
+	printf("matisse final   == %s\n",mantisse_final);
+	printf("exposant == %d",f->exposant);
+	//double mantisse2 = ft_bi_to_dec(mantisse1);
 	f->res_mantisse = ft_bi_to_dec(mantisse_final);
 	//0101001000001101010010101010000100001110000000100010;
 	//char *empty = ft_calc_i_bi(d1.parts.empty);
 	//double empty2 = ft_bi_to_dec(empty);
 	//printf("empty == %u\n",d1.parts.empty);
-	printf("first mantisse == %.64f\n second mantisse == %.64f\n",f->res_mantisse,mantisse2);
-	double resultat = f->res_mantisse;
-	printf("resultat = %.128f\n",resultat);
+	//printf("first mantisse == %.64f\n second mantisse == %.64f\n",f->res_mantisse,mantisse2);
+	long double resultat = f->res_mantisse;
+	printf("resultat = %.128Lf\n",resultat);
 	res_final = ft_dtoa(resultat);
+	printf("res_final == %s\n",res_final);
 	if (i >= 0 && i < 1)
 		final = ft_calc_exposant_neg(res_final, f->exposant * -1, 0);
 	else
