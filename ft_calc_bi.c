@@ -42,13 +42,16 @@ char		*ft_char_add(char **res)
 		while (i >= 0)
 		{
 			j = (final[b] - '0') + (res[k][i] - '0');
-			final[b] = (j % 10 + '0') + hold;
 			if (j >= 10)
 				hold = 1;
 			else if (j >= 0)
 				hold = 0;
 			else
 				final[b] = '.';
+			if (final[b] == '9' && hold == 1)
+				final[b] = '0';
+			else if (final[b] != '.')
+				final[b] = (j % 10 + '0') + hold;
 			b--;
 			i--;
 		}
