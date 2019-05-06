@@ -181,7 +181,7 @@ int main()
 	ft_printf("mine : f -> %f\n\n",42.25648985585);
 */
 	long double maxi = LDBL_MAX;
-	printf("reel printf : f ->%Lf\n",maxi - 0.5);
-	ft_printf("reel printf : f -> %f\n\n",maxi - 0.5);
+	printf("reel printf : f ->%Lf\n",maxi);
+	ft_printf("reel printf : f -> %f\n\n",maxi);
 	return (0);
 }
