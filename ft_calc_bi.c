@@ -15,6 +15,7 @@ char *ft_calc_i_bi(unsigned long long nbr)
 	bi = ft_strrev_fr(bi);
 	return (bi);
 }
+
 #include <stdio.h>
 double     ft_bi_to_dec(char *m)
 {
