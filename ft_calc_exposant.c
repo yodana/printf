@@ -33,7 +33,7 @@ char    *ft_calc_exposant_pos(char *res, int exposant)
 	int i;
 	int j;
 	int hold;
-
+	
 	i = ft_strlen(res) - 1;
 	hold = 0;
 	while (exposant + 1 != 0)

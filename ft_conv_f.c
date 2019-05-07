@@ -23,7 +23,7 @@ char	*ft_dtoa(long double mantisse)
 	j = 0;
 	res = ft_strnew(128);
 	j = (int)mantisse;
-	while (i != 65)
+	while (i != 66)
 	{
 		if (i == 1)
 		{
@@ -115,20 +115,17 @@ int    ft_conv_f(va_list args,int flags, void(*display)(long long))
 	float_cast	d1;
 	char		*final;
 	char		*res_final;
-	float_cast1 d2;
 
 	(void)flags;
 	f = (t_float*)malloc(sizeof(t_float));
 	(void)(*display);
 	i = va_arg(args, long double);
 	d1.f = i;
-	d2.f = i;
 	f->signe = d1.parts.sign;
 	f->mantisse = ft_calc_i_bi(d1.parts.mantisse);
 	f->exposant = d1.parts.exponent - 16383;
 	if (ft_check_excep(d1.parts.exponent, f->mantisse, f->signe))
 		return (0);
-		printf("mantisse par0A == %llu || mantisse part0B == %llu || mantisse part1 == %llu\n",d1.parts.mantisse,d1.parts.mantisse1,d2.parts1.mantisse);
 	char *mantisse1 = ft_calc_i_bi(d1.parts.mantisse1);
 	char *mantisse_final = ft_strjoin(mantisse1, f->mantisse);
 
