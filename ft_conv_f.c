@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
 
-char	*ft_dtoa(long double mantisse)
+char	*ft_dtoa(long double m)
 {
 	int		i;
 	char	*res;
@@ -22,7 +21,7 @@ char	*ft_dtoa(long double mantisse)
 	i = 0;
 	j = 0;
 	res = ft_strnew(128);
-	j = (int)mantisse;
+	j = (int)m;
 	while (i != 66)
 	{
 		if (i == 1)
@@ -31,9 +30,9 @@ char	*ft_dtoa(long double mantisse)
 			i++;
 		}
 		res[i] = j + '0';
-		mantisse = mantisse - j;
-		mantisse = mantisse * 10;
-		j = (int)mantisse;
+		m = m - j;
+		m = m * 10;
+		j = (int)m;
 		i++;
 	}
 	return (res);
@@ -71,7 +70,7 @@ void	ft_print_float(char *res, int precision, int sign)
 	comma = 0;
 	stop = 0;
 	i = 0;
-	print = ft_strnew(316);
+	print = ft_strnew(1000);
 	while (res[i] != '.')
 	{
 		print[i] = res[i];
@@ -90,12 +89,11 @@ void	ft_print_float(char *res, int precision, int sign)
 	ft_putstr(res);
 }
 
-int		ft_check_excep(int exposant, char *mantisse, int signe)
+int		ft_check_excep(int exposant, char *m, int signe)
 {
 	if (exposant >= 32767)
 	{
-		printf("coucou\n");
-		if (mantisse[1] == '1')
+		if (m[1] == '1')
 		{
 			ft_putstr("nan");
 			return (1);
@@ -108,48 +106,28 @@ int		ft_check_excep(int exposant, char *mantisse, int signe)
 	}
 	return (0);
 }
-
-int    ft_conv_f(va_list args,int flags, void(*display)(long long))
+#include <stdio.h>
+int		ft_conv_f(va_list args, int flags, void (*display)(long long))
 {
-	long double i;
-	t_float		*f;
 	float_cast	d1;
 	char		*final;
 	char		*res_final;
+	char		*m_final;
 
-	(void)flags;
-	f = (t_float*)malloc(sizeof(t_float));
 	(void)(*display);
-	i = va_arg(args, double);
-	d1.f = i;
-	f->signe = d1.parts.sign;
-	f->mantisse = ft_calc_i_bi(d1.parts.mantisse);
-	printf("f->matisse == %s",f->mantisse);
-	f->exposant = d1.parts.exponent - 16383;
-	char *mantisse1 = ft_calc_i_bi(d1.parts.mantisse1);
-	char *mantisse_final = ft_strjoin(mantisse1, f->mantisse);
-	printf("mantisse final == %s\n",mantisse_final);
-if (ft_check_excep(d1.parts.exponent, mantisse_final, f->signe))
-		return (0);
-	//char *matisse_real = ft_calc_i_bi(d2.parts1.mantisse);
-	//printf("reel matisse_rel = %s\n",matisse_real);
-	printf("matisse final   == %s\n",mantisse_final);
-	printf("exposant == %u",f->exposant);
-	//double mantisse2 = ft_bi_to_dec(mantisse1);
-	res_final = ft_bi_to_dec(mantisse_final);
-	//0101001000001101010010101010000100001110000000100010;
-	//char *empty = ft_calc_i_bi(d1.parts.empty);
-	//double empty2 = ft_bi_to_dec(empty);
-	//printf("empty == %u\n",d1.parts.empty);
-	//printf("first mantisse == %.64f\n second mantisse == %.64f\n",f->res_mantisse,mantisse2);
-	//long double resultat = f->res_mantisse;
-	//printf("resultat = %.128Lf\n",resultat);
-	//res_final = ft_dtoa(resultat);
-	//printf("res_final == %s\n",res_final);
-	if (i >= 0 && i < 1)
-		final = ft_calc_exposant_neg(res_final, f->exposant * -1, 0);
+	if (flags == FL)
+		d1.f = va_arg(args, long double);
 	else
-		final = ft_calc_exposant_pos(res_final, f->exposant);
-	ft_print_float(final, 6, f->signe);
+		d1.f = va_arg(args, double);
+	m_final = ft_strjoin(ft_i_to_bi(d1.parts.m1), ft_i_to_bi(d1.parts.m));
+	if (ft_check_excep(d1.parts.e, m_final, d1.parts.sign))
+		return (0);
+	res_final = ft_bi_to_dec(m_final);
+	printf("res_final == %s\n",res_final);
+	if (d1.f < 1 && d1.f > -1)
+		final = ft_calc_exposant_neg(res_final, (d1.parts.e - 16383) * -1, 0);
+	else
+		final = ft_calc_exposant_pos(res_final, d1.parts.e - 16383);
+	ft_print_float(final, 6, d1.parts.sign);
 	return (0);
 }

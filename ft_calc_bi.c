@@ -1,10 +1,24 @@
-#include "printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calc_bi.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/08 15:02:44 by yodana            #+#    #+#             */
+/*   Updated: 2019/05/08 15:02:47 by yodana           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char *ft_calc_i_bi(unsigned long long nbr)
+#include "printf.h"
+#include <stdio.h>
+char		*ft_i_to_bi(unsigned long long nbr)
 {
-	char *bi;
-	int i = 0;
-	bi = malloc(sizeof(char) * 64 + 1);
+	char	*bi;
+	int		i;
+
+	i = 0;
+	bi = ft_strnew(65);
 	while (nbr >= 1)
 	{
 		bi[i] = (nbr % 2) + '0';
@@ -16,76 +30,74 @@ char *ft_calc_i_bi(unsigned long long nbr)
 	return (bi);
 }
 
-#include <stdio.h>
-
-char		*ft_char_add(char **res)
+char		*ft_char_add_str(char **res, int k, char *final)
 {
 	int j;
-	char *final;
-	int i;
+	int hold;
 	int b;
-	b = 66;
-	i = 66;
+	int i;
+
+	b = 65;
+	hold = 0;
+	i = 65;
 	j = 0;
-	int k = 0;
-	int hold = 0;
-	final = ft_strnew(66);
-	final = ft_memset(final, '0', 66);
-	k = 0;
-	printf("final before == %s\n",final);
-	while (k != 64)
+	while (i >= 0)
 	{
-		while (i >= 0)
-		{
-			j = (final[b] - '0') + (res[k][i] - '0') + hold;
-			if (j >= 10)
-				hold = 1;
-			else if (j >= 0)
-				hold = 0;
-			else if (b == 1)
-				final[b] = '.';
-			if (final[b] != '.')
-				final[b] = (j % 10 + '0');
-			b--;
-			i--;
-		}
-		b = 66;
-		i = 66;
-		printf("resultat before == %s || k == %d\n",res[k],k);
-		k++;
-		//printf("final == %s || j == %d\n",final,j);
+		j = (final[b] - '0') + (res[k][i] - '0') + hold;
+		if (j >= 10)
+			hold = 1;
+		else if (j >= 0)
+			hold = 0;
+		if (b == 1)
+			final[b] = '.';
+		if (final[b] != '.')
+			final[b] = (j % 10 + '0');
+		b--;
+		i--;
 	}
-	printf("final == %s || j == %d \n",final,j);
 	return (final);
 }
-char *ft_bi_to_dec(char *m)
+
+char		*ft_char_add_all(char **res)
 {
-	int i;
-	long double res;
-	int power = 1;
-	char **resultat;
-	char *final = NULL;
-	resultat = (char**)malloc(sizeof(char*) * 65); 
+	char	*final;
+	int		k;
+
+	k = 0;
+	final = ft_strnew(66);
+	final = ft_memset(final, '0', 66);
+	while (k != 64)
+	{
+		final = ft_char_add_str(res, k, final);
+		k++;
+	}
+	return (final);
+}
+
+char		*ft_bi_to_dec(char *m)
+{
+	int		i;
+	int		power;
+	char	**resultat;
+
+	resultat = (char**)malloc(sizeof(char*) * 65);
+	power = 1;
 	i = 0;
-	res = 0;
-	printf("mantisse == %s\n",m);
-	while(m[i])
+	while (m[i])
 	{
 		resultat[i] = ft_strnew(67);
 		if (m[i] == '1')
 			resultat[i] = ft_dtoa((1 / (double)ft_power(2, power)));
 		else
-			resultat[i] = ft_memset(resultat[i], '0', 66);
+			resultat[i] = ft_memset(resultat[i], '0', 67);
 		i++;
 		power++;
 	}
 	while (i < 64)
 	{
 		resultat[i] = ft_strnew(67);
-		resultat[i] = ft_memset(resultat[i], '0', 66);
+		resultat[i] = ft_memset(resultat[i], '0', 67);
 		i++;
 	}
-	printf("i == %d\n",i);
-	final = ft_char_add(resultat);
-	return (final);
+	return (ft_char_add_all(resultat));
 }

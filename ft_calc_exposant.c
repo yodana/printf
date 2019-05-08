@@ -1,11 +1,12 @@
 #include "printf.h"
-
+#include <stdio.h>
 char    *ft_calc_exposant_neg(char *res, int stop, int hold)
 {
 	int i;
 	int j;
 
 	i = 0;
+	printf("stop == %d\n",stop);
 	while (stop - 1 > 0)
 	{
 		while (res[i])
@@ -36,7 +37,7 @@ char    *ft_calc_exposant_pos(char *res, int exposant)
 	
 	i = ft_strlen(res) - 1;
 	hold = 0;
-	while (exposant + 1 != 0)
+	while (exposant >= 0)
 	{
 		while (i >= 0)
 		{

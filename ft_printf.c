@@ -30,6 +30,8 @@ int		ft_check_flags(const char *format)
 		if (format[1] == 'l')
 			flags++;
 	}
+	if (format[0] == 'L')
+		flags = 7;
 	return (flags);
 }
 
