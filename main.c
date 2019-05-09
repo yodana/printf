@@ -16,7 +16,7 @@
 #include <float.h>
 int main()
 {
-	char	*a = "trolol";
+	/*char	*a = "trolol";
 	char	b = '~';
 	long long c = 9223372036854775807;
 	short int d = 32767;
@@ -181,11 +181,11 @@ int main()
 	float t = 23.9999999;
 	printf("reel printf : lf ->%lf\n",t);
 	ft_printf("mine : lf-> %lf\n\n",t);
-
-	printf("reel printf : Lf-> %Lf\n",LDBL_MAX);
-	ft_printf("mine : Lf -> %Lf\n\n",LDBL_MAX);
-
-	printf("reel printf : f->%f\n",-0.1);
+*/
+	//printf("reel printf : Lf-> %Lf\n",LDBL_MAX);
 	ft_printf("mine : f-> %f\n\n",-0.1);
+	//ft_printf("mine : Lf -> %Lf\n\n",LDBL_MAX);
+	
+	//printf("reel printf : f->%f\n",-0.1);
 	return (0);
 }

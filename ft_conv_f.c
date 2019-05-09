@@ -20,7 +20,7 @@ char	*ft_dtoa(long double m)
 
 	i = 0;
 	j = 0;
-	res = ft_strnew(128);
+	res = ft_strnew(66);
 	j = (int)m;
 	while (i != 66)
 	{
@@ -70,7 +70,7 @@ void	ft_print_float(char *res, int precision, int sign)
 	comma = 0;
 	stop = 0;
 	i = 0;
-	print = ft_strnew(1000);
+	print = ft_strnew(ft_strlen(res) + 1);
 	while (res[i] != '.')
 	{
 		print[i] = res[i];
@@ -86,7 +86,9 @@ void	ft_print_float(char *res, int precision, int sign)
 	if (sign == 1)
 		ft_putchar('-');
 	res = ft_float_round(i - 1, print, comma + precision);
+	ft_strdel(&print);
 	ft_putstr(res);
+	ft_strdel(&res);
 }
 
 int		ft_check_excep(int exposant, char *m, int signe)
@@ -106,28 +108,34 @@ int		ft_check_excep(int exposant, char *m, int signe)
 	}
 	return (0);
 }
-#include <stdio.h>
+
 int		ft_conv_f(va_list args, int flags, void (*display)(long long))
 {
 	float_cast	d1;
 	char		*final;
 	char		*res_final;
 	char		*m_final;
-
+	char *m_1;
+	char *m_2;
 	(void)(*display);
 	if (flags == FL)
 		d1.f = va_arg(args, long double);
 	else
 		d1.f = va_arg(args, double);
-	m_final = ft_strjoin(ft_i_to_bi(d1.parts.m1), ft_i_to_bi(d1.parts.m));
+	m_1 = ft_i_to_bi(d1.parts.m1);
+	m_2 = ft_i_to_bi(d1.parts.m);
+	m_final = ft_strjoin(m_1, m_2);
 	if (ft_check_excep(d1.parts.e, m_final, d1.parts.sign))
 		return (0);
-	res_final = ft_bi_to_dec(m_final);
-	printf("res_final == %s\n",res_final);
+	res_final = ft_bi_to_dec(m_final, 0, 1);
 	if (d1.f < 1 && d1.f > -1)
 		final = ft_calc_exposant_neg(res_final, (d1.parts.e - 16383) * -1, 0);
 	else
 		final = ft_calc_exposant_pos(res_final, d1.parts.e - 16383);
 	ft_print_float(final, 6, d1.parts.sign);
+	ft_strdel(&final);
+	ft_strdel(&m_final);
+	ft_strdel(&m_1);
+	ft_strdel(&m_2);
 	return (0);
 }

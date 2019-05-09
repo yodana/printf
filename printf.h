@@ -73,7 +73,7 @@ void     ft_calc_long_hexa(long long nbr);
 void     ft_calc_long_hexam(long long nbr);
 int    ft_conv_f(va_list args, int flags, void(*display)(long long));
 char *ft_i_to_bi(unsigned long long nbr);
-char    *ft_bi_to_dec(char *m);
+char    *ft_bi_to_dec(char *m, int i, int power);
 char    *ft_calc_exposant_neg(char *res, int stop, int hold);
 char    *ft_calc_exposant_pos(char *res, int exposant);
 char	*ft_dtoa(long double mantisse);

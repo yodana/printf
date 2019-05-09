@@ -1,12 +1,11 @@
 #include "printf.h"
-#include <stdio.h>
+
 char    *ft_calc_exposant_neg(char *res, int stop, int hold)
 {
 	int i;
 	int j;
 
 	i = 0;
-	printf("stop == %d\n",stop);
 	while (stop - 1 > 0)
 	{
 		while (res[i])
