@@ -183,9 +183,10 @@ int main()
 	ft_printf("mine : lf-> %lf\n\n",t);
 */
 	//printf("reel printf : Lf-> %Lf\n",LDBL_MAX);
-	ft_printf("mine : f-> %f\n\n",-0.1);
-	//ft_printf("mine : Lf -> %Lf\n\n",LDBL_MAX);
+	//ft_printf("mine : f-> %f\n\n",-0.1);
+	//ft_printf("mine : f -> %Lf\n\n",-0.1);
 	
-	//printf("reel printf : f->%f\n",-0.1);
+	double l = -42.42;
+	ft_printf("mine: f->%f\n",l);
 	return (0);
 }

@@ -51,12 +51,13 @@ typedef union {
 }     float_cast;
 
 typedef union{
-    long double f;
+    double f;
     struct {
-        unsigned long long mantisse:64;
-        unsigned int exponent:15;
-        unsigned int sign:1;
-    } parts1;
+        unsigned int m:32;
+	    unsigned int m1:20;
+	    unsigned int e:11;
+	    unsigned int sign:1;
+    }    parts1;
 }      float_cast1;
 
 int     ft_printf(const char *format, ...);

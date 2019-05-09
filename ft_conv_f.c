@@ -108,7 +108,7 @@ int		ft_check_excep(int exposant, char *m, int signe)
 	}
 	return (0);
 }
-
+#include <stdio.h>
 int		ft_conv_f(va_list args, int flags, void (*display)(long long))
 {
 	float_cast	d1;
@@ -117,6 +117,7 @@ int		ft_conv_f(va_list args, int flags, void (*display)(long long))
 	char		*m_final;
 	char *m_1;
 	char *m_2;
+
 	(void)(*display);
 	if (flags == FL)
 		d1.f = va_arg(args, long double);
@@ -124,18 +125,17 @@ int		ft_conv_f(va_list args, int flags, void (*display)(long long))
 		d1.f = va_arg(args, double);
 	m_1 = ft_i_to_bi(d1.parts.m1);
 	m_2 = ft_i_to_bi(d1.parts.m);
-	m_final = ft_strjoin(m_1, m_2);
+	printf("m1	 == %s || m_2 == %s\n",m_1,m_2);
+	m_final = ft_strjoin_fr(m_1, m_2, 3);
 	if (ft_check_excep(d1.parts.e, m_final, d1.parts.sign))
 		return (0);
 	res_final = ft_bi_to_dec(m_final, 0, 1);
+	ft_strdel(&m_final);
 	if (d1.f < 1 && d1.f > -1)
 		final = ft_calc_exposant_neg(res_final, (d1.parts.e - 16383) * -1, 0);
 	else
 		final = ft_calc_exposant_pos(res_final, d1.parts.e - 16383);
 	ft_print_float(final, 6, d1.parts.sign);
 	ft_strdel(&final);
-	ft_strdel(&m_final);
-	ft_strdel(&m_1);
-	ft_strdel(&m_2);
 	return (0);
 }

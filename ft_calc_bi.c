@@ -71,11 +71,11 @@ char		*ft_char_add_all(char **res)
 	}
 	return (final);
 }
-
+#include <stdio.h>
 char		*ft_bi_to_dec(char *m, int i, int power)
 {
 	char	**resultat;
-	char	*final;
+	char	*final = NULL;
 
 	resultat = (char**)malloc(sizeof(char*) * 66);
 	while (m[i])
@@ -84,16 +84,17 @@ char		*ft_bi_to_dec(char *m, int i, int power)
 			resultat[i] = ft_dtoa((1 / (double)ft_power(2, power)));
 		else
 		{
-			resultat[i] = ft_strnew(66);
+			resultat[i] = ft_strnew(65);
 			resultat[i] = ft_memset(resultat[i], '0', 66);
 		}
 		power++;
 		i++;
 	}
-	while (i++ < 64)
+	while (i < 64)
 	{
-		resultat[i] = ft_strnew(66);
+		resultat[i] = ft_strnew(65);
 		resultat[i] = ft_memset(resultat[i], '0', 66);
+		i++;
 	}
 	resultat[i] = NULL;
 	final = ft_char_add_all(resultat);
