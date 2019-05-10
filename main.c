@@ -16,7 +16,7 @@
 #include <float.h>
 int main()
 {
-	char	*a = "trolol";
+	/*char	*a = "trolol";
 	char	b = '~';
 	long long c = 9223372036854775807;
 	short int d = 32767;
@@ -183,6 +183,9 @@ int main()
 	long double l = LDBL_MAX;
 	printf("mine: f ->%Lf\n",l);
 	ft_printf("mine: f->%Lf\n",l);
-	ft_printf("mine == %lc",120);
+	ft_printf("mine == %lc",120);*/
+	double i = 253.99999;
+	printf("reel printf: f -> %f\n",i);
+	ft_printf("mine :    f -> %f\n\n",i);
 	return (0);
 }

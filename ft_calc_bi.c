@@ -97,7 +97,7 @@ char		*ft_bi_to_dec(char *m, int i, int power)
 
 	if (!(resultat = (char**)malloc(sizeof(char*) * 66)))
 		return (NULL);
-	while (i <= 64)
+	while (i < 64)
 	{
 		if (!(resultat[i] = ft_fill_res(resultat[i], power, m, i)))
 		{
