@@ -1,14 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calc_exposant.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/10 19:18:34 by yodana            #+#    #+#             */
+/*   Updated: 2019/05/10 19:18:38 by yodana           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
-char    *ft_calc_exposant_neg(char *res, int stop, int hold)
+char	*ft_calc_exposant_neg(char *res, int stop, int hold, int i)
 {
-	int i;
 	int j;
 
-	i = 0;
-	while (stop - 1 > 0)
+	if (!res)
+		return (NULL);
+	while (stop-- > 1)
 	{
-		while (res[i])
+		while (res[i++])
 		{
 			j = (hold + (res[i] - '0')) / 2;
 			if ((res[i] - '0') % 2 == 1)
@@ -17,25 +29,21 @@ char    *ft_calc_exposant_neg(char *res, int stop, int hold)
 				hold = 0;
 			if (j >= 0)
 				res[i] = (j % 10 + '0');
-			i++;
 		}
 		if (hold == 10)
-			res = ft_strjoin_fr(res, "5", 1);
-		hold = 0;
+		{
+			if (!(res = ft_strjoin_fr(res, "5", 1)))
+				return (NULL);
+		}
 		i = 0;
-		stop--;
 	}
 	return (res);
 }
 
-char    *ft_calc_exposant_pos(char *res, int exposant)
+char	*ft_calc_exposant_pos(char *res, int exposant, int i, int hold)
 {
-	int i;
 	int j;
-	int hold;
-	
-	i = ft_strlen(res) - 1;
-	hold = 0;
+
 	while (exposant >= 0)
 	{
 		while (i >= 0)
@@ -48,12 +56,24 @@ char    *ft_calc_exposant_pos(char *res, int exposant)
 			else if (j >= 0)
 				hold = 0;
 			if (i == 0 && j >= 10)
-				res = ft_strjoin_fr("1",res, 2);
+				res = ft_strjoin_fr("1", res, 2);
 			i--;
 		}
 		i = ft_strlen(res) - 1;
 		hold = 0;
 		exposant--;
 	}
+	return (res);
+}
+
+char	*ft_calc_exposant(long double f, char *res, unsigned int exposant)
+{
+	int i;
+
+	i = ft_strlen(res) - 1;
+	if (f < 1 && f > -1)
+		res = ft_calc_exposant_neg(res, (exposant - 16383) * -1, 0, 0);
+	else
+		res = ft_calc_exposant_pos(res, exposant - 16383, i, 0);
 	return (res);
 }

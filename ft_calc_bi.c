@@ -18,7 +18,8 @@ char		*ft_i_to_bi(unsigned long long nbr)
 	int		i;
 
 	i = 31;
-	bi = ft_strnew(32);
+	if (!(bi = ft_strnew(32)))
+		return (NULL);
 	while (nbr >= 1)
 	{
 		bi[i] = (nbr % 2) + '0';
@@ -62,7 +63,8 @@ char		*ft_char_add_all(char **res)
 	int		k;
 
 	k = 0;
-	final = ft_strnew(66);
+	if (!(final = ft_strnew(66)))
+		return (NULL);
 	final = ft_memset(final, '0', 66);
 	while (k != 64)
 	{
@@ -71,29 +73,38 @@ char		*ft_char_add_all(char **res)
 	}
 	return (final);
 }
-#include <stdio.h>
+
+char		*ft_fill_res(char *resultat, int power, char *m, int i)
+{
+	if (m[i] && m[i] == '1')
+	{
+		if (!(resultat = ft_dtoa((1 / (double)ft_power(2, power)))))
+			return (NULL);
+	}
+	else
+	{
+		if (!(resultat = ft_strnew(65)))
+			return (NULL);
+		resultat = ft_memset(resultat, '0', 66);
+	}
+	return (resultat);
+}
+
 char		*ft_bi_to_dec(char *m, int i, int power)
 {
 	char	**resultat;
-	char	*final = NULL;
+	char	*final;
 
-	resultat = (char**)malloc(sizeof(char*) * 66);
-	while (m[i])
+	if (!(resultat = (char**)malloc(sizeof(char*) * 66)))
+		return (NULL);
+	while (i <= 64)
 	{
-		if (m[i] == '1')
-			resultat[i] = ft_dtoa((1 / (double)ft_power(2, power)));
-		else
+		if (!(resultat[i] = ft_fill_res(resultat[i], power, m, i)))
 		{
-			resultat[i] = ft_strnew(65);
-			resultat[i] = ft_memset(resultat[i], '0', 66);
+			ft_strrdel(resultat);
+			return (NULL);
 		}
 		power++;
-		i++;
-	}
-	while (i < 64)
-	{
-		resultat[i] = ft_strnew(65);
-		resultat[i] = ft_memset(resultat[i], '0', 66);
 		i++;
 	}
 	resultat[i] = NULL;

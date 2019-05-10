@@ -20,7 +20,8 @@ char	*ft_dtoa(long double m)
 
 	i = 0;
 	j = 0;
-	res = ft_strnew(66);
+	if (!(res = ft_strnew(66)))
+		return (NULL);
 	j = (int)m;
 	while (i != 66)
 	{
@@ -60,27 +61,25 @@ char	*ft_float_round(int i, char *print, int size)
 	return (ft_strsub(print, 0, size + 1));
 }
 
-void	ft_print_float(char *res, int precision, int sign)
+void	ft_print_float(char *res, int precision, int sign, int stop)
 {
 	int		i;
-	int		stop;
 	char	*print;
 	int		comma;
 
 	comma = 0;
-	stop = 0;
 	i = 0;
-	print = ft_strnew(ft_strlen(res) + 1);
+	if (!res || !(print = ft_strnew(ft_strlen(res) + 1)))
+		return ;
 	while (res[i] != '.')
 	{
 		print[i] = res[i];
 		i++;
 		comma++;
 	}
-	while (stop != precision + 2)
+	while (stop++ != precision + 2)
 	{
 		print[i] = res[i];
-		stop++;
 		i++;
 	}
 	if (sign == 1)
@@ -91,32 +90,33 @@ void	ft_print_float(char *res, int precision, int sign)
 	ft_strdel(&res);
 }
 
-int		ft_check_excep(int exposant, char *m, int signe)
+int		ft_check_excep(unsigned int exposant, char *m, int signe)
 {
+	if (!m)
+		return (1);
 	if (exposant >= 32767)
 	{
 		if (m[1] == '1')
 		{
-			ft_putstr("nan");
+			ft_putstr("nan\n");
 			return (1);
 		}
 		if (signe == 1)
-			ft_putstr("-inf");
+			ft_putstr("-inf\n");
 		else
-			ft_putstr("inf");
+			ft_putstr("inf\n");
 		return (1);
 	}
 	return (0);
 }
-#include <stdio.h>
+
 int		ft_conv_f(va_list args, int flags, void (*display)(long long))
 {
 	float_cast	d1;
-	char		*final;
 	char		*res_final;
 	char		*m_final;
-	char *m_1;
-	char *m_2;
+	char		*m_1;
+	char		*m_2;
 
 	(void)(*display);
 	if (flags == FL)
@@ -125,17 +125,16 @@ int		ft_conv_f(va_list args, int flags, void (*display)(long long))
 		d1.f = va_arg(args, double);
 	m_1 = ft_i_to_bi(d1.parts.m1);
 	m_2 = ft_i_to_bi(d1.parts.m);
-	printf("m1	 == %s || m_2 == %s\n",m_1,m_2);
 	m_final = ft_strjoin_fr(m_1, m_2, 3);
 	if (ft_check_excep(d1.parts.e, m_final, d1.parts.sign))
+	{
+		ft_strdel(&m_final);
 		return (0);
+	}
 	res_final = ft_bi_to_dec(m_final, 0, 1);
+	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
+	ft_print_float(res_final, 6, d1.parts.sign, 0);
 	ft_strdel(&m_final);
-	if (d1.f < 1 && d1.f > -1)
-		final = ft_calc_exposant_neg(res_final, (d1.parts.e - 16383) * -1, 0);
-	else
-		final = ft_calc_exposant_pos(res_final, d1.parts.e - 16383);
-	ft_print_float(final, 6, d1.parts.sign);
-	ft_strdel(&final);
+	ft_strdel(&res_final);
 	return (0);
 }

@@ -16,7 +16,7 @@
 #include <float.h>
 int main()
 {
-	/*char	*a = "trolol";
+	char	*a = "trolol";
 	char	b = '~';
 	long long c = 9223372036854775807;
 	short int d = 32767;
@@ -147,7 +147,6 @@ int main()
 
 	printf("reel printf : f -> %f\n",not_number);
 	ft_printf("mine : f -> %f\n\n",not_number);
-	
 	printf("reel printf : f -> %f\n",test2);
 	ft_printf("mine : f -> %f\n\n",test2);
 
@@ -156,13 +155,11 @@ int main()
 
 	printf("reel printf : f -> %f\n",k);
 	ft_printf("mine : f -> %f\n\n",k);
-
 	printf("reel printf : f -> %f\n",-92.0);
 	ft_printf("mine : f -> %f\n\n",-92.0);
 
 	printf("reel printf : f -> %f\n",-9223372036854775808.0);
 	ft_printf("mine : f -> %f\n\n",-9223372036854775808.0);
-
 	printf("reel printf : f -> %f\n",42.42);
 	ft_printf("mine : f -> %f\n\n",42.42);
 
@@ -171,7 +168,6 @@ int main()
 	
 	printf("reel print : f -> %f\n",253.999999);
 	ft_printf("mine : f -> %f\n\n",253.999999);
-
 	printf("reel printf : f -> %f\n",42.25648985585);
 	ft_printf("mine : f -> %f\n\n",42.25648985585);
 	double maxi = DBL_MAX;
@@ -179,14 +175,14 @@ int main()
 	printf("reel printf : f ->%f\n",maxi + 10);
 	ft_printf("mine: f -> %f\n\n",maxi + 10);
 	float t = 23.9999999;
-	printf("reel printf : lf ->%lf\n",t);
-	ft_printf("mine : lf-> %lf\n\n",t);
-*/
-	//printf("reel printf : Lf-> %Lf\n",LDBL_MAX);
-	//ft_printf("mine : f-> %f\n\n",-0.1);
-	//ft_printf("mine : f -> %Lf\n\n",-0.1);
+	printf("reel printf : lf ->%f\n",t);
+	ft_printf("mine : lf-> %f\n\n",t);
 	
-	double l = -42.42;
-	ft_printf("mine: f->%f\n",l);
+	printf("reel printf : f-> %f\n",-0.1);
+	ft_printf("mine : f -> %f\n\n",-0.1);
+	long double l = LDBL_MAX;
+	printf("mine: f ->%Lf\n",l);
+	ft_printf("mine: f->%Lf\n",l);
+	ft_printf("mine == %lc",120);
 	return (0);
 }

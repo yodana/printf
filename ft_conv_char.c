@@ -14,10 +14,12 @@ int		ft_char(va_list args, int flags, void(*display)(long long))
 int		ft_str(va_list args, int flags, void(*display)(long long))
 {
 	char *str;
-	//printf("here");
+	ft_putstr("inf");
 	(void)(*display);
-	str = va_arg(args, char*);
-	ft_putstr(str);
+	if (!(str = va_arg(args, char*)))
+		return (0);
+	printf("%s\n",str);
+	//ft_putstr(str);
 	return (flags);
 }
 
