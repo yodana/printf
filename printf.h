@@ -76,4 +76,5 @@ char *ft_i_to_bi(unsigned long long nbr);
 char    *ft_bi_to_dec(char *m, int i, int power);
 char	*ft_dtoa(long double mantisse);
 char	*ft_calc_exposant(long double f, char *res, unsigned int exposant);
+int     ft_conv_spe(va_list args, int flags, void(*display)(long long));
 #endif

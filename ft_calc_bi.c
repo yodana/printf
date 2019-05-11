@@ -74,9 +74,9 @@ char		*ft_char_add_all(char **res)
 	return (final);
 }
 
-char		*ft_fill_res(char *resultat, int power, char *m, int i)
+char		*ft_fill_res(char *resultat, int power, char *m, size_t i)
 {
-	if (m[i] && m[i] == '1')
+	if (i < ft_strlen(m) && m[i] == '1')
 	{
 		if (!(resultat = ft_dtoa((1 / (double)ft_power(2, power)))))
 			return (NULL);

@@ -98,5 +98,12 @@ t_conv	*ft_create_lst(void)
 	next->display = NULL;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
+	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
+		return (NULL);
+	next->type = '%';
+	next->f = ft_conv_spe;
+	next->display = NULL;
+	next->next = NULL;
+	ft_conv_lst_add(&new, next);
 	return (new);
 }
