@@ -187,6 +187,6 @@ int main()
 	printf("reel printf : spe -> %%\n");
 	ft_printf("mine : spe -> %%\n\n");*/
 
-	ft_printf("mine : # with x -> %#d\n\n",1);
+	printf("mine : # with o -> %#o\n\n",25);
 	return (0);
 }

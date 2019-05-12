@@ -20,7 +20,7 @@ void    ft_conv_wf_2(va_list args, int flags, void(*display)(long long))
     }    
     else if (flags == L)
     {
-       ld = ( unsigned long)va_arg(args,  unsigned long);
+       ld = (unsigned long)va_arg(args,  unsigned long);
        display(ld);
     }
     else if (flags == LL)
@@ -33,7 +33,9 @@ void    ft_conv_wf_2(va_list args, int flags, void(*display)(long long))
 int    ft_conv_2(va_list args, int flags, t_conv *lst_fct)
 {
    unsigned int d;
-     
+   
+   if (ft_strlen(lst_fct->attribut) != 0)
+      ft_attribut(args, lst_fct);
    if (flags > 0)
    {
       ft_conv_wf_2(args, flags, lst_fct->display);

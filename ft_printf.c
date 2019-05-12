@@ -82,10 +82,8 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 		return (0);
 	i = 0;
 	attribut = ft_check_attribut(&i,format);
-	printf("attribut == %s",ft_strdup(attribut));
 	flags = ft_check_flags(format);
 	i = i + flags % 3;
-	printf("attribut == %c\n",format[i]);
 	while (lst_fct != NULL)
 	{
 		if (format[i] == lst_fct->type)
