@@ -13,6 +13,43 @@
 #include "printf.h"
 #include "stdio.h"
 
+int		ft_is_conv(const char format)
+{
+	if (format == 'd' || format == 'f' || format == 'u' || 
+			format == 'X' || format == 'x' || format == 'c' || 
+				format == 's' || format == 'p' || format == 'i' || 
+					format == 'o')
+		return (1);
+	return (0);
+}
+char	*ft_check_attribut(int *i, const char *format)
+{
+	char *attributs;
+	int j;
+	int k;
+	char *res;
+
+	k = 0;
+	j = 0;
+	res = ft_strnew(2);
+	attributs = ft_fill_attribut();
+	while (ft_is_conv(format[*i]) == 0) // && ft_check_flags(&format[i]) == 0)
+	{
+		while (attributs[j])
+		{
+			if (attributs[j] == format[*i])
+			{
+				res[k] = attributs[j];
+				k++;
+			}
+			j++;
+		}
+		j = 0;
+		*i = *i + 1;
+	}
+	return (res);
+}
+
 int		ft_check_flags(const char *format)
 {
 	int flags;
@@ -39,18 +76,25 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 {
 	int	flags;
 	int i;
+	char *attribut;
 
 	if (format[0] == '\0')
 		return (0);
+	i = 0;
+	attribut = ft_check_attribut(&i,format);
+	printf("attribut == %s",ft_strdup(attribut));
 	flags = ft_check_flags(format);
-	i = flags % 3;
+	i = i + flags % 3;
 	while (lst_fct != NULL)
 	{
 		if (format[i] == lst_fct->type)
-			lst_fct->f(args, flags, lst_fct->display);
+		{
+			lst_fct->attribut = ft_strdup(attribut);
+			lst_fct->f(args, flags, lst_fct);
+		}
 		lst_fct = lst_fct->next;
 	}
-	return ((flags % 3) + 1);
+	return (i);
 }
 
 int		ft_printf(const char *format, ...)

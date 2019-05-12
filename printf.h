@@ -22,11 +22,13 @@
 #define LL 5
 #define FL 7
 
+
 typedef struct s_conv
 {
     char type;
     int (*f)(va_list,int , void(*display)(long long));
     void (*display)(long long);
+    char *attribut;
     struct  s_conv *next;
 }               t_conv;
 
@@ -49,16 +51,6 @@ typedef union {
   } parts;
 }     float_cast;
 
-typedef union{
-    double f;
-    struct {
-        unsigned int m:32;
-	    unsigned int m1:20;
-	    unsigned int e:11;
-	    unsigned int sign:1;
-    }    parts1;
-}      float_cast1;
-
 int     ft_printf(const char *format, ...);
 int     ft_char(va_list args,int flags, void(*display)(long long));
 int     ft_str(va_list args,int flags, void(*display)(long long));
@@ -77,4 +69,6 @@ char    *ft_bi_to_dec(char *m, int i, int power);
 char	*ft_dtoa(long double mantisse);
 char	*ft_calc_exposant(long double f, char *res, unsigned int exposant);
 int     ft_conv_spe(va_list args, int flags, void(*display)(long long));
+char    *ft_fill_attribut(void);
+int		ft_check_flags(const char *format);
 #endif

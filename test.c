@@ -83,25 +83,16 @@ char *ft_calc_d_bi(double nbr)
     b[i] = '\0';
     return (b);
 }
+void ft_change(int *i)
+{
+    *i = *i + 1;
+}
 int main(void) 
 {
-    double i = 234.42;
-    int biais = 16383;
-    char *m;
-  float_cast d1 = { .f = i };
-  printf("sign = %x\n", d1.parts.sign);
-  printf("exponent = %d\n", d1.parts.exponent);
-  printf("mantisa = %llu\n", d1.parts.mantissa);
-  unsigned int exposant = d1.parts.exponent - biais;
-  m = ft_calc_i_bi(d1.parts.mantissa);
-  printf("matisse = %s\n",m);
-  printf("reel exponant = %u\n",exposant);
-  double res_mantisse = ft_bi_to_dec(m) + 1;
-  printf("res_mantisse == %f\n",res_mantisse);
-  char *b = ft_calc_d_bi(res_mantisse);
-  printf("matisse final binaire == %s\n",b);
-  double res = 1.99999;
-  int j = (int)res;
-  printf("j == %d\n",j);
- // printf("resultat i == %.9f\n",i);
+    int i;
+
+    i = 2;
+    printf("mine : # with x -> %d\n\n",i);
+    ft_change(&i);
+     printf("mine : # with x -> %d\n\n",i);
 }

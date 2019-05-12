@@ -16,7 +16,7 @@
 #include <float.h>
 int main()
 {
-	char	*a = "trolol";
+	/*char	*a = "trolol";
 	char	b = '~';
 	long long c = 9223372036854775807;
 	short int d = 32767;
@@ -185,6 +185,8 @@ int main()
 	ft_printf("mine: f->%Lf\n",l);
 	ft_printf("mine == %lc",120);
 	printf("reel printf : spe -> %%\n");
-	ft_printf("mine : spe -> %%\n\n");
+	ft_printf("mine : spe -> %%\n\n");*/
+
+	ft_printf("mine : # with x -> %#d\n\n",1);
 	return (0);
 }
