@@ -1,32 +1,31 @@
 #include "printf.h"
-#include <stdio.h>
 
-int		ft_char(va_list args, int flags, void(*display)(long long))
+int		ft_char(va_list args, int flags, t_conv *lst_fct)
 {
 	char c;
 
-	(void)(*display);
+	(void)(lst_fct);
 	c = va_arg(args, int);
 	ft_putchar(c);
 	return (flags);
 }
 
-int		ft_str(va_list args, int flags, void(*display)(long long))
+int		ft_str(va_list args, int flags, t_conv *lst_fct)
 {
 	char *str;
-	ft_putstr("inf");
-	(void)(*display);
+	
+	(void)(lst_fct);
 	if (!(str = va_arg(args, char*)))
 		return (0);
-	printf("%s\n",str);
-	//ft_putstr(str);
+	ft_putstr(str);
 	return (flags);
 }
 
-int		ft_pointer(va_list args, int flags, void(*display)(long long))
+int		ft_pointer(va_list args, int flags, t_conv *lst_fct)
 {
 	void  *p;
-	(void)(*display);
+
+	(void)(lst_fct);
 	p = va_arg(args, void *);
 	ft_putstr("0x");
 	ft_calc_hexa((unsigned long)p);

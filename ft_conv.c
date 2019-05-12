@@ -30,17 +30,17 @@ void    ft_conv_wf_2(va_list args, int flags, void(*display)(long long))
     }
 }
 
-int    ft_conv_2(va_list args, int flags, void(*display)(long long))
+int    ft_conv_2(va_list args, int flags, t_conv *lst_fct)
 {
    unsigned int d;
      
    if (flags > 0)
    {
-      ft_conv_wf_2(args, flags,*display);
+      ft_conv_wf_2(args, flags, lst_fct->display);
       return (0);
    }
    d = (unsigned int)va_arg(args, unsigned int);
-   display(d);
+   lst_fct->display(d);
    return (0);
 }
 
@@ -73,16 +73,17 @@ void    ft_conv_wf(va_list args, int flags, void(*display)(long long))
     }
 }
 
-int    ft_conv(va_list args, int flags, void(*display)(long long))
+int    ft_conv(va_list args, int flags, t_conv *lst_fct)
 {
    int d;
      
    if (flags > 0)
    {
-      ft_conv_wf(args, flags,*display);
+      ft_conv_wf(args, flags, lst_fct->display);
       return (0);
    }
    d = (int)va_arg(args, int);
-   display(d);
+   printf("attribut == %d",d);
+   lst_fct->display(d);
    return (0);
 }

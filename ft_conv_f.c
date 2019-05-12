@@ -110,7 +110,7 @@ int		ft_check_excep(unsigned int exposant, char *m, int signe)
 	return (0);
 }
 
-int		ft_conv_f(va_list args, int flags, void (*display)(long long))
+int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 {
 	float_cast	d1;
 	char		*res_final;
@@ -118,7 +118,7 @@ int		ft_conv_f(va_list args, int flags, void (*display)(long long))
 	char		*m_1;
 	char		*m_2;
 
-	(void)(*display);
+	(void)(lst_fct);
 	if (flags == FL)
 		d1.f = va_arg(args, long double);
 	else
