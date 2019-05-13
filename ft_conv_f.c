@@ -58,7 +58,7 @@ char	*ft_float_round(int i, char *print, int size)
 		else
 			print[i] = print[i] + 1;
 	}
-	return (ft_strsub(print, 0, size + 1));
+	return (ft_strsub(print, 0, size));
 }
 
 void	ft_print_float(char *res, int precision, int sign, int stop)
@@ -133,7 +133,9 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 	}
 	res_final = ft_bi_to_dec(m_final, 0, 1);
 	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
-	ft_print_float(res_final, 6, d1.parts.sign, 0);
+	ft_print_float(res_final, 7, d1.parts.sign, 0);
+	if (lst_fct->attribut[0] == '#') //&& precision == 0)
+		ft_putchar('.');
 	ft_strdel(&m_final);
 	ft_strdel(&res_final);
 	return (0);

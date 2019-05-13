@@ -87,12 +87,17 @@ void ft_change(int *i)
 {
     *i = *i + 1;
 }
+
+void    ft_test(const char *format, ...)
+{
+    va_list args;
+
+    va_start(args, format);
+    printf("%d\n",args);
+}
 int main(void) 
 {
     int i;
 
-    i = 2;
-    printf("mine : # with x -> %d\n\n",i);
-    ft_change(&i);
-     printf("mine : # with x -> %d\n\n",i);
+    ft_test("lol",1);
 }

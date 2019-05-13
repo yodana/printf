@@ -1,12 +1,26 @@
 #include "printf.h"
 
-void    ft_hachtag(va_list args, t_conv *lst_fct)
+void    ft_zero(t_conv *lst_fct)
 {
-    if (lst_fct->type == 'o' && (unsigned int)va_arg(args, unsigned int) != 0)
-        ft_putnbr(0);
+    if (ft_strrchr(lst_fct->attribut, '-') == NULL) //&& ft_strrchr(lst_fct->detail, '.'))
+        return ;
+    return ;
 }
-void    ft_attribut(va_list args, t_conv *lst_fct)
+
+void    ft_hachtag(long long i, t_conv *lst_fct)
 {
-    if (lst_fct->attribut[0] == '#')
-        ft_hachtag(args, lst_fct);
+    if (lst_fct->type == 'o' && i != 0)
+         ft_putnbr(0);
+    if (lst_fct->type == 'x' && i != 0)
+        ft_putstr("0x");
+    if (lst_fct->type == 'X' && i != 0)
+        ft_putstr("0X");
+}
+
+void    ft_attribut(long long i, t_conv *lst_fct)
+{
+    if (ft_strrchr(lst_fct->attribut, '#') != NULL)
+        ft_hachtag(i, lst_fct);
+    if (ft_strrchr(lst_fct->attribut, '0') != NULL)
+        ft_zero(lst_fct);
 }

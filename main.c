@@ -187,6 +187,30 @@ int main()
 	printf("reel printf : spe -> %%\n");
 	ft_printf("mine : spe -> %%\n\n");*/
 
-	printf("mine : # with o -> %#o\n\n",25);
+	printf("real : # with o -> %#o\n",0);
+	ft_printf("mine : # with o -> %#o\n\n",0);
+
+	printf("real : # with o -> %#o\n",192);
+	ft_printf("mine : # with o -> %#o\n\n",192);
+	
+	printf("real : # with x -> %#x\n",0);
+	ft_printf("mine : # with x -> %#x\n\n",0);
+
+	printf("real : # with x -> %#x\n",192);
+	ft_printf("mine : # with x -> %#x\n\n",192);
+
+	printf("real : # with X -> %#X\n",0);
+	ft_printf("mine : # with X -> %#X\n\n",0);
+
+	printf("real : # with X -> %#X\n",192);
+	ft_printf("mine : # with X -> %#X\n\n",192);
+
+	printf("reel : # with f -> %#f\n",10.0);
+	ft_printf("mine : # with f -> %#f\n\n",10.0);
+
+	printf("reel : 0 with d -> %0d\n",1);
+	ft_printf("mine : 0 with d -> %0d\n\n",1);
+
+	printf("reel : %.20d",10);
 	return (0);
 }
