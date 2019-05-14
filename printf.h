@@ -27,10 +27,11 @@ typedef struct s_conv
 {
     char type;
     int (*f)(va_list, int , struct s_conv*);
-    void (*display)(long long);
+    char* (*display)(long long);
     char *attribut;
     int champ;
     int precision;
+    char *final;
     struct  s_conv *next;
 }               t_conv;
 
@@ -59,12 +60,12 @@ int     ft_str(va_list args,int flags, t_conv *lst_fct);
 int     ft_pointer(va_list args, int flags, t_conv *lst_fct);
 t_conv  *ft_create_lst(void);
 void    ft_free_lst(t_conv *list);
-void     ft_calc_hexa(unsigned long nbr);
+char    *ft_calc_hexa(unsigned long nbr);
 int   ft_conv(va_list args, int flags,t_conv *lst_fct);
-void     ft_calc_octa(long long nbr);
+char    *ft_calc_octa(long long nbr);
 int    ft_conv_2(va_list args, int flags, t_conv *lst_fct);
-void     ft_calc_long_hexa(long long nbr);
-void     ft_calc_long_hexam(long long nbr);
+char   *ft_calc_long_hexa(long long nbr);
+char   *ft_calc_long_hexam(long long nbr);
 int    ft_conv_f(va_list args, int flags, t_conv *lst_fct);
 char *ft_i_to_bi(unsigned long long nbr);
 char    *ft_bi_to_dec(char *m, int i, int power);

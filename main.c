@@ -16,7 +16,7 @@
 #include <float.h>
 int main()
 {
-	/*char	*a = "trolol";
+	char	*a = "trolol";
 	char	b = '~';
 	long long c = 9223372036854775807;
 	short int d = 32767;
@@ -125,7 +125,7 @@ int main()
 	printf("reel printf: llX -> %llX\n",c);
 	ft_printf("mine : llX -> %llX\n\n",c);
 
-	double i = 253.99999;
+	/*double i = 253.99999;
 	float k = 253.999999;
 	double inf = 1.0/0.0;
 	double inf_neg = -1.0/0.0;
@@ -180,7 +180,7 @@ int main()
 	
 	printf("reel printf : f-> %f\n",-0.1);
 	ft_printf("mine : f -> %f\n\n",-0.1);*/
-	long double l = LDBL_MAX;
+	/*long double l = LDBL_MAX;
 	printf("mine: f ->%Lf\n",l);
 	ft_printf("mine: f->%Lf\n",l);
 	ft_printf("mine == %lc",120);
@@ -225,6 +225,7 @@ int main()
 	//printf("reel : espace and + with d -> % +d\n",1);
 	ft_printf("mine : espace and + with d -> % +d\n\n",1);
 
-	printf("reel : champ with d -> %5s|","slsd");
+	printf("reel : champ with s -> %o|\n",0);
+	ft_printf("mine : champ with s -> %d|\n\n",10);*/
 	return (0);
 }

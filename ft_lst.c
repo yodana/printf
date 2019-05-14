@@ -36,6 +36,7 @@ t_conv	*ft_create_lst(void)
 	new->attribut = NULL;
 	new->champ = 0;
 	new->display = NULL;
+	new->final = NULL;
 	new->next = NULL;
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
 		return (NULL);
@@ -43,6 +44,7 @@ t_conv	*ft_create_lst(void)
 	next->f = ft_str;
 	next->attribut = NULL;
 	next->display = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -52,6 +54,7 @@ t_conv	*ft_create_lst(void)
 	next->f = ft_pointer;
 	next->display = NULL;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -59,8 +62,9 @@ t_conv	*ft_create_lst(void)
 		return (NULL);
 	next->type = 'd';
 	next->f = ft_conv;
-	next->display = ft_putnbr;
+	next->display = ft_itoa;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -68,8 +72,9 @@ t_conv	*ft_create_lst(void)
 		return (NULL);
 	next->type = 'i';
 	next->f = ft_conv;
-	next->display = ft_putnbr;
+	next->display = ft_itoa;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -79,6 +84,7 @@ t_conv	*ft_create_lst(void)
 	next->f = ft_conv_2;
 	next->display = ft_calc_octa;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -86,8 +92,9 @@ t_conv	*ft_create_lst(void)
 		return (NULL);
 	next->type = 'u';
 	next->f = ft_conv_2;
-	next->display = ft_putnbr;
+	next->display = ft_itoa;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -97,6 +104,7 @@ t_conv	*ft_create_lst(void)
 	next->f = ft_conv_2;
 	next->display = ft_calc_long_hexa;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -106,6 +114,7 @@ t_conv	*ft_create_lst(void)
 	next->f = ft_conv_2;
 	next->display = ft_calc_long_hexam;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -115,6 +124,7 @@ t_conv	*ft_create_lst(void)
 	next->f = ft_conv_f;
 	next->display = NULL;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
@@ -124,6 +134,7 @@ t_conv	*ft_create_lst(void)
 	next->f = ft_conv_spe;
 	next->display = NULL;
 	next->attribut = NULL;
+	next->final = NULL;
 	next->champ = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);

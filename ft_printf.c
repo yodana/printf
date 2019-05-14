@@ -13,11 +13,10 @@
 #include "printf.h"
 #include "stdio.h"
 
-int		ft_check_champ(int *i, const char *format)
+int		ft_check_champ(const char *format)
 {
 	int resultat;
 
-	*i = *i;
 	resultat = ft_atoi(format);
 	return (resultat);
 }
@@ -90,7 +89,8 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 	if (format[0] == '\0')
 		return (0);
 	i = 0;
-	champ = ft_check_champ(&i, format);
+	champ = ft_check_champ(format);
+	//printf("champ == %d\n",champ);
 	attribut = ft_check_attribut(&i,&format[i]);
 	flags = ft_check_flags(&format[i]);
 	i = i + (flags % 3);
@@ -98,6 +98,7 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 	{
 		if (format[i] == lst_fct->type)
 		{
+			lst_fct->champ = champ;
 			lst_fct->attribut = ft_strdup(attribut);
 			lst_fct->f(args, flags, lst_fct);
 		}

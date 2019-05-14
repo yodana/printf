@@ -12,26 +12,27 @@ void    ft_conv_wf_2(va_list args, int flags, t_conv *lst_fct)
     {
        hhd = (unsigned char)va_arg(args,  unsigned  char*);
        ft_attribut(hhd, lst_fct);
-       lst_fct->display(hhd);
+       lst_fct->final = lst_fct->display(hhd);
     }
     else if (flags == H)
     {
        hd = (unsigned short)va_arg(args,  unsigned int);
        ft_attribut(hd, lst_fct);
-       lst_fct->display(hd);
+       lst_fct->final = lst_fct->display(hd);
     }
     else if (flags == L)
     {
        ld = (unsigned long)va_arg(args,  unsigned long);
        ft_attribut(ld, lst_fct);
-       lst_fct->display(ld);
+       lst_fct->final = lst_fct->display(ld);
     }
     else if (flags == LL)
     {
       lld = (unsigned long long)va_arg(args,  unsigned long long);
       ft_attribut(lld, lst_fct);
-      lst_fct->display(lld);
+      lst_fct->final = lst_fct->display(lld);
     }
+    ft_putstr(lst_fct->final);
 }
 
 int    ft_conv_2(va_list args, int flags, t_conv *lst_fct)
@@ -44,8 +45,9 @@ int    ft_conv_2(va_list args, int flags, t_conv *lst_fct)
       return (0);
    }
    d = (unsigned int)va_arg(args, unsigned int);
-   ft_attribut(d, lst_fct);
-   lst_fct->display(d);
+   //ft_attribut(d, lst_fct);
+   lst_fct->final = lst_fct->display(d);
+   ft_putstr(lst_fct->final);
    return (0);
 }
 
@@ -60,26 +62,27 @@ void    ft_conv_wf(va_list args, int flags, t_conv *lst_fct)
     {
        hhd = (char)va_arg(args, char*);
        ft_attribut(hhd, lst_fct);
-       lst_fct->display(hhd);
+       lst_fct->final = lst_fct->display(hhd);
     }
     else if (flags == H)
     {
        hd = (short)va_arg(args, int);
        ft_attribut(hd, lst_fct);
-       lst_fct->display(hd);
+       lst_fct->final = lst_fct->display(hd);
     }    
     else if (flags == L)
     {
        ld = (long)va_arg(args, long);
        ft_attribut(ld, lst_fct);
-       lst_fct->display(ld);
+       lst_fct->final = lst_fct->display(ld);
     }
     else if (flags == LL)
     {
         lld = (long long)va_arg(args, long long);
         ft_attribut(lld, lst_fct);
-         lst_fct->display(lld);
+         lst_fct->final = lst_fct->display(lld);
     }
+    ft_putstr(lst_fct->final);
 }
 
 int    ft_conv(va_list args, int flags, t_conv *lst_fct)
@@ -93,6 +96,7 @@ int    ft_conv(va_list args, int flags, t_conv *lst_fct)
    }
    d = (int)va_arg(args, int);
    ft_attribut(d, lst_fct);
-   lst_fct->display(d);
+   lst_fct->final = lst_fct->display(d);
+   ft_putstr(lst_fct->final);
    return (0);
 }
