@@ -225,6 +225,6 @@ int main()
 	//printf("reel : espace and + with d -> % +d\n",1);
 	ft_printf("mine : espace and + with d -> % +d\n\n",1);
 
-	printf("reel : champ with d -> %d|",1);
+	printf("reel : champ with d -> %5s|","slsd");
 	return (0);
 }
