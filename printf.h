@@ -29,6 +29,8 @@ typedef struct s_conv
     int (*f)(va_list, int , struct s_conv*);
     void (*display)(long long);
     char *attribut;
+    int champ;
+    int precision;
     struct  s_conv *next;
 }               t_conv;
 

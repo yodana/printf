@@ -179,13 +179,13 @@ int main()
 	ft_printf("mine : lf-> %f\n\n",t);
 	
 	printf("reel printf : f-> %f\n",-0.1);
-	ft_printf("mine : f -> %f\n\n",-0.1);
+	ft_printf("mine : f -> %f\n\n",-0.1);*/
 	long double l = LDBL_MAX;
 	printf("mine: f ->%Lf\n",l);
 	ft_printf("mine: f->%Lf\n",l);
 	ft_printf("mine == %lc",120);
 	printf("reel printf : spe -> %%\n");
-	ft_printf("mine : spe -> %%\n\n");*/
+	ft_printf("mine : spe -> %%\n\n");
 
 	printf("real : # with o -> %#o\n",0);
 	ft_printf("mine : # with o -> %#o\n\n",0);
@@ -224,5 +224,7 @@ int main()
 
 	//printf("reel : espace and + with d -> % +d\n",1);
 	ft_printf("mine : espace and + with d -> % +d\n\n",1);
+
+	printf("reel : champ with d -> %d|",1);
 	return (0);
 }

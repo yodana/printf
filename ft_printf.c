@@ -13,6 +13,14 @@
 #include "printf.h"
 #include "stdio.h"
 
+int		ft_check_champ(int *i, const char *format)
+{
+	int resultat;
+
+	*i = *i;
+	resultat = ft_atoi(format);
+	return (resultat);
+}
 int		ft_is_conv(const char format)
 {
 	if (format == 'd' || format == 'f' || format == 'u' || 
@@ -77,11 +85,13 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 	int	flags;
 	int i;
 	char *attribut;
+	int champ;
 
 	if (format[0] == '\0')
 		return (0);
 	i = 0;
-	attribut = ft_check_attribut(&i,format);
+	champ = ft_check_champ(&i, format);
+	attribut = ft_check_attribut(&i,&format[i]);
 	flags = ft_check_flags(&format[i]);
 	i = i + (flags % 3);
 	while (lst_fct != NULL)
