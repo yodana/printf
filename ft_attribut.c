@@ -1,5 +1,15 @@
 #include "printf.h"
 
+void    ft_space(void)
+{
+    ft_putchar(' ');
+}
+
+void    ft_plus(void)
+{
+    ft_putchar('+');
+}
+
 void    ft_zero(t_conv *lst_fct)
 {
     if (ft_strrchr(lst_fct->attribut, '-') == NULL) //&& ft_strrchr(lst_fct->detail, '.'))
@@ -21,6 +31,10 @@ void    ft_attribut(long long i, t_conv *lst_fct)
 {
     if (ft_strrchr(lst_fct->attribut, '#') != NULL)
         ft_hachtag(i, lst_fct);
-    if (ft_strrchr(lst_fct->attribut, '0') != NULL)
+    if (ft_strrchr(lst_fct->attribut, '0') != NULL && ft_strrchr(lst_fct->attribut, '-') == NULL)
         ft_zero(lst_fct);
+    if (ft_strrchr(lst_fct->attribut, ' ') != NULL && i >= 0)
+        ft_space();
+    if (ft_strrchr(lst_fct->attribut, '+') && i >= 0)
+        ft_plus();
 }

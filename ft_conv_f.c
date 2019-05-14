@@ -98,13 +98,13 @@ int		ft_check_excep(unsigned int exposant, char *m, int signe)
 	{
 		if (m[1] == '1')
 		{
-			ft_putstr("nan\n");
+			ft_putstr("nan");
 			return (1);
 		}
 		if (signe == 1)
-			ft_putstr("-inf\n");
+			ft_putstr("-inf");
 		else
-			ft_putstr("inf\n");
+			ft_putstr("inf");
 		return (1);
 	}
 	return (0);
@@ -131,11 +131,12 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 		ft_strdel(&m_final);
 		return (0);
 	}
+	ft_attribut(d1.f, lst_fct);
 	res_final = ft_bi_to_dec(m_final, 0, 1);
 	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
 	ft_print_float(res_final, 7, d1.parts.sign, 0);
-	if (lst_fct->attribut[0] == '#') //&& precision == 0)
-		ft_putchar('.');
+	//if (lst_fct->attribut[0] == '#') //&& precision == 0)
+	//	ft_putchar('.');
 	ft_strdel(&m_final);
 	ft_strdel(&res_final);
 	return (0);
