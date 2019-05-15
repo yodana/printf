@@ -259,6 +259,10 @@ int main()
 	printf("reel : champ and # and - with d -> %#-5x|\n",10);
 	ft_printf("mine : champ and # and - with d -> %#-5x|\n\n",10);
 
-	
+	printf("reel : champ with f -> %10f|\n",1.0);
+	ft_printf("mine : champ with f -> %10f|\n\n",1.0);
+
+	printf("reel : champ and + with f -> %+10f|\n",1.0);
+	ft_printf("mine : champ and + with f -> %+10f|\n\n",1.0);
 	return (0);
 }
