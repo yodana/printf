@@ -61,7 +61,7 @@ char	*ft_float_round(int i, char *print, int size)
 	return (ft_strsub(print, 0, size));
 }
 
-void	ft_print_float(t_conv *lst_fct, int precision, float_cast d1, int stop)
+char	*ft_print_float(char *res, int precision, float_cast d1, int stop)
 {
 	int		i;
 	char	*print;
@@ -69,26 +69,28 @@ void	ft_print_float(t_conv *lst_fct, int precision, float_cast d1, int stop)
 
 	comma = 0;
 	i = 0;
-	if (!lst_fct->final || !(print = ft_strnew(ft_strlen(lst_fct->final) + 1)))
-		return ;
-	while (lst_fct->final[i] != '.')
+	printf("signe == %d\n",d1.parts.sign);
+	if (!res || !(print = ft_strnew(ft_strlen(res) + 1)))
+		return (NULL);
+	while (res[i] != '.')
 	{
-		print[i] = lst_fct->final[i];
+		print[i] = res[i];
 		i++;
 		comma++;
 	}
 	while (stop++ != precision + 1)
 	{
-		print[i] = lst_fct->final[i];
+		print[i] = res[i];
 		i++;
 	}
-	if (d1.parts.sign == 1)
-		ft_putchar('-');
-	lst_fct->final = ft_float_round(i - 1, print, comma + precision);
+	res = ft_float_round(i - 1, print, comma + precision);
+	//if (d1.parts.sign == 1)
+		//ft_strjoin_fr("-", lst_fct->final, 2);
 	ft_strdel(&print);
-	lst_fct->final = ft_attribut(d1.f, lst_fct);
-	ft_putstr(lst_fct->final);
-	ft_strdel(&lst_fct->final);
+	//lst_fct->final = ft_attribut(d1.f, lst_fct);
+	//ft_putstr(lst_fct->final);
+	return (res);
+	//ft_strdel(&res);
 }
 
 int		ft_check_excep(unsigned int exposant, char *m, int signe)
@@ -133,8 +135,11 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 	}
 	ft_attribut(d1.f, lst_fct);
 	res_final = ft_bi_to_dec(m_final, 0, 1);
-	lst_fct->final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
-	ft_print_float(lst_fct, 7, d1, 0);
+	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
+	lst_fct->final = ft_strdup(ft_print_float(res_final, 7, d1, 0));
+	if (d1.parts.sign == 1)
+		lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
+	ft_putstr(lst_fct->final);
 	ft_strdel(&m_final);
 	ft_strdel(&res_final);
 	return (0);

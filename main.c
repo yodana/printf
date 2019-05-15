@@ -264,5 +264,11 @@ int main()
 
 	printf("reel : champ and + with f -> %+10f|\n",1.0);
 	ft_printf("mine : champ and + with f -> %+10f|\n\n",1.0);
+
+	printf("reel : champ with f -> %10f|\n",1.0);
+	ft_printf("mine : champ with f -> %10f|\n\n",1.0);
+
+	printf("reel : champ with f -> %10f|\n",-1.0);
+	ft_printf("mine : champ with f -> %10f|\n\n",-1.0);
 	return (0);
 }
