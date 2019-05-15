@@ -27,7 +27,7 @@ char    *ft_calc_long_hexam(long long nbr)
     c = ft_strnew(1);
     res = ft_strnew(0);
     if (nbr == 0)
-        ft_strjoin_fr(res, "0",1);
+        res = ft_strjoin_fr("0", res, 2);
     while (nbr >= 1)
     {
         if (nbr % 16 >= 10)
@@ -52,7 +52,7 @@ char    *ft_calc_long_hexa(long long nbr)
     c = ft_strnew(1);
     res = ft_strnew(0);
     if (nbr == 0)
-        ft_strjoin_fr(res, "0",1);
+        res = ft_strjoin_fr("0", res, 2);
     while (nbr >= 1)
     {
         if (nbr % 16 >= 10)
@@ -77,7 +77,7 @@ char    *ft_calc_hexa(unsigned long nbr)
     c = ft_strnew(1);
     res = ft_strnew(0);
     if (nbr == 0)
-        ft_strjoin_fr(res, "0",1);
+        res = ft_strjoin_fr("0", res, 2);
     while (nbr >= 1)
     {
         if (nbr % 16 >= 10)

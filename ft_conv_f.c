@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-
+#include <stdio.h>
 char	*ft_dtoa(long double m)
 {
 	int		i;
@@ -77,7 +77,7 @@ void	ft_print_float(char *res, int precision, int sign, int stop)
 		i++;
 		comma++;
 	}
-	while (stop++ != precision + 2)
+	while (stop++ != precision + 1)
 	{
 		print[i] = res[i];
 		i++;

@@ -13,11 +13,19 @@
 #include "printf.h"
 #include "stdio.h"
 
-int		ft_check_champ(const char *format)
+int		ft_check_champ(int *i, const char *format)
 {
 	int resultat;
+	int k;
 
+	k = 0;
 	resultat = ft_atoi(format);
+	//printf("format dans champ == %c\n",format[*i]);
+	while (ft_isdigit(format[k]) == 1 || format[k] == '-')
+	{
+		k++;
+		*i = *i + 1;
+	}
 	return (resultat);
 }
 int		ft_is_conv(const char format)
@@ -25,7 +33,7 @@ int		ft_is_conv(const char format)
 	if (format == 'd' || format == 'f' || format == 'u' || 
 			format == 'X' || format == 'x' || format == 'c' || 
 				format == 's' || format == 'p' || format == 'i' || 
-					format == 'o')
+					format == 'o' || format == '%')
 		return (1);
 	return (0);
 }
@@ -62,7 +70,7 @@ char	*ft_check_attribut(int *i, const char *format)
 	j = 0;
 	res = ft_strnew(2);
 	attributs = ft_fill_attribut();
-	while (ft_is_conv(format[*i]) == 0 && ft_check_flags(&format[*i]) == 0)
+	while (ft_is_conv(format[*i]) == 0 && ft_check_flags(&format[*i]) == 0 && ft_isdigit(format[*i]) == 0 && format[*i] != '-')
 	{
 		while (attributs[j])
 		{
@@ -89,9 +97,8 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 	if (format[0] == '\0')
 		return (0);
 	i = 0;
-	champ = ft_check_champ(format);
-	//printf("champ == %d\n",champ);
-	attribut = ft_check_attribut(&i,&format[i]);
+	attribut = ft_check_attribut(&i, &format[i]);
+	champ = ft_check_champ(&i, &format[i]);
 	flags = ft_check_flags(&format[i]);
 	i = i + (flags % 3);
 	while (lst_fct != NULL)

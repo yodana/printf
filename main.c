@@ -16,7 +16,7 @@
 #include <float.h>
 int main()
 {
-	char	*a = "trolol";
+	/*har	*a = "trolol";
 	char	b = '~';
 	long long c = 9223372036854775807;
 	short int d = 32767;
@@ -125,7 +125,7 @@ int main()
 	printf("reel printf: llX -> %llX\n",c);
 	ft_printf("mine : llX -> %llX\n\n",c);
 
-	/*double i = 253.99999;
+	double i = 253.99999;
 	float k = 253.999999;
 	double inf = 1.0/0.0;
 	double inf_neg = -1.0/0.0;
@@ -179,11 +179,11 @@ int main()
 	ft_printf("mine : lf-> %f\n\n",t);
 	
 	printf("reel printf : f-> %f\n",-0.1);
-	ft_printf("mine : f -> %f\n\n",-0.1);*/
-	/*long double l = LDBL_MAX;
+	ft_printf("mine : f -> %f\n\n",-0.1);
+	long double l = LDBL_MAX;
 	printf("mine: f ->%Lf\n",l);
 	ft_printf("mine: f->%Lf\n",l);
-	ft_printf("mine == %lc",120);
+
 	printf("reel printf : spe -> %%\n");
 	ft_printf("mine : spe -> %%\n\n");
 
@@ -211,21 +211,54 @@ int main()
 	printf("reel : 0 with d -> %0d\n",1);
 	ft_printf("mine : 0 with d -> %0d\n\n",1);
 
-	ft_printf("mine : %#hhd\n",-2);
 
 	printf("reel : + with d -> %+d\n",2);
 	ft_printf("mine : + with d -> %+d\n\n",2);
 
-	//printf("reel : + with x -> %+x\n",3);
-	ft_printf("mine : + with x -> %+x\n\n",3);
 
 	printf("reel : espace with d -> % d\n",0);
-	ft_printf("mine : espace with d -> % d\n\n",0);
+	ft_printf("mine : espace with d -> % d\n\n",0);*/
 
-	//printf("reel : espace and + with d -> % +d\n",1);
-	ft_printf("mine : espace and + with d -> % +d\n\n",1);
+	printf("reel : champ with d -> %5d|\n",10);
+	ft_printf("mine : champ with d -> %5d|\n\n",10);
 
-	printf("reel : champ with s -> %o|\n",0);
-	ft_printf("mine : champ with s -> %d|\n\n",10);*/
+	printf("reel : champ and - with d -> %-5d|\n",10);
+	ft_printf("mine : champ and - with d -> %-5d|\n\n",10);
+
+	printf("reel : champ and - with d neg -> %-5d|\n",-10);
+	ft_printf("mine : champ and - with d neg -> %-5d|\n\n",-10);
+
+	printf("reel : champ and + with d -> %+5d|\n",10);
+	ft_printf("mine : champ and + with d -> %+5d|\n\n",10);
+
+	printf("reel : champ and + with d neg -> %5x|\n",-10);
+	ft_printf("mine : champ and + with d neg -> %5x|\n\n",-10);
+
+	printf("reel : champ with c -> %5c|\n",'s');
+	ft_printf("mine : champ with c -> %5c|\n\n",'s');
+
+	printf("reel : champ and - with c -> %-5c|\n",'s');
+	ft_printf("mine : champ and - with c -> %-5c|\n\n",'s');
+
+	printf("reel : champ with s -> %5s|\n","lol");
+	ft_printf("mine : champ with s -> %5s|\n\n","lol");
+
+	printf("reel : champ and - with s -> %-5s|\n","lol");
+	ft_printf("mine : champ and - with s -> %-5s|\n\n","lol");
+
+	int o = 10;
+	printf("reel : champ with p -> %30p|\n",&o);
+	ft_printf("mine : champ with p -> %30p|\n\n",&o);
+
+	printf("reel : champ and - with p -> %-30p|\n",&o);
+	ft_printf("mine : champ and - with p -> %-30p|\n\n",&o);
+
+	printf("reel : champ and + and # with d -> %#5x|\n",10);
+	ft_printf("mine : champ and + and # with d -> %#5x|\n\n",10);
+
+	printf("reel : champ and # and - with d -> %#-5x|\n",10);
+	ft_printf("mine : champ and # and - with d -> %#-5x|\n\n",10);
+
+	
 	return (0);
 }
