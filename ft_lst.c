@@ -35,6 +35,7 @@ t_conv	*ft_create_lst(void)
 	new->f = ft_char;
 	new->attribut = NULL;
 	new->champ = 0;
+	new->precision = 0;
 	new->display = NULL;
 	new->final = NULL;
 	new->next = NULL;
@@ -46,6 +47,7 @@ t_conv	*ft_create_lst(void)
 	next->display = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
@@ -56,6 +58,7 @@ t_conv	*ft_create_lst(void)
 	next->attribut = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
@@ -76,6 +79,7 @@ t_conv	*ft_create_lst(void)
 	next->attribut = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
@@ -86,6 +90,7 @@ t_conv	*ft_create_lst(void)
 	next->attribut = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
@@ -96,6 +101,7 @@ t_conv	*ft_create_lst(void)
 	next->attribut = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
@@ -106,6 +112,7 @@ t_conv	*ft_create_lst(void)
 	next->attribut = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
@@ -116,6 +123,7 @@ t_conv	*ft_create_lst(void)
 	next->attribut = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
@@ -126,6 +134,7 @@ t_conv	*ft_create_lst(void)
 	next->attribut = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
@@ -136,6 +145,7 @@ t_conv	*ft_create_lst(void)
 	next->attribut = NULL;
 	next->final = NULL;
 	next->champ = 0;
+	new->precision = 0;
 	next->next = NULL;
 	ft_conv_lst_add(&new, next);
 	return (new);

@@ -1,6 +1,19 @@
 #include "printf.h"
+#include <stdio.h>
+char    *ft_precision(long long d, t_conv *lst_fct)
+{
+    int i;
+    int size;
 
-
+    size = ft_strlen(lst_fct->final);
+    i = 0;
+    while (i < lst_fct->precision - size)
+    {
+        lst_fct->final = ft_strjoin_fr("0", lst_fct->final, 2);
+        i++;
+    }
+    return (lst_fct->final);
+}
 char    *ft_space(t_conv *lst_fct)
 {
     int i;
@@ -8,7 +21,10 @@ char    *ft_space(t_conv *lst_fct)
     i = ft_strlen(lst_fct->final);
     while (lst_fct->champ > 0 && i < lst_fct->champ)
     {
-        lst_fct->final = ft_strjoin_fr(" ", lst_fct->final, 2);
+        if (ft_strrchr(lst_fct->attribut, '0'))
+            lst_fct->final = ft_strjoin_fr("0", lst_fct->final, 2);
+        else
+            lst_fct->final = ft_strjoin_fr(" ", lst_fct->final, 2);
         i++;
     }
     while (lst_fct->champ < 0 && i < (lst_fct->champ * -1))
@@ -45,10 +61,10 @@ char    *ft_hachtag(long long i, t_conv *lst_fct)
 
 char   *ft_attribut(long long i, t_conv *lst_fct)
 {
+    if (lst_fct->precision >= 0 && lst_fct->type != 'f')
+        lst_fct->final = ft_precision(i, lst_fct);
     if (ft_strrchr(lst_fct->attribut, '#') != NULL)
         lst_fct->final = ft_hachtag(i, lst_fct);
-    if (ft_strrchr(lst_fct->attribut, '0') != NULL && ft_strrchr(lst_fct->attribut, '-') == NULL)
-        ft_zero(lst_fct);
     if (ft_strrchr(lst_fct->attribut, ' ') != NULL && i >= 0)
         ft_space(lst_fct);
     if (ft_strrchr(lst_fct->attribut, '+') && i >= 0)

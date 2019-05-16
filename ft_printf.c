@@ -13,6 +13,24 @@
 #include "printf.h"
 #include "stdio.h"
 
+int		ft_check_precision(int *i, const char *format)
+{
+	int res;
+	int k;
+
+	k = 0;
+	if (format[k] != '.')
+		return (0);
+	res = ft_atoi(&format[1]);
+	k++;
+	*i = *i + 1;
+	while (ft_isdigit(format[k]) == 1)
+	{
+		*i = *i + 1;
+		k++;
+	}
+	return (res);
+}
 int		ft_check_champ(int *i, const char *format)
 {
 	int resultat;
@@ -20,7 +38,6 @@ int		ft_check_champ(int *i, const char *format)
 
 	k = 0;
 	resultat = ft_atoi(format);
-	//printf("format dans champ == %c\n",format[*i]);
 	while (ft_isdigit(format[k]) == 1 || format[k] == '-')
 	{
 		k++;
@@ -70,7 +87,8 @@ char	*ft_check_attribut(int *i, const char *format)
 	j = 0;
 	res = ft_strnew(2);
 	attributs = ft_fill_attribut();
-	while (ft_is_conv(format[*i]) == 0 && ft_check_flags(&format[*i]) == 0 && ft_isdigit(format[*i]) == 0 && format[*i] != '-')
+	while (ft_is_conv(format[*i]) == 0 && ft_check_flags(&format[*i]) == 0 && (format[*i] == '0' || 
+			ft_isdigit(format[*i]) == 0) && format[*i] != '-' && format[*i] != '.')
 	{
 		while (attributs[j])
 		{
@@ -93,18 +111,21 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 	int i;
 	char *attribut;
 	int champ;
+	int precision;
 
 	if (format[0] == '\0')
 		return (0);
 	i = 0;
 	attribut = ft_check_attribut(&i, &format[i]);
 	champ = ft_check_champ(&i, &format[i]);
+	precision = ft_check_precision(&i, &format[i]);
 	flags = ft_check_flags(&format[i]);
 	i = i + (flags % 3);
 	while (lst_fct != NULL)
 	{
 		if (format[i] == lst_fct->type)
 		{
+			lst_fct->precision = precision;
 			lst_fct->champ = champ;
 			lst_fct->attribut = ft_strdup(attribut);
 			lst_fct->f(args, flags, lst_fct);
