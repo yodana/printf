@@ -297,7 +297,7 @@ int		main()
 	
 	nb = -45;
 
-	ft_printf("----------ft_printf-test-i-d----------\n");
+	/*ft_printf("----------ft_printf-test-i-d----------\n");
 
 	ft_printf("space% i|\n", nb);
 	printf("space% i|\n", nb);
@@ -320,7 +320,7 @@ int		main()
 	ft_printf("size + plus:%+5i|\n", nb);
 	printf("size + plus:%+5i|\n", nb);
 	ft_printf("size + minus:%-5i|\n", nb);
-	printf("size + minus:%-5i|\n", nb);
+	printf("size + minus:%-5i|\n", nb);*/
 	ft_printf("size + 0:%05i|\n", nb);
 	printf("size + 0:%05i|\n", nb);
 	ft_printf("size + 0 + plus:%+05i|\n", nb);
