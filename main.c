@@ -321,15 +321,15 @@ int		main()
 	printf("size + plus:%+5i|\n", nb);
 	ft_printf("size + minus:%-5i|\n", nb);
 	printf("size + minus:%-5i|\n", nb);*/
-	ft_printf("size + 0:%05i|\n", nb);
+	/*ft_printf("size + 0:%05i|\n", nb);
 	printf("size + 0:%05i|\n", nb);
 	ft_printf("size + 0 + plus:%+05i|\n", nb);
 	printf("size + 0 + plus:%+05i|\n", nb);
 	ft_printf("size + 0 + plus:%0+5i|\n", nb);
-	printf("size + 0 + plus:%0+5i|\n", nb);
+	printf("size + 0 + plus:%0+5i|\n", nb);*/
 	ft_printf("size + 0 + prec:%05.3i|\n", nb);
 	printf("size + 0 + prec:%05.3i|\n", nb);
-	ft_printf("size + minus + prec:%-5.3i|\n", nb);
+	/*ft_printf("size + minus + prec:%-5.3i|\n", nb);
 	printf("size + minus + prec:%-5.3i|\n", nb);
 	ft_printf("size + plus + 0 + prec:%+05.3i|\n", nb);
 	printf("size + plus + 0 + prec:%+05.3i|\n", nb);
@@ -343,7 +343,7 @@ int		main()
 
 
 	ft_printf("precision:%.0d|\n", 0);
-	printf("precision:%.0d|\n", 0);
+	printf("precision:%.0d|\n", 0);*/
 
 	return (0);
 }

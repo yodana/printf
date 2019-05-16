@@ -58,7 +58,9 @@ char    *ft_zero(long long i, t_conv *lst_fct)
    // if (ft_strrchr(lst_fct->attribut, '-') == NULL) //&& ft_strrchr(lst_fct->detail, '.'))
     //    return (lst_fct->final);
      if (i < 0 || ft_strrchr(lst_fct->attribut, '+') != NULL)      
+    {
         res = ft_strsub(lst_fct->final, 1, size);
+    }
     else
         res = ft_strdup(lst_fct->final);
     //printf("champ== %d\n",lst_fct->champ);
