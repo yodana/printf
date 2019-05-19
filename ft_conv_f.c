@@ -131,7 +131,6 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 		ft_strdel(&m_final);
 		return (0);
 	}
-	ft_attribut(d1.f, lst_fct);
 	res_final = ft_bi_to_dec(m_final, 0, 1);
 	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
 	lst_fct->final = ft_strdup(ft_print_float(res_final, 7, 0));

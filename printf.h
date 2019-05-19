@@ -74,6 +74,6 @@ char	*ft_calc_exposant(long double f, char *res, unsigned int exposant);
 int     ft_conv_spe(va_list args, int flags, t_conv *lst_fct);
 char    *ft_fill_attribut(void);
 int		ft_check_flags(const char *format);
-char    *ft_space(t_conv *lst_fct);
+char  *ft_space(long long i, t_conv *lst_fct);
 char *ft_attribut(long long i, t_conv *lst_fct);
 #endif
