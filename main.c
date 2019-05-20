@@ -14,9 +14,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <float.h>
-int main()
+/*int main()
 {
-	/*char	*a = "trolol";
+	char	*a = "trolol";
 	char	b = '~';
 	long long c = 9223372036854775807;
 	short int d = 32767;
@@ -213,7 +213,7 @@ int main()
 
 
 	printf("reel : + with d -> %+d\n",2);
-	ft_printf("mine : + with d -> %+d\n\n",2);*/
+	ft_printf("mine : + with d -> %+d\n\n",2);
 
 
 	printf("\nreel : espace with d -> % d|\n",0);
@@ -280,18 +280,18 @@ int main()
 	printf("reel : champ and 0 with f -> % 020f|\n",-10.0);
 	ft_printf("mine : champ and 0 with f -> % 020f|\n\n",-10.0);
 
-	printf("reel : precision with d -> %.5d|\n",10);
-	ft_printf("mine : precision with d -> %.5d|\n\n",10);
+	printf("reel : precision with d -> %10.05d|\n",-10);
+	ft_printf("mine : precision with d -> %10.05d|\n\n",-10);
 	
 	printf("reel : precision with s-> %.5s|\n","10");
 	ft_printf("mine : precision with s-> %.5s|\n","10");
 	
-	//printf("reel : precision with f -> %.5f|\n",10.0);*/
+	//printf("reel : precision with f -> %.5f|\n",10.0);
 
 	return (0);
-}
+}*/
 
-/*int		main()
+int		main()
 {
 	int		nb;
 	
@@ -320,8 +320,8 @@ int main()
 	ft_printf("size + plus:%+5i|\n", nb);
 	printf("size + plus:%+5i|\n", nb);
 	ft_printf("size + minus:%-5i|\n", nb);
-	printf("size + minus:%-5i|\n", nb);*/
-	/*ft_printf("size + 0:%05i|\n", nb);
+	printf("size + minus:%-5i|\n", nb);
+	ft_printf("size + 0:%05i|\n", nb);
 	printf("size + 0:%05i|\n", nb);
 	ft_printf("size + 0 + plus:%+05i|\n", nb);
 	printf("size + 0 + plus:%+05i|\n", nb);
@@ -337,8 +337,8 @@ int main()
 	printf("size + espace + zero + prec:%0 5.3i|\n", nb);
 	ft_printf("size + espace + zero + prec:% 05.3i|\n", nb);
 	printf("size + espace + zero + prec:% 05.3i|\n", nb);
-	ft_printf("size + minus + plus + prec:%-+5.3i|\n", nb);
-	printf("size + minus + plus + prec:%-+5.3i|\n", nb);
+	ft_printf("size + minus + plus + prec:%-+5.3i|\n", -45);
+	printf("size + minus + plus + prec:%-+5.3i|\n", -45);
 	
 
 
@@ -346,4 +346,4 @@ int main()
 	printf("precision:%.0d|\n", 0);
 
 	return (0);
-}*/
+}

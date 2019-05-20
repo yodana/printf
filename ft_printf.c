@@ -13,15 +13,16 @@
 #include "printf.h"
 #include "stdio.h"
 
-int		ft_check_precision(int *i, const char *format)
+int	ft_check_precision(int *i, const char *format)
 {
 	int res;
 	int k;
 
 	k = 0;
+	res = 0;
 	if (format[k] != '.')
 		return (0);
-	res = ft_atoi(&format[1]);
+	res = ft_atoi(&format[1]) + 1;
 	k++;
 	*i = *i + 1;
 	while (ft_isdigit(format[k]) == 1)
@@ -37,8 +38,11 @@ int		ft_check_champ(int *i, const char *format)
 	int k;
 
 	k = 0;
-	resultat = ft_atoi(format);
-	while (ft_isdigit(format[k]) == 1 || format[k] == '-')
+	if (format[k] == '-' && format[k + 1] == '+')
+		resultat = ft_atoi(&format[1]) * -1;
+	else
+		resultat = ft_atoi(format);
+	while (ft_isdigit(format[k]) == 1 || format[k] == '-' || format[k] == '+')
 	{
 		k++;
 		*i = *i + 1;
@@ -102,6 +106,8 @@ char	*ft_check_attribut(int *i, const char *format)
 		j = 0;
 		*i = *i + 1;
 	}
+	if (format[*i + 1] && format[*i + 1] == '+')
+		res = ft_strjoin_fr(res, "+", 1);
 	return (res);
 }
 #include <stdio.h>
@@ -112,7 +118,6 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 	char *attribut;
 	int champ;
 	int precision;
-
 	if (format[0] == '\0')
 		return (0);
 	i = 0;

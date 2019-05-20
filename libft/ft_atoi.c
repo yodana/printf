@@ -12,6 +12,15 @@
 
 #include "libft.h"
 
+int 	ft_check(char nptr)
+{
+	if (nptr == 32 || nptr == '\f' || nptr == '\t'
+			|| nptr == '\n' || nptr == '\r' || nptr == '\v'
+				|| nptr == '\a')
+		return (1);
+	return (0);
+}
+
 int		ft_atoi(const char *nptr)
 {
 	unsigned int		res;
@@ -21,9 +30,9 @@ int		ft_atoi(const char *nptr)
 	sign = 1;
 	i = 0;
 	res = 0;
-	while (nptr[i] == 32 || nptr[i] == '\f' || nptr[i] == '\t'
-			|| nptr[i] == '\n' || nptr[i] == '\r' || nptr[i] == '\v'
-				|| nptr[i] == '\a')
+	if (nptr == NULL)
+		return (0);
+	while (ft_check(nptr[i]) == 1)
 		i++;
 	if (nptr[i] == '+')
 		i++;
