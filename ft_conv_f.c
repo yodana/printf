@@ -113,8 +113,6 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 {
 	float_cast	d1;
 	char		*res_final;
-	char		*m_final = NULL;
-	//char		*m_1;
 	char		*m_2;
 
 	if (lst_fct->precision == 0)
@@ -123,24 +121,19 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 		d1.f = va_arg(args, long double);
 	else
 		d1.f = va_arg(args, double);
-	//m_1 = ft_i_to_bi(d1.parts.m1);
 	m_2 = ft_i_to_bi(d1.parts.m);
-	//m_final = ft_strjoin_fr(m_1, m_2, 3);
-	/*if (ft_check_excep(d1.parts.e, m_final, d1.parts.sign))
+	if (ft_check_excep(d1.parts.e, m_2, d1.parts.sign))
 	{
-		ft_strdel(&m_final);
+		ft_strdel(&m_2);
 		return (0);
-	}*/
-	printf("mantiss en bi == %s\n", m_2);
-	res_final = ft_bi_to_dec(m_2, 0, 1, 66);
+	}
+	res_final = ft_bi_to_dec(m_2, 0, 1, 66 + lst_fct->precision);
 	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
-	printf("final = %s\n",res_final);
 	lst_fct->final = ft_strdup(ft_print_float(res_final, lst_fct->precision, 0));
 	if (d1.parts.sign == 1)
 		lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
 	lst_fct->final = ft_attribut(d1.f, lst_fct);
-	//ft_putstr(lst_fct->final);
-	ft_strdel(&m_final);
+	ft_putstr(lst_fct->final);
 	ft_strdel(&res_final);
 	return (0);
 }
