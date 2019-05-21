@@ -10,7 +10,6 @@ char    *ft_space(long long i, t_conv *lst_fct)
     size = ft_strlen(lst_fct->final);
     d = lst_fct->champ;
     res = ft_strdup(lst_fct->final);
-    //printf("attribut == %s\n",lst_fct->attribut);
     if (ft_strrchr(lst_fct->attribut, ' ') != NULL && i >= 0)
     {
         res = ft_strjoin_fr(" ", res, 2);

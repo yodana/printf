@@ -287,9 +287,9 @@ int main()
 	ft_printf("mine : precision with s-> %.5s|\n","10");
 	
 	//printf("reel : precision with f -> %.5f|\n",10.0);*/
-
-	printf("reel : %f\n",10.0);
-	ft_printf("reel : %f\n",10.0);
+	
+	printf("reel : %.20f|\n",42.42);
+	ft_printf("mine : \n%.20f|\n",42.42);
 	return (0);
 }
 
