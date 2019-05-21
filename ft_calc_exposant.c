@@ -56,7 +56,10 @@ char	*ft_calc_exposant_pos(char *res, int exposant, int i, int hold)
 			else if (j >= 0)
 				hold = 0;
 			if (i == 0 && j >= 10)
-				res = ft_strjoin_fr("1", res, 2);
+			{
+				if (!(res = ft_strjoin_fr("1", res, 2)))
+					return (NULL);
+			}
 			i--;
 		}
 		i = ft_strlen(res) - 1;

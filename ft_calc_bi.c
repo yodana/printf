@@ -57,16 +57,16 @@ char		*ft_char_add_str(char **res, int k, char *final)
 	return (final);
 }
 
-char		*ft_char_add_all(char **res)
+char		*ft_char_add_all(char **res, int precision)
 {
 	char	*final;
 	int		k;
 
 	k = 0;
-	if (!(final = ft_strnew(66)))
+	if (!(final = ft_strnew(precision)))
 		return (NULL);
-	final = ft_memset(final, '0', 66);
-	while (k != 64)
+	final = ft_memset(final, '0', precision - 1);
+	while (k != precision - 1)
 	{
 		final = ft_char_add_str(res, k, final);
 		k++;
@@ -74,7 +74,7 @@ char		*ft_char_add_all(char **res)
 	return (final);
 }
 
-char		*ft_fill_res(char *resultat, int power, char *m, size_t i)
+char		*ft_fill_res(char *resultat, int power, char *m, size_t i, int precision)
 {
 	if (i < ft_strlen(m) && m[i] == '1')
 	{
@@ -83,23 +83,23 @@ char		*ft_fill_res(char *resultat, int power, char *m, size_t i)
 	}
 	else
 	{
-		if (!(resultat = ft_strnew(65)))
+		if (!(resultat = ft_strnew(precision)))
 			return (NULL);
-		resultat = ft_memset(resultat, '0', 66);
+		resultat = ft_memset(resultat, '0', precision - 1);
 	}
 	return (resultat);
 }
 
-char		*ft_bi_to_dec(char *m, int i, int power)
+char		*ft_bi_to_dec(char *m, int i, int power, int precision)
 {
 	char	**resultat;
 	char	*final;
 
-	if (!(resultat = (char**)malloc(sizeof(char*) * 66)))
+	if (!(resultat = (char**)malloc(sizeof(char*) * precision)))
 		return (NULL);
-	while (i < 64)
+	while (i < precision - 1)
 	{
-		if (!(resultat[i] = ft_fill_res(resultat[i], power, m, i)))
+		if (!(resultat[i] = ft_fill_res(resultat[i], power, m, i, precision)))
 		{
 			ft_strrdel(resultat);
 			return (NULL);
@@ -108,7 +108,7 @@ char		*ft_bi_to_dec(char *m, int i, int power)
 		i++;
 	}
 	resultat[i] = NULL;
-	final = ft_char_add_all(resultat);
+	final = ft_char_add_all(resultat, precision);
 	ft_strrdel(resultat);
 	return (final);
 }

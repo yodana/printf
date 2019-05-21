@@ -14,9 +14,9 @@
 #include <stdio.h>
 #include <math.h>
 #include <float.h>
-/*int main()
+int main()
 {
-	char	*a = "trolol";
+	/*char	*a = "trolol";
 	char	b = '~';
 	long long c = 9223372036854775807;
 	short int d = 32767;
@@ -286,12 +286,14 @@
 	printf("reel : precision with s-> %.5s|\n","10");
 	ft_printf("mine : precision with s-> %.5s|\n","10");
 	
-	//printf("reel : precision with f -> %.5f|\n",10.0);
+	//printf("reel : precision with f -> %.5f|\n",10.0);*/
 
+	printf("reel : %f\n",10.0);
+	ft_printf("reel : %f\n",10.0);
 	return (0);
-}*/
+}
 
-int		main()
+/*int		main()
 {
 	int		nb;
 	
@@ -346,4 +348,4 @@ int		main()
 	printf("precision:%.0d|\n", 0);
 
 	return (0);
-}
+}*/

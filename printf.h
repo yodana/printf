@@ -68,7 +68,7 @@ char   *ft_calc_long_hexa(long long nbr);
 char   *ft_calc_long_hexam(long long nbr);
 int    ft_conv_f(va_list args, int flags, t_conv *lst_fct);
 char *ft_i_to_bi(unsigned long long nbr);
-char    *ft_bi_to_dec(char *m, int i, int power);
+char    *ft_bi_to_dec(char *m, int i, int power, int precision);
 char	*ft_dtoa(long double mantisse);
 char	*ft_calc_exposant(long double f, char *res, unsigned int exposant);
 int     ft_conv_spe(va_list args, int flags, t_conv *lst_fct);

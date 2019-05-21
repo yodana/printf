@@ -113,7 +113,7 @@ char    *ft_hachtag(long long i, t_conv *lst_fct)
 char   *ft_attribut(long long i, t_conv *lst_fct)
 {
 
-    if (lst_fct->precision != 0)
+    if (lst_fct->precision != 0 && lst_fct->type != 'f')
        lst_fct->final = ft_precision(i, lst_fct);
     if (ft_strrchr(lst_fct->attribut, '+') && i >= 0)
       lst_fct->final = ft_plus(lst_fct);

@@ -119,6 +119,8 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 	char		*m_1;
 	char		*m_2;
 
+	if (lst_fct->precision == 0)
+		lst_fct->precision = 7;
 	if (flags == FL)
 		d1.f = va_arg(args, long double);
 	else
@@ -131,9 +133,9 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 		ft_strdel(&m_final);
 		return (0);
 	}
-	res_final = ft_bi_to_dec(m_final, 0, 1);
+	res_final = ft_bi_to_dec(m_final, 0, 1, lst_fct->precision * 10);
 	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
-	lst_fct->final = ft_strdup(ft_print_float(res_final, 7, 0));
+	lst_fct->final = ft_strdup(ft_print_float(res_final, lst_fct->precision, 0));
 	if (d1.parts.sign == 1)
 		lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
 	lst_fct->final = ft_attribut(d1.f, lst_fct);
