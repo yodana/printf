@@ -21,11 +21,15 @@ int		ft_str(va_list args, int flags, t_conv *lst_fct)
 {
 	char *str;
 	
-	if (!(str = va_arg(args, char*)))
-		return (0);
+	str = va_arg(args, char*);
+	if (str != NULL)
+	{
 	lst_fct->final = ft_strdup(str);
 	lst_fct->final = ft_space(1, lst_fct);
 	ft_putstr(lst_fct->final);
+	}
+	else
+		ft_putstr(NULL);
 	return (flags);
 }
 

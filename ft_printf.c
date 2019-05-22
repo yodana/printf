@@ -38,11 +38,13 @@ int		ft_check_champ(int *i, const char *format)
 	int k;
 
 	k = 0;
-	if (format[k] == '-' && format[k + 1] == '+')
-		resultat = ft_atoi(&format[1]) * -1;
+	if (format[k] == '-' && format[k + 1] == '#')
+		resultat = ft_atoi(&format[k + 2]) * -1;
+	else if (format[k] == '-' && format[k + 1] == '+')
+		resultat = ft_atoi(&format[k + 1]) * -1;
 	else
 		resultat = ft_atoi(format);
-	while (ft_isdigit(format[k]) == 1 || format[k] == '-' || format[k] == '+')
+	while (ft_isdigit(format[k]) == 1 || format[k] == '-' || format[k] == '+' || format[k] == '#')
 	{
 		k++;
 		*i = *i + 1;
@@ -106,8 +108,10 @@ char	*ft_check_attribut(int *i, const char *format)
 		j = 0;
 		*i = *i + 1;
 	}
-	if (format[*i + 1] && format[*i + 1] == '+')
+	if ((format[*i + 1] && format[*i + 1] == '+') || (format[*i + 2] && format[*i + 2] == '+'))
 		res = ft_strjoin_fr(res, "+", 1);
+	if (format[*i + 1] && format[*i + 1] == '#')
+		res = ft_strjoin_fr(res, "#", 1);
 	return (res);
 }
 #include <stdio.h>

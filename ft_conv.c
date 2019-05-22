@@ -78,7 +78,7 @@ void    ft_conv_wf(va_list args, int flags, t_conv *lst_fct)
     }
     else if (flags == LL)
     {
-        lld = (long long)va_arg(args, long long);
+         lld = (long long)va_arg(args, long long);
          lst_fct->final = lst_fct->display(lld);
          lst_fct->final = ft_attribut(lld, lst_fct);
     }

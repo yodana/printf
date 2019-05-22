@@ -89,7 +89,7 @@ char	*ft_print_float(char *res, int precision, int stop)
 	return (res);
 }
 
-int		ft_check_excep(unsigned int exposant, char *m, int signe)
+int		ft_check_excep(unsigned int exposant, char *m, int signe, t_conv* lst_fct)
 {
 	if (!m)
 		return (1);
@@ -97,13 +97,19 @@ int		ft_check_excep(unsigned int exposant, char *m, int signe)
 	{
 		if (m[1] == '1')
 		{
-			ft_putstr("nan");
+			lst_fct->final = ft_strdup("nan");
+			lst_fct->final = ft_attribut(1, lst_fct);
+			ft_putstr(lst_fct->final);
 			return (1);
 		}
 		if (signe == 1)
-			ft_putstr("-inf");
+			lst_fct->final = ft_strdup("-inf");
 		else
-			ft_putstr("inf");
+		{
+			lst_fct->final = ft_strdup("inf");
+		}
+		lst_fct->final = ft_attribut(1, lst_fct);
+		ft_putstr(lst_fct->final);
 		return (1);
 	}
 	return (0);
@@ -122,7 +128,7 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 	else
 		d1.f = va_arg(args, double);
 	m_2 = ft_i_to_bi(d1.parts.m);
-	if (ft_check_excep(d1.parts.e, m_2, d1.parts.sign))
+	if (ft_check_excep(d1.parts.e, m_2, d1.parts.sign, lst_fct))
 	{
 		ft_strdel(&m_2);
 		return (0);

@@ -39,8 +39,8 @@ char		*ft_itoa(long long n)
 
 	neg = 0;
 	size = 0;
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
+	if (n == -9223372036854775807 - 1)
+		return (ft_strdup("-9223372036854775808"));
 	if (n == 0)
 		return (ft_strdup("0"));
 	if (n < 0)
