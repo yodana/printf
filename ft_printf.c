@@ -51,12 +51,10 @@ int		ft_check_champ(int *i, const char *format)
 	}
 	return (resultat);
 }
-int		ft_is_conv(const char format)
+int		ft_is_attribut(const char format)
 {
-	if (format == 'd' || format == 'f' || format == 'u' || 
-			format == 'X' || format == 'x' || format == 'c' || 
-				format == 's' || format == 'p' || format == 'i' || 
-					format == 'o' || format == '%')
+	if (format == '#' || format == '0' || format == '-' || 
+			format == '+' || format == ' ')
 		return (1);
 	return (0);
 }
@@ -91,9 +89,10 @@ char	*ft_check_attribut(int *i, const char *format)
 
 	k = 0;
 	j = 0;
-	res = ft_strnew(2);
+	if (!(res = ft_strnew(2)))
+		return (NULL);
 	attributs = ft_fill_attribut();
-	while (ft_is_conv(format[*i]) == 0 && ft_check_flags(&format[*i]) == 0 && (format[*i] == '0' || 
+	while (ft_is_attribut(format[*i]) == 1 && (format[*i] == '0' || 
 			ft_isdigit(format[*i]) == 0) && format[*i] != '-' && format[*i] != '.')
 	{
 		while (attributs[j])
@@ -109,23 +108,34 @@ char	*ft_check_attribut(int *i, const char *format)
 		*i = *i + 1;
 	}
 	if ((format[*i + 1] && format[*i + 1] == '+') || (format[*i + 2] && format[*i + 2] == '+'))
-		res = ft_strjoin_fr(res, "+", 1);
+	{
+		if (!(res = ft_strjoin_fr(res, "+", 1)))
+			return (NULL);
+	}
 	if (format[*i + 1] && format[*i + 1] == '#')
-		res = ft_strjoin_fr(res, "#", 1);
+	{
+		if (!(res = ft_strjoin_fr(res, "#", 1)))
+			return (NULL);
+	}
 	return (res);
 }
-#include <stdio.h>
-int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
+
+int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args, int *d)
 {
 	int	flags;
 	int i;
 	char *attribut;
 	int champ;
 	int precision;
+	int size;
+
+	size = 0;
 	if (format[0] == '\0')
 		return (0);
 	i = 0;
-	attribut = ft_check_attribut(&i, &format[i]);
+
+	if (!(attribut = ft_check_attribut(&i, &format[i])))
+		return (1);
 	champ = ft_check_champ(&i, &format[i]);
 	precision = ft_check_precision(&i, &format[i]);
 	flags = ft_check_flags(&format[i]);
@@ -136,12 +146,14 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args)
 		{
 			lst_fct->precision = precision;
 			lst_fct->champ = champ;
-			lst_fct->attribut = ft_strdup(attribut);
-			lst_fct->f(args, flags, lst_fct);
+			if (!(lst_fct->attribut = ft_strdup(attribut)))
+				return (1);
+			size = lst_fct->f(args, flags, lst_fct);
 		}
 		lst_fct = lst_fct->next;
 	}
-	return (i + 1);
+	*d = *d + i + 2;
+	return (size);
 }
 
 int		ft_printf(const char *format, ...)
@@ -149,18 +161,23 @@ int		ft_printf(const char *format, ...)
 	int i;
 	va_list args;
 	t_conv	*lst_fct;
+	int size;
 
-	va_start(args, format);
-	if (!(lst_fct = ft_create_lst()))
-		return (-1);
+	size = 0;
 	i = 0;
+	va_start(args, format);
+	if (!format || !(lst_fct = ft_create_lst()))
+		return (-1);
 	while (format[i])
 	{
 		if (format[i] == '%')
-			i = i + ft_check_conv(&format[i + 1], lst_fct, args) + 1;
+			size = size + ft_check_conv(&format[i + 1], lst_fct, args, &i);
 		if (format[i] && format[i] != '%')
+		{
 			ft_putchar(format[i++]);
+			size++;
+		}
 	}
 	ft_free_lst(lst_fct);
-	return (i);
+	return (size);
 }

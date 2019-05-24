@@ -1,7 +1,7 @@
 #include "printf.h"
 #include <stdio.h>
 
-void    ft_conv_wf_2(va_list args, int flags, t_conv *lst_fct)
+int   ft_conv_wf_2(va_list args, int flags, t_conv *lst_fct)
 {  
    unsigned short int hd;
    unsigned char hhd;
@@ -33,6 +33,7 @@ void    ft_conv_wf_2(va_list args, int flags, t_conv *lst_fct)
       lst_fct->final = ft_attribut(lld, lst_fct);
     }
     ft_putstr(lst_fct->final);
+    return (ft_strlen(lst_fct->final));
 }
 
 int    ft_conv_2(va_list args, int flags, t_conv *lst_fct)
@@ -42,16 +43,16 @@ int    ft_conv_2(va_list args, int flags, t_conv *lst_fct)
    if (flags > 0)
    {
       ft_conv_wf_2(args, flags, lst_fct);
-      return (0);
+      return (ft_strlen(lst_fct->final));
    }
    d = (unsigned int)va_arg(args, unsigned int);
    lst_fct->final = lst_fct->display(d);
    lst_fct->final = ft_attribut(d, lst_fct);
    ft_putstr(lst_fct->final);
-   return (0);
+   return (ft_strlen(lst_fct->final));
 }
 
-void    ft_conv_wf(va_list args, int flags, t_conv *lst_fct)
+int   ft_conv_wf(va_list args, int flags, t_conv *lst_fct)
 {  
    short int hd;
    char hhd;
@@ -83,6 +84,7 @@ void    ft_conv_wf(va_list args, int flags, t_conv *lst_fct)
          lst_fct->final = ft_attribut(lld, lst_fct);
     }
     ft_putstr(lst_fct->final);
+    return (ft_strlen(lst_fct->final));
 }
 
 int    ft_conv(va_list args, int flags, t_conv *lst_fct)
@@ -98,5 +100,5 @@ int    ft_conv(va_list args, int flags, t_conv *lst_fct)
    lst_fct->final = lst_fct->display(d);
    lst_fct->final = ft_attribut(d, lst_fct);
    ft_putstr(lst_fct->final);
-   return (0);
+   return (ft_strlen(lst_fct->final));
 }

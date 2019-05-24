@@ -61,6 +61,27 @@ char	*ft_float_round(int i, char *print, int size)
 	return (ft_strsub(print, 0, size));
 }
 
+int		ft_check_float_round(char *print, int precision)
+{
+	int i;
+	i = 0;
+
+	if (precision != 1)
+		return (1);
+		if (print[2] == '5')
+		{
+			while (i != 7)
+			{
+				if (print[i + 3] >= '1')
+					return (1);
+				i++;
+			}
+		}
+		else if (print[2] > '5')
+			return (1);
+	return (0);
+}
+
 char	*ft_print_float(char *res, int precision, int stop)
 {
 	int		i;
@@ -77,12 +98,13 @@ char	*ft_print_float(char *res, int precision, int stop)
 		i++;
 		comma++;
 	}
-	while (stop++ != precision + 1)
+	while (stop++ != precision + 7)
 	{
 		print[i] = res[i];
 		i++;
 	}
-	res = ft_float_round(i - 1, print, comma + precision);
+	if (ft_check_float_round(&print[comma - 1], precision) == 1)
+		res = ft_float_round(i - 7, print, comma + precision);
 	ft_strdel(&print);
 	if (precision == 1)
 		res = ft_strsub(res, 0, comma);
@@ -100,7 +122,7 @@ int		ft_check_excep(unsigned int exposant, char *m, int signe, t_conv* lst_fct)
 			lst_fct->final = ft_strdup("nan");
 			lst_fct->final = ft_attribut(1, lst_fct);
 			ft_putstr(lst_fct->final);
-			return (1);
+			return (ft_strlen(lst_fct->final));
 		}
 		if (signe == 1)
 			lst_fct->final = ft_strdup("-inf");
@@ -110,9 +132,9 @@ int		ft_check_excep(unsigned int exposant, char *m, int signe, t_conv* lst_fct)
 		}
 		lst_fct->final = ft_attribut(1, lst_fct);
 		ft_putstr(lst_fct->final);
-		return (1);
+		return (ft_strlen(lst_fct->final));
 	}
-	return (0);
+	return (-1);
 }
 
 int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
@@ -120,6 +142,7 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 	float_cast	d1;
 	char		*res_final;
 	char		*m_2;
+	int size;
 
 	if (lst_fct->precision == 0)
 		lst_fct->precision = 7;
@@ -128,10 +151,10 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 	else
 		d1.f = va_arg(args, double);
 	m_2 = ft_i_to_bi(d1.parts.m);
-	if (ft_check_excep(d1.parts.e, m_2, d1.parts.sign, lst_fct))
+	if ((size = ft_check_excep(d1.parts.e, m_2, d1.parts.sign, lst_fct)) != -1)
 	{
 		ft_strdel(&m_2);
-		return (0);
+		return (size);
 	}
 	res_final = ft_bi_to_dec(m_2, 0, 1, 66 + lst_fct->precision);
 	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
@@ -140,6 +163,5 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 		lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
 	lst_fct->final = ft_attribut(d1.f, lst_fct);
 	ft_putstr(lst_fct->final);
-	ft_strdel(&res_final);
-	return (0);
+	return (ft_strlen(lst_fct->final));
 }

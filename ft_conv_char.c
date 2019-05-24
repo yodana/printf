@@ -3,7 +3,10 @@
 int		ft_char(va_list args, int flags, t_conv *lst_fct)
 {
 	char *res;
+	int size;
 
+	size = 0;
+	(void)flags;
 	res = ft_strnew(0);
 	res[0] = va_arg(args, int);
 	lst_fct->final = res;
@@ -12,25 +15,35 @@ int		ft_char(va_list args, int flags, t_conv *lst_fct)
 	{
 		ft_putstr(lst_fct->final);
 		ft_putchar(res[0]);
+		size++;
 	}
+	size = size + ft_strlen(lst_fct->final);
 	ft_putstr(lst_fct->final);
-	return (flags);
+	return (size);
 }
 
 int		ft_str(va_list args, int flags, t_conv *lst_fct)
 {
 	char *str;
 	
+	(void)flags;
 	str = va_arg(args, char*);
-	if (str != NULL)
+	if (lst_fct->precision != 1 && str != NULL)
 	{
-	lst_fct->final = ft_strdup(str);
+		if (lst_fct->precision == 0)
+			lst_fct->final = ft_strsub(str, 0, ft_strlen(str) + 1);
+		else
+			lst_fct->final = ft_strsub(str, 0, lst_fct->precision - 1);
+	}
+	else if (lst_fct->precision == 1 && str != NULL)
+		lst_fct->final = ft_strnew(0);
+	else if (lst_fct->precision != 1)
+		lst_fct->final = ft_strdup("(null)");
+	else
+		lst_fct->final = ft_strdup("");
 	lst_fct->final = ft_space(1, lst_fct);
 	ft_putstr(lst_fct->final);
-	}
-	else
-		ft_putstr(NULL);
-	return (flags);
+	return (ft_strlen(lst_fct->final));
 }
 
 int		ft_pointer(va_list args, int flags, t_conv *lst_fct)
@@ -38,6 +51,7 @@ int		ft_pointer(va_list args, int flags, t_conv *lst_fct)
 	void  *p;
 	char *res;
 
+	(void)flags;
 	res = ft_strnew(0);
 	(void)lst_fct;
 	p = va_arg(args, void *);
@@ -46,5 +60,5 @@ int		ft_pointer(va_list args, int flags, t_conv *lst_fct)
 	lst_fct->final = res;
 	lst_fct->final = ft_space(1, lst_fct);
 	ft_putstr(lst_fct->final);
-	return (flags);
+	return (ft_strlen(lst_fct->final));
 }
