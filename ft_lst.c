@@ -1,8 +1,15 @@
 #include "printf.h"
-
+#include <stdio.h>
 void    ft_free_lst(t_conv *list)
 {
-    free(list);
+	t_conv *tmp;
+
+	while (list)
+	{
+		tmp = list->next;
+		free(list);
+		list = tmp;
+	}
 }
 
 void	ft_conv_lst_add(t_conv **new, t_conv *next)

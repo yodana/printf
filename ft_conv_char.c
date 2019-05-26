@@ -7,10 +7,10 @@ int		ft_char(va_list args, int flags, t_conv *lst_fct)
 
 	size = 0;
 	(void)flags;
-	res = ft_strnew(0);
+	res = ft_strnew(1);
 	res[0] = va_arg(args, int);
 	lst_fct->final = res;
-	lst_fct->final = ft_space(1, lst_fct);
+	//lst_fct->final = ft_space(1, lst_fct);
 	if (res[0] == '\0')
 	{
 		ft_putstr(lst_fct->final);
@@ -19,6 +19,7 @@ int		ft_char(va_list args, int flags, t_conv *lst_fct)
 	}
 	size = size + ft_strlen(lst_fct->final);
 	ft_putstr(lst_fct->final);
+	ft_strdel(&res);
 	return (size);
 }
 
