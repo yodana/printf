@@ -43,6 +43,16 @@ typedef struct s_float
     char *res_final;
 }              t_float;
 
+typedef struct s_info
+{
+    int flags;
+    char *attribut;
+    int champ;
+    int precision;
+    int size;
+    int i;
+}               t_info;
+
 typedef union {
  long double f;
   struct {
@@ -76,4 +86,9 @@ int		ft_check_flags(const char *format);
 char  *ft_space(long long i, t_conv *lst_fct);
 char *ft_attribut(long long i, t_conv *lst_fct);
 char    *ft_plus(t_conv *lst_fct);
+char	*ft_check_attribut(int *i, const char *format, int k, int j);
+int	ft_check_precision(int *i, const char *format);
+int		ft_check_champ(int *i, const char *format);
+int		ft_check_flags(const char *format);
+int		ft_is_attribut(const char format);
 #endif

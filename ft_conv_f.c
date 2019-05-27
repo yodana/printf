@@ -70,7 +70,9 @@ int		ft_check_float_round(char *print, int precision)
 		return (1);
 		if (print[2] == '5')
 		{
-			while (i != 7)
+			if ((print[0] - 48) % 2 == 1)
+				return (1); 
+			while (i != 20)
 			{
 				if (print[i + 3] >= '1')
 					return (1);
@@ -98,14 +100,21 @@ char	*ft_print_float(char *res, int precision, int stop)
 		i++;
 		comma++;
 	}
-	while (stop++ != precision + 7)
+	while (stop++ != precision + 20)
 	{
 		print[i] = res[i];
 		i++;
 	}
 	if (ft_check_float_round(&print[comma - 1], precision) == 1)
-		res = ft_float_round(i - 7, print, comma + precision);
+		res = ft_float_round(i - 20, print, comma + precision);
 	ft_strdel(&print);
+	comma = 0;
+	i = 0;
+	while (res[i] != '.')
+	{
+		i++;
+		comma++;
+	}
 	if (precision == 1)
 		return (ft_strsub(res, 0, comma));
 	return (res);

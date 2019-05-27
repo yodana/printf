@@ -30,6 +30,7 @@ void	ft_conv_lst_add(t_conv **new, t_conv *next)
 	}
 }
 
+
 t_conv	*ft_create_lst(void)
 {
 	t_conv *new;

@@ -15,6 +15,18 @@
 #include <math.h>
 #include <float.h>
 #include <limits.h>
+
+
+int main()
+{
+	double f = 42.9994;
+
+	ft_printf("\nmoi = %- 2f\n", f);
+	printf("lui = %- 2f", f);
+	return (0);
+}
+
+
 /*int main()
 {	//int nb = 0;
 	char	*a = "trolol";
@@ -321,9 +333,9 @@ long double c = 9223372036854775807;
 /*int		main()
 {
 
-	double nb = 0;
+	double nb = -0;
 
-    nb = 0.0;
+    nb = -0.0;
 	ft_printf("space:% f|\n", nb);
 	printf("space:% f|\n", nb);
     ft_printf("plus:%+f|\n", nb);
@@ -428,7 +440,7 @@ int		nb;
 
 	return (0);
 }*/
-
+/*
 int main()
 {
 	char *str = "Okalmos Speculos";
@@ -488,5 +500,6 @@ int main()
 	printf("% %|\n\n");
 	//int i = ft_printf("%.0s|\n", "Okalm");
 	ft_printf("%D %C %F\n", 123, 'A', 1235.123);
+	
 	return 0;
-}
+}*/

@@ -1,7 +1,8 @@
 NAME = libftprintf.a
 
 SRC = main.c ft_printf.c ft_calc.c ft_conv_char.c ft_lst.c ft_conv.c ft_conv_f.c \
-	ft_calc_bi.c ft_calc_exposant.c ft_conv_spe.c ft_fill_tab.c ft_attribut.c
+	ft_calc_bi.c ft_calc_exposant.c ft_conv_spe.c ft_fill_tab.c ft_attribut.c \
+	ft_check.c
 
 HEADER = printf.h
 

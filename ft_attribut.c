@@ -16,12 +16,12 @@ char    *ft_space(long long i, t_conv *lst_fct)
             return (NULL);
         if (lst_fct->type == 'f')
         {
-           ft_strdel(&lst_fct->final);
+            ft_strdel(&lst_fct->final);
             lst_fct->final = ft_strdup(res);
         }
         size++;
     }
-    if (ft_strrchr(lst_fct->attribut, '0') != NULL && lst_fct->precision < 1)
+    if (ft_strrchr(lst_fct->attribut, '0') != NULL && (lst_fct->precision < 1 || lst_fct->type == 'f'))
     {
         ft_strdel(&res);
         return (lst_fct->final);
@@ -81,7 +81,6 @@ char    *ft_zero(long long i, t_conv *lst_fct)
     }
     while ((size < lst_fct->precision || size < lst_fct->champ))
     {
-
         if (!(res = ft_strjoin_fr("0", res, 2)))
             return (NULL);
         size++;
@@ -178,7 +177,7 @@ char   *ft_attribut(long long i, t_conv *lst_fct)
         lst_fct->final = ft_hachtag(i, lst_fct);
     if (lst_fct->final != NULL && (ft_strrchr(lst_fct->attribut, ' ') != NULL || lst_fct->champ != 0))
      lst_fct->final = ft_space(i, lst_fct);
-    if (lst_fct->final != NULL && ft_strrchr(lst_fct->attribut, '0') && lst_fct->precision < 1)
+    if (lst_fct->final != NULL && ft_strrchr(lst_fct->attribut, '0') && (lst_fct->precision < 1 || lst_fct->type == 'f'))
         lst_fct->final = ft_zero(i, lst_fct);
     return (lst_fct->final);
 }

@@ -1,5 +1,6 @@
 #include "printf.h"
 
+
 char    *ft_fill_attribut(void)
 {
     char *tab;
