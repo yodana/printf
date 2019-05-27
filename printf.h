@@ -91,4 +91,5 @@ int	ft_check_precision(int *i, const char *format);
 int		ft_check_champ(int *i, const char *format);
 int		ft_check_flags(const char *format);
 int		ft_is_attribut(const char format);
+int		ft_check_float_round(char *print, int precision);
 #endif

@@ -27,13 +27,13 @@ char    *ft_space(long long i, t_conv *lst_fct)
         return (lst_fct->final);
     }
     ft_strdel(&lst_fct->final);
-    while (d > size && lst_fct->champ > 0)
+    while (d > size && ft_strrchr(lst_fct->attribut, '-') == NULL)
     {
         if (!(res = ft_strjoin_fr(" ", res, 2)))
             return (NULL);
         d--;
     }
-    while (size < (d * -1) && lst_fct->champ < 0)
+    while (d > size && ft_strrchr(lst_fct->attribut, '-') != NULL)
     {
         if (!(res = ft_strjoin_fr(res, " ", 1)))
             return (NULL);

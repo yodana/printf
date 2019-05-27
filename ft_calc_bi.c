@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
+
 char		*ft_i_to_bi(unsigned long long nbr)
 {
 	char	*bi;
@@ -74,11 +74,11 @@ char		*ft_char_add_all(char **res, int precision)
 	return (final);
 }
 
-char		*ft_fill_res(char *resultat, int power, char *m, size_t i, int precision)
+char		*ft_fill_res(char *resultat, char *m, size_t i, int precision)
 {
 	if (i < ft_strlen(m) && m[i] == '1')
 	{
-		if (!(resultat = ft_dtoa((1 / (double)ft_power(2, power)), precision)))
+		if (!(resultat = ft_dtoa((1 / (double)ft_power(2, i + 1)), precision)))
 			return (NULL);
 	}
 	else
@@ -87,7 +87,6 @@ char		*ft_fill_res(char *resultat, int power, char *m, size_t i, int precision)
 			return (NULL);
 		resultat = ft_memset(resultat, '0', precision - 1);
 	}
-	//printf("res == %s i == %d size == %d\n",resultat, (int)i, (int)ft_strlen(m));
 	return (resultat);
 }
 
@@ -100,7 +99,7 @@ char		*ft_bi_to_dec(char *m, int i, int power, int precision)
 		return (NULL);
 	while (i < precision - 2)
 	{
-		if (!(resultat[i] = ft_fill_res(resultat[i], power, m, i, precision)))
+		if (!(resultat[i] = ft_fill_res(resultat[i], m, i, precision)))
 		{
 			ft_strrdel(resultat);
 			return (NULL);
@@ -111,6 +110,5 @@ char		*ft_bi_to_dec(char *m, int i, int power, int precision)
 	resultat[i] = NULL;
 	final = ft_char_add_all(resultat, precision);
 	ft_strrdel(resultat);
-	//printf("fin == %s\n",final);
 	return (final);
 }

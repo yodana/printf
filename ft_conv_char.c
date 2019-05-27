@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_conv_char.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/27 18:25:47 by yodana            #+#    #+#             */
+/*   Updated: 2019/05/27 18:25:49 by yodana           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
 
 int		ft_char(va_list args, int flags, t_conv *lst_fct)
 {
-	char *res;
-	int size;
+	char	*res;
+	int		size;
 
 	size = 0;
 	(void)flags;
@@ -26,8 +38,8 @@ int		ft_char(va_list args, int flags, t_conv *lst_fct)
 
 int		ft_str(va_list args, int flags, t_conv *lst_fct)
 {
-	char *str;
-	int size;
+	char	*str;
+	int		size;
 
 	(void)flags;
 	str = va_arg(args, char*);
@@ -53,9 +65,9 @@ int		ft_str(va_list args, int flags, t_conv *lst_fct)
 
 int		ft_pointer(va_list args, int flags, t_conv *lst_fct)
 {
-	void  *p;
-	char *res;
-	int size;
+	void	*p;
+	char	*res;
+	int		size;
 
 	(void)flags;
 	(void)res;

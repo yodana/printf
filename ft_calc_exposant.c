@@ -6,12 +6,12 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/10 19:18:34 by yodana            #+#    #+#             */
-/*   Updated: 2019/05/10 19:18:38 by yodana           ###   ########.fr       */
+/*   Updated: 2019/05/27 18:25:38 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
+
 char	*ft_calc_exposant_neg(char *res, int stop, int hold, int i)
 {
 	int j;
@@ -65,7 +65,6 @@ char	*ft_calc_exposant_pos(char *res, int exposant, int i, int hold)
 		i = ft_strlen(res) - 1;
 		hold = 0;
 		exposant--;
-		//printf("res == %s\n",res);
 	}
 	return (res);
 }

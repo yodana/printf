@@ -12,6 +12,29 @@
 
 #include "printf.h"
 
+int		ft_check_float_round(char *print, int precision)
+{
+	int i;
+
+	i = 0;
+	if (precision != 1)
+		return (1);
+	if (print[2] == '5')
+	{
+		if ((print[0] - 48) % 2 == 1)
+			return (1);
+		while (i != 20)
+		{
+			if (print[i + 3] >= '1')
+				return (1);
+			i++;
+		}
+	}
+	else if (print[2] > '5')
+		return (1);
+	return (0);
+}
+
 int		ft_check_precision(int *i, const char *format)
 {
 	int res;
@@ -31,21 +54,14 @@ int		ft_check_precision(int *i, const char *format)
 	}
 	return (res);
 }
-#include <stdio.h>
+
 int		ft_check_champ(int *i, const char *format)
 {
 	int resultat;
 	int k;
 
 	k = 0;
-	if (format[k] == '-' && (format[k + 1] == '#'))
-	{
-		resultat = ft_atoi(&format[k + 2]) * -1;
-	}
-	else if (format[k] == '-' && format[k + 1] == '+')
-		resultat = ft_atoi(&format[k + 1]) * -1;
-	else
-		resultat = ft_atoi(format);
+	resultat = ft_atoi(format);
 	while (ft_isdigit(format[k]) == 1 || format[k] == '-'
 		|| format[k] == '+' || format[k] == '#')
 	{
@@ -77,27 +93,6 @@ int		ft_check_flags(const char *format)
 	return (flags);
 }
 
-char	*ft_check_hp(const char *format, int i, char *res)
-{
-	if ((format[i + 1] && format[i + 1] == '+')
-		|| (format[i + 2] && format[i + 2] == '+'))
-	{
-		if (!(res = ft_strjoin_fr(res, "+", 1)))
-			return (NULL);
-	}
-	if (format[i + 1] && format[i + 1] == '#')
-	{
-		if (!(res = ft_strjoin_fr(res, "#", 1)))
-			return (NULL);
-	}
-	/*if (format[i + 1] && format[i + 1] == ' ')
-	{
-		if (!(res = ft_strjoin_fr(res, " ", 1)))
-			return (NULL);
-	}*/
-	return (res);
-}
-
 char	*ft_check_attribut(int *i, const char *format, int k, int j)
 {
 	char *attributs;
@@ -107,9 +102,8 @@ char	*ft_check_attribut(int *i, const char *format, int k, int j)
 		return (NULL);
 	if (!(attributs = ft_fill_attribut()))
 		return (NULL);
-	while (ft_is_attribut(format[*i]) == 1 && (format[*i] == '0'
-			|| ft_isdigit(format[*i]) == 0) && format[*i] != '-'
-				&& format[*i] != '.')
+	while (format[*i] == '+' || format[*i] == '-' || format[*i] == ' ' ||
+			format[*i] == '#' || format[*i] == '0')
 	{
 		while (attributs[j])
 		{
@@ -120,7 +114,6 @@ char	*ft_check_attribut(int *i, const char *format, int k, int j)
 		j = 0;
 		*i = *i + 1;
 	}
-	res = ft_check_hp(format, *i, res);
 	ft_strdel(&attributs);
 	return (res);
 }

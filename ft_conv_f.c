@@ -11,33 +11,6 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
-char	*ft_dtoa(long double m, int size)
-{
-	int		i;
-	char	*res;
-	int		j;
-
-	i = 0;
-	j = 0;
-	if (!(res = ft_strnew(size)))
-		return (NULL);
-	j = (int)m;
-	while (i != size)
-	{
-		if (i == 1)
-		{
-			res[i] = '.';
-			i++;
-		}
-		res[i] = j + '0';
-		m = m - j;
-		m = m * 10;
-		j = (int)m;
-		i++;
-	}
-	return (res);
-}
 
 char	*ft_float_round(int i, char *print, int size)
 {
@@ -61,27 +34,14 @@ char	*ft_float_round(int i, char *print, int size)
 	return (ft_strsub(print, 0, size));
 }
 
-int		ft_check_float_round(char *print, int precision)
+int		ft_calc_comma(char *res)
 {
 	int i;
-	i = 0;
 
-	if (precision != 1)
-		return (1);
-		if (print[2] == '5')
-		{
-			if ((print[0] - 48) % 2 == 1)
-				return (1); 
-			while (i != 20)
-			{
-				if (print[i + 3] >= '1')
-					return (1);
-				i++;
-			}
-		}
-		else if (print[2] > '5')
-			return (1);
-	return (0);
+	i = 0;
+	while (res[i] != '.')
+		i++;
+	return (i);
 }
 
 char	*ft_print_float(char *res, int precision, int stop)
@@ -90,7 +50,7 @@ char	*ft_print_float(char *res, int precision, int stop)
 	char	*print;
 	int		comma;
 
-	comma = 0;
+	comma = ft_calc_comma(res);
 	i = 0;
 	if (!res || !(print = ft_strnew(ft_strlen(res) + 1)))
 		return (NULL);
@@ -98,7 +58,6 @@ char	*ft_print_float(char *res, int precision, int stop)
 	{
 		print[i] = res[i];
 		i++;
-		comma++;
 	}
 	while (stop++ != precision + 20)
 	{
@@ -108,48 +67,37 @@ char	*ft_print_float(char *res, int precision, int stop)
 	if (ft_check_float_round(&print[comma - 1], precision) == 1)
 		res = ft_float_round(i - 20, print, comma + precision);
 	ft_strdel(&print);
-	comma = 0;
-	i = 0;
-	while (res[i] != '.')
-	{
-		i++;
-		comma++;
-	}
+	comma = ft_calc_comma(res);
 	if (precision == 1)
 		return (ft_strsub(res, 0, comma));
 	return (res);
 }
 
-int		ft_check_excep(unsigned int exposant, char *m, int signe, t_conv* lst_fct)
+int		ft_check_excep(unsigned int exposant, char *m
+, int signe, t_conv *lst_fct)
 {
 	int size;
 
-	if (!m)
-		return (1);
-	if (exposant >= 32767)
+	if (!m || exposant < 32767)
+		return (-1);
+	if (m[1] == '1')
 	{
-		if (m[1] == '1')
-		{
-			lst_fct->final = ft_strdup("nan");
-			lst_fct->final = ft_space(1, lst_fct);
-			size = ft_strlen(lst_fct->final);
-			ft_putstr(lst_fct->final);
-			ft_strdel(&lst_fct->final);
-			return (size);
-		}
-		if (signe == 1)
-			lst_fct->final = ft_strdup("-inf");
-		else
-			lst_fct->final = ft_strdup("inf");
-		if (ft_strrchr(lst_fct->attribut, '+') && ft_strrchr(lst_fct->final, '-') == NULL)
-			lst_fct->final = ft_plus(lst_fct);
+		lst_fct->final = ft_strdup("nan");
 		lst_fct->final = ft_space(1, lst_fct);
 		size = ft_strlen(lst_fct->final);
 		ft_putstr(lst_fct->final);
 		ft_strdel(&lst_fct->final);
 		return (size);
 	}
-	return (-1);
+	lst_fct->final = signe == 1 ? ft_strdup("-inf") : ft_strdup("inf");
+	if (ft_strrchr(lst_fct->attribut, '+')
+			&& ft_strrchr(lst_fct->final, '-') == NULL)
+		lst_fct->final = ft_plus(lst_fct);
+	lst_fct->final = ft_space(1, lst_fct);
+	size = ft_strlen(lst_fct->final);
+	ft_putstr(lst_fct->final);
+	ft_strdel(&lst_fct->final);
+	return (size);
 }
 
 int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
@@ -157,14 +105,10 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 	float_cast	d1;
 	char		*res_final;
 	char		*m_2;
-	int size;
+	int			size;
 
-	if (lst_fct->precision == 0)
-		lst_fct->precision = 7;
-	if (flags == FL)
-		d1.f = va_arg(args, long double);
-	else
-		d1.f = va_arg(args, double);
+	lst_fct->precision = lst_fct->precision == 0 ? 7 : lst_fct->precision;
+	d1.f = flags == FL ? va_arg(args, long double) : va_arg(args, double);
 	m_2 = ft_i_to_bi(d1.parts.m);
 	if ((size = ft_check_excep(d1.parts.e, m_2, d1.parts.sign, lst_fct)) != -1)
 	{
