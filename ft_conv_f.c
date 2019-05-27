@@ -107,12 +107,14 @@ char	*ft_print_float(char *res, int precision, int stop)
 		res = ft_float_round(i - 7, print, comma + precision);
 	ft_strdel(&print);
 	if (precision == 1)
-		res = ft_strsub(res, 0, comma);
+		return (ft_strsub(res, 0, comma));
 	return (res);
 }
 
 int		ft_check_excep(unsigned int exposant, char *m, int signe, t_conv* lst_fct)
 {
+	int size;
+
 	if (!m)
 		return (1);
 	if (exposant >= 32767)
@@ -120,19 +122,23 @@ int		ft_check_excep(unsigned int exposant, char *m, int signe, t_conv* lst_fct)
 		if (m[1] == '1')
 		{
 			lst_fct->final = ft_strdup("nan");
-			lst_fct->final = ft_attribut(1, lst_fct);
+			lst_fct->final = ft_space(1, lst_fct);
+			size = ft_strlen(lst_fct->final);
 			ft_putstr(lst_fct->final);
-			return (ft_strlen(lst_fct->final));
+			ft_strdel(&lst_fct->final);
+			return (size);
 		}
 		if (signe == 1)
 			lst_fct->final = ft_strdup("-inf");
 		else
-		{
 			lst_fct->final = ft_strdup("inf");
-		}
-		lst_fct->final = ft_attribut(1, lst_fct);
+		if (ft_strrchr(lst_fct->attribut, '+') && ft_strrchr(lst_fct->final, '-') == NULL)
+			lst_fct->final = ft_plus(lst_fct);
+		lst_fct->final = ft_space(1, lst_fct);
+		size = ft_strlen(lst_fct->final);
 		ft_putstr(lst_fct->final);
-		return (ft_strlen(lst_fct->final));
+		ft_strdel(&lst_fct->final);
+		return (size);
 	}
 	return (-1);
 }
@@ -158,10 +164,14 @@ int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
 	}
 	res_final = ft_bi_to_dec(m_2, 0, 1, 66 + lst_fct->precision);
 	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
-	lst_fct->final = ft_strdup(ft_print_float(res_final, lst_fct->precision, 0));
+	lst_fct->final = ft_print_float(res_final, lst_fct->precision, 0);
 	if (d1.parts.sign == 1)
 		lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
 	lst_fct->final = ft_attribut(d1.f, lst_fct);
 	ft_putstr(lst_fct->final);
-	return (ft_strlen(lst_fct->final));
+	ft_strdel(&res_final);
+	ft_strdel(&m_2);
+	size = ft_strlen(lst_fct->final);
+	ft_strdel(&lst_fct->final);
+	return (size);
 }

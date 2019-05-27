@@ -4,7 +4,8 @@ char    *ft_fill_attribut(void)
 {
     char *tab;
 
-    tab = ft_strnew(6);
+    if (!(tab = ft_strnew(6)))
+        return (NULL);
     tab[0] = '#';
     tab[1] = '0';
     tab[2] = '-';

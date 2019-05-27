@@ -16,6 +16,7 @@ char     *ft_calc_octa(long long nbr)
         res = ft_strjoin_fr(c, res, 2);
         nbr = nbr / 8;
     }
+    ft_strdel(&c);
     return (res);
 }
 
@@ -41,6 +42,7 @@ char    *ft_calc_long_hexam(long long nbr)
         res = ft_strjoin_fr(c, res, 2);
         nbr = nbr / 16;
     }
+    ft_strdel(&c);
     return (res);
 }
 
@@ -66,6 +68,7 @@ char    *ft_calc_long_hexa(long long nbr)
         res = ft_strjoin_fr(c, res, 2);
         nbr = nbr / 16;
     }
+    ft_strdel(&c);
     return (res);
 }
 
@@ -91,5 +94,6 @@ char    *ft_calc_hexa(unsigned long nbr)
         res = ft_strjoin_fr(c, res, 2);
         nbr = nbr / 16;
     }
+    ft_strdel(&c);
     return (res);
 }

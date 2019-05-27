@@ -7,7 +7,7 @@ int   ft_conv_wf_2(va_list args, int flags, t_conv *lst_fct)
    unsigned char hhd;
    unsigned long ld;
    unsigned long long lld;
-
+   int size;
    if (flags == HH)
     {
        hhd = (unsigned char)va_arg(args,  unsigned  char*);
@@ -33,23 +33,24 @@ int   ft_conv_wf_2(va_list args, int flags, t_conv *lst_fct)
       lst_fct->final = ft_attribut(lld, lst_fct);
     }
     ft_putstr(lst_fct->final);
-    return (ft_strlen(lst_fct->final));
+    size = ft_strlen(lst_fct->final);
+    ft_strdel(&lst_fct->final);
+    return (size);
 }
 
 int    ft_conv_2(va_list args, int flags, t_conv *lst_fct)
 {
    unsigned int d;
-   
+   int size;
    if (flags > 0)
-   {
-      ft_conv_wf_2(args, flags, lst_fct);
-      return (ft_strlen(lst_fct->final));
-   }
+      return (ft_conv_wf_2(args, flags, lst_fct));
    d = (unsigned int)va_arg(args, unsigned int);
    lst_fct->final = lst_fct->display(d);
    lst_fct->final = ft_attribut(d, lst_fct);
    ft_putstr(lst_fct->final);
-   return (ft_strlen(lst_fct->final));
+   size = ft_strlen(lst_fct->final);
+   ft_strdel(&lst_fct->final);
+   return (size);
 }
 
 int   ft_conv_wf(va_list args, int flags, t_conv *lst_fct)
@@ -58,6 +59,7 @@ int   ft_conv_wf(va_list args, int flags, t_conv *lst_fct)
    char hhd;
    long ld;
    long long lld;
+   int size;
 
    if (flags == HH)
     {
@@ -84,21 +86,23 @@ int   ft_conv_wf(va_list args, int flags, t_conv *lst_fct)
          lst_fct->final = ft_attribut(lld, lst_fct);
     }
     ft_putstr(lst_fct->final);
-    return (ft_strlen(lst_fct->final));
+    size = ft_strlen(lst_fct->final);
+    ft_strdel(&lst_fct->final);
+    return (size);
 }
 
 int    ft_conv(va_list args, int flags, t_conv *lst_fct)
 {
    int d;
-     
+   int size;
+
    if (flags > 0)
-   {
-      ft_conv_wf(args, flags, lst_fct);
-      return (0);
-   }
+      return (ft_conv_wf(args, flags, lst_fct));
    d = (int)va_arg(args, int);
    lst_fct->final = lst_fct->display(d);
    lst_fct->final = ft_attribut(d, lst_fct);
    ft_putstr(lst_fct->final);
-   return (ft_strlen(lst_fct->final));
+   size = ft_strlen(lst_fct->final);
+   ft_strdel(&lst_fct->final);
+   return (size);
 }

@@ -89,9 +89,10 @@ char	*ft_check_attribut(int *i, const char *format)
 
 	k = 0;
 	j = 0;
-	if (!(res = ft_strnew(2)))
+	if (!(res = ft_strnew(10)))
 		return (NULL);
-	attributs = ft_fill_attribut();
+	if (!(attributs = ft_fill_attribut()))
+		return (NULL);
 	while (ft_is_attribut(format[*i]) == 1 && (format[*i] == '0' || 
 			ft_isdigit(format[*i]) == 0) && format[*i] != '-' && format[*i] != '.')
 	{
@@ -131,10 +132,10 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args, int *d)
 	int size;
 
 	size = 0;
+	(void)args;
 	if (format[0] == '\0')
 		return (0);
 	i = 0;
-	(void)args;
 	if (!(attribut = ft_check_attribut(&i, &format[i])))
 		return (1);
 	champ = ft_check_champ(&i, &format[i]);
@@ -150,11 +151,11 @@ int	ft_check_conv(const char *format, t_conv *lst_fct, va_list args, int *d)
 			if (!(lst_fct->attribut = ft_strdup(attribut)))
 				return (1);
 			size = lst_fct->f(args, flags, lst_fct);
-			ft_strdel(&attribut);
 			ft_strdel(&lst_fct->attribut);
 		}
 		lst_fct = lst_fct->next;
 	}
+	ft_strdel(&attribut);
 	*d = *d + i + 2;
 	return (size);
 }
