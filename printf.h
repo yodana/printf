@@ -22,6 +22,11 @@
 # define L 4
 # define LL 5
 # define FL 7
+# define YELLOW "\033[0;33m"
+# define RED "\033[0;31m"
+# define GREEN "\033[0;32m"
+# define BLUE "\033[0;34m"
+# define END_COLOR "\033[0m"
 
 int		ft_printf(const char *format, ...);
 char	*ft_calc_hexa(unsigned long nbr);

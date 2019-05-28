@@ -431,10 +431,10 @@ int		nb;
 	return (0);
 }*/
 
-int main()
+/*int main()
 {
 	char *str = "Okalmos Speculos";
-	/*ft_printf("test basique:%s|\n",str);
+	ft_printf("test basique:%s|\n",str);
 	printf("test basique:%s|\n", str);
 	ft_printf("precision / zero:%.0s|\n", str);
 	printf("precision / zero:%.0s|\n", str);
@@ -451,11 +451,11 @@ int main()
 	ft_printf("Minus + size / petite:%-5s|\n", str);
 	printf("Minus + size / petite:%-5s|\n", str);
 	ft_printf("Minus + size / granfe:%-15s|\n", str);
-	printf("Minus + size / granfe:%-15s|\n", str);*/
-	ft_printf("Minus + size + prec:%-15.5s|\n", str);
+	printf("Minus + size / granfe:%-15s|\n", str);
+	ft_printf("Minus" GREEN "+ size + prec :%-15.5s|"END_COLOR"\n", str);
 	printf("Minus + size + prec:%-15.5s|\n", str);
-	ft_printf("%Lf\n",LDBL_MAX);
-	/*ft_printf("NULL:%12s|\n", NULL);
+	ft_printf(GREEN"%Lf\n"END_COLOR,LDBL_MAX);
+	ft_printf("NULL:%12s|\n", NULL);
 	printf("NULL:%12s|\n", NULL);
 	ft_printf("NULL:%1s|\n", NULL);
 	printf("NULL:%1s|\n", NULL);
@@ -488,9 +488,17 @@ int main()
 	ft_printf("%.5%|\n");
 	printf("%.5%|\n\n");
 	ft_printf("% %|\n");
-	printf("% %|\n\n");*/
+	printf("% %|\n\n");
 	//int i = ft_printf("%.0s|\n", "Okalm");
 	//ft_printf("%D %C %F\n", 123, 'A', 1235.123);
 	
 	return 0;
+}*/
+
+int main()
+{
+	long double e;
+	e = LDBL_MAX;
+	printf("reel : e -> %Le\n",e);
+	ft_printf("mine : e -> %.f\n\n",e);
 }

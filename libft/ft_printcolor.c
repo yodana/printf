@@ -21,5 +21,5 @@ void	ft_printcolor(char *str, char *color)
 		ft_putstr(END_COLOR);
 	}
 	else
-		ft_putstr("Wrong color");
+		ft_putstr("Wrong color\n");
 }
