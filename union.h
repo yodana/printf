@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fill_tab.c                                      :+:      :+:    :+:   */
+/*   union.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/05/28 02:06:09 by yodana            #+#    #+#             */
-/*   Updated: 2019/05/28 02:07:12 by yodana           ###   ########.fr       */
+/*   Created: 2019/05/28 05:39:51 by yodana            #+#    #+#             */
+/*   Updated: 2019/05/28 09:15:03 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "printf.h"
+#ifndef UNION_H
 
-char	*ft_fill_attribut(void)
+# define UNION_H
+
+typedef union				u_float
 {
-	char *tab;
-
-	if (!(tab = ft_strnew(6)))
-		return (NULL);
-	tab[0] = '#';
-	tab[1] = '0';
-	tab[2] = '-';
-	tab[3] = '+';
-	tab[4] = ' ';
-	tab[5] = '\0';
-	return (tab);
-}
+	long double				f;
+	struct
+	{
+		unsigned long long	m:64;
+		unsigned int		e:15;
+		unsigned int		sign:1;
+		unsigned int		empty:16;
+	}						parts;
+}							t_float;
+#endif

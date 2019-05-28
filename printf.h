@@ -6,90 +6,51 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:41:00 by yodana            #+#    #+#             */
-/*   Updated: 2019/04/01 15:56:52 by yodana           ###   ########.fr       */
+/*   Updated: 2019/05/28 05:04:26 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PRINTF_H
 # define PRINTF_H
 
-#include "libft/libft.h"
-#include <stdarg.h>
+# include "libft/libft.h"
+# include <stdarg.h>
+# include "structures.h"
+# include "union.h"
+# define H 1
+# define HH 2
+# define L 4
+# define LL 5
+# define FL 7
 
-#define H 1
-#define HH 2
-#define L 4
-#define LL 5
-#define FL 7
-
-
-typedef struct s_conv
-{
-    char type;
-    int (*f)(va_list, int , struct s_conv*);
-    char* (*display)(long long);
-    char *attribut;
-    int champ;
-    int precision;
-    char *final;
-    struct  s_conv *next;
-}               t_conv;
-
-typedef struct s_float
-{
-    char *m_1;
-    char *m_2;
-    char *m_final;
-    char *res_final;
-}              t_float;
-
-typedef struct s_info
-{
-    int flags;
-    char *attribut;
-    int champ;
-    int precision;
-    int size;
-    int i;
-}               t_info;
-
-typedef union {
- long double f;
-  struct {
-    unsigned long long m:64;
-	unsigned int e:15;
-	unsigned int sign:1;
-    unsigned int empty:16;
-  } parts;
-}     float_cast;
-
-int     ft_printf(const char *format, ...);
-int     ft_char(va_list args,int flags, t_conv *lst_fct);
-int     ft_str(va_list args,int flags, t_conv *lst_fct);
-int     ft_pointer(va_list args, int flags, t_conv *lst_fct);
-t_conv  *ft_create_lst(void);
-void    ft_free_lst(t_conv *list);
-char    *ft_calc_hexa(unsigned long nbr);
-int   ft_conv(va_list args, int flags,t_conv *lst_fct);
-char    *ft_calc_octa(long long nbr);
-int    ft_conv_2(va_list args, int flags, t_conv *lst_fct);
-char   *ft_calc_long_hexa(long long nbr);
-char   *ft_calc_long_hexam(long long nbr);
-int    ft_conv_f(va_list args, int flags, t_conv *lst_fct);
-char *ft_i_to_bi(unsigned long long nbr);
-char    *ft_bi_to_dec(char *m, int i, int power, int precision);
+int		ft_printf(const char *format, ...);
+char	*ft_calc_hexa(unsigned long nbr);
+char	*ft_calc_octa(long long nbr);
+char	*ft_calc_long_hexa(long long nbr);
+char	*ft_calc_long_hexam(long long nbr);
+char	*ft_i_to_bi(unsigned long long nbr);
+char	*ft_bi_to_dec(char *m, int i, int power, int precision);
 char	*ft_dtoa(long double mantisse, int size);
 char	*ft_calc_exposant(long double f, char *res, unsigned int exposant);
-int     ft_conv_spe(va_list args, int flags, t_conv *lst_fct);
-char    *ft_fill_attribut(void);
+char	*ft_fill_attribut(void);
 int		ft_check_flags(const char *format);
-char  *ft_space(long long i, t_conv *lst_fct);
-char *ft_attribut(long long i, t_conv *lst_fct);
-char    *ft_plus(t_conv *lst_fct);
-char	*ft_check_attribut(int *i, const char *format, int k, int j);
-int	ft_check_precision(int *i, const char *format);
-int		ft_check_champ(int *i, const char *format);
-int		ft_check_flags(const char *format);
-int		ft_is_attribut(const char format);
 int		ft_check_float_round(char *print, int precision);
+int		ft_char(t_conv *lst_fct, va_list args, int flags);
+int		ft_str(t_conv *lst_fct, va_list args, int flags);
+int		ft_pointer(t_conv *lst_fct, va_list args, int flags);
+t_conv	*ft_create_lst(void);
+void	ft_free_lst(t_conv *list);
+int		ft_conv(t_conv *lst_fct, va_list args, int flags);
+int		ft_conv_2(t_conv *lst_fct, va_list args, int flags);
+int		ft_conv_f(t_conv *lst_fct, va_list args, int flags);
+int		ft_conv_spe(t_conv *lst_fct, va_list args, int flags);
+char	*ft_space(long long i, t_conv *lst_fct, int size);
+char	*ft_attribut(long long i, t_conv *lst_fct);
+char	*ft_plus(t_conv *lst_fct);
+char	*ft_precision(long long i, t_conv *lst_fct, int d, int size);
+char	*ft_zero(long long i, t_conv *lst_fct, int d, int size);
+char	*ft_check_attribut(int *i, const char *format, int k, int j);
+int		ft_check_flags(const char *format);
+int		ft_check_champ(int *i, const char *format);
+int		ft_check_precision(int *i, const char *format);
 #endif

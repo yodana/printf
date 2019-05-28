@@ -1,6 +1,33 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_lst.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/05/28 02:57:44 by yodana            #+#    #+#             */
+/*   Updated: 2019/05/28 03:17:46 by yodana           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "printf.h"
-#include <stdio.h>
-void    ft_free_lst(t_conv *list)
+
+static const t_init	g_tab_init[] = {
+	{'c', ft_char, NULL},
+	{'s', ft_str, NULL},
+	{'p', ft_pointer, NULL},
+	{'d', ft_conv, ft_itoa},
+	{'i', ft_conv, ft_itoa},
+	{'o', ft_conv_2, ft_calc_octa},
+	{'u', ft_conv_2, ft_itoa},
+	{'x', ft_conv_2, ft_calc_long_hexa},
+	{'X', ft_conv_2, ft_calc_long_hexam},
+	{'f', ft_conv_f, NULL},
+	{'%', ft_conv_spe, NULL},
+	{'\0', NULL, NULL},
+};
+
+void	ft_free_lst(t_conv *list)
 {
 	t_conv *tmp;
 
@@ -26,20 +53,37 @@ void	ft_conv_lst_add(t_conv **new, t_conv *next)
 			while (tmp->next)
 				tmp = tmp->next;
 			tmp->next = next;
-		} 
+		}
 	}
 }
 
+t_conv	*ft_add_lst(int i)
+{
+	t_conv *new;
+
+	if (!(new = (t_conv*)malloc(sizeof(t_conv))))
+		return (NULL);
+	new->type = g_tab_init[i].type;
+	new->f = g_tab_init[i].f;
+	new->attribut = NULL;
+	new->champ = 0;
+	new->precision = 0;
+	new->display = g_tab_init[i].display;
+	new->final = NULL;
+	new->next = NULL;
+	return (new);
+}
 
 t_conv	*ft_create_lst(void)
 {
-	t_conv *new;
-	t_conv *next;
+	t_conv	*new;
+	t_conv	*next;
+	int		i;
 
-	next = NULL;
+	i = 1;
 	if (!(new = (t_conv*)malloc(sizeof(t_conv))))
 		return (NULL);
-    new->type = 'c';
+	new->type = 'c';
 	new->f = ft_char;
 	new->attribut = NULL;
 	new->champ = 0;
@@ -47,114 +91,11 @@ t_conv	*ft_create_lst(void)
 	new->display = NULL;
 	new->final = NULL;
 	new->next = NULL;
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 's';
-	next->f = ft_str;
-	next->attribut = NULL;
-	next->display = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 'p';
-	next->f = ft_pointer;
-	next->display = NULL;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 'd';
-	next->f = ft_conv;
-	next->display = ft_itoa;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 'i';
-	next->f = ft_conv;
-	next->display = ft_itoa;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 'o';
-	next->f = ft_conv_2;
-	next->display = ft_calc_octa;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 'u';
-	next->f = ft_conv_2;
-	next->display = ft_itoa;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 'x';
-	next->f = ft_conv_2;
-	next->display = ft_calc_long_hexa;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 'X';
-	next->f = ft_conv_2;
-	next->display = ft_calc_long_hexam;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = 'f';
-	next->f = ft_conv_f;
-	next->display = NULL;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
-	if (!(next = (t_conv*)malloc(sizeof(t_conv))))
-		return (NULL);
-	next->type = '%';
-	next->f = ft_conv_spe;
-	next->display = NULL;
-	next->attribut = NULL;
-	next->final = NULL;
-	next->champ = 0;
-	new->precision = 0;
-	next->next = NULL;
-	ft_conv_lst_add(&new, next);
+	while (g_tab_init[i].type != '\0')
+	{
+		next = ft_add_lst(i);
+		i++;
+		ft_conv_lst_add(&new, next);
+	}
 	return (new);
 }

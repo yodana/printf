@@ -12,7 +12,7 @@
 
 #include "printf.h"
 
-int		ft_char(va_list args, int flags, t_conv *lst_fct)
+int		ft_char(t_conv *lst_fct, va_list args, int flags)
 {
 	char	*res;
 	int		size;
@@ -22,7 +22,8 @@ int		ft_char(va_list args, int flags, t_conv *lst_fct)
 	res = ft_strnew(1);
 	res[0] = va_arg(args, int);
 	lst_fct->final = ft_strdup(res);
-	lst_fct->final = ft_space(1, lst_fct);
+	if (lst_fct->final)
+		lst_fct->final = ft_space(1, lst_fct, ft_strlen(lst_fct->final));
 	if (res[0] == '\0')
 	{
 		ft_putstr(lst_fct->final);
@@ -36,7 +37,7 @@ int		ft_char(va_list args, int flags, t_conv *lst_fct)
 	return (size);
 }
 
-int		ft_str(va_list args, int flags, t_conv *lst_fct)
+int		ft_str(t_conv *lst_fct, va_list args, int flags)
 {
 	char	*str;
 	int		size;
@@ -56,14 +57,15 @@ int		ft_str(va_list args, int flags, t_conv *lst_fct)
 		lst_fct->final = ft_strdup("(null)");
 	else
 		lst_fct->final = ft_strdup("");
-	lst_fct->final = ft_space(1, lst_fct);
+	if (lst_fct->final)
+		lst_fct->final = ft_space(1, lst_fct, ft_strlen(lst_fct->final));
 	ft_putstr(lst_fct->final);
 	size = ft_strlen(lst_fct->final);
 	ft_strdel(&lst_fct->final);
 	return (size);
 }
 
-int		ft_pointer(va_list args, int flags, t_conv *lst_fct)
+int		ft_pointer(t_conv *lst_fct, va_list args, int flags)
 {
 	void	*p;
 	char	*res;
@@ -76,7 +78,8 @@ int		ft_pointer(va_list args, int flags, t_conv *lst_fct)
 	res = ft_strjoin_fr("0x", res, 2);
 	res = ft_strjoin_fr(res, ft_calc_hexa((unsigned long)p), 3);
 	lst_fct->final = res;
-	lst_fct->final = ft_space(1, lst_fct);
+	if (lst_fct->final)
+		lst_fct->final = ft_space(1, lst_fct, ft_strlen(lst_fct->final));
 	ft_putstr(lst_fct->final);
 	size = ft_strlen(lst_fct->final);
 	ft_strdel(&lst_fct->final);

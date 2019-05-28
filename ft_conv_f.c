@@ -83,7 +83,7 @@ int		ft_check_excep(unsigned int exposant, char *m
 	if (m[1] == '1')
 	{
 		lst_fct->final = ft_strdup("nan");
-		lst_fct->final = ft_space(1, lst_fct);
+		lst_fct->final = ft_space(1, lst_fct, ft_strlen(lst_fct->final));
 		size = ft_strlen(lst_fct->final);
 		ft_putstr(lst_fct->final);
 		ft_strdel(&lst_fct->final);
@@ -93,16 +93,16 @@ int		ft_check_excep(unsigned int exposant, char *m
 	if (ft_strrchr(lst_fct->attribut, '+')
 			&& ft_strrchr(lst_fct->final, '-') == NULL)
 		lst_fct->final = ft_plus(lst_fct);
-	lst_fct->final = ft_space(1, lst_fct);
+	lst_fct->final = ft_space(1, lst_fct, ft_strlen(lst_fct->final));
 	size = ft_strlen(lst_fct->final);
 	ft_putstr(lst_fct->final);
 	ft_strdel(&lst_fct->final);
 	return (size);
 }
 
-int		ft_conv_f(va_list args, int flags, t_conv *lst_fct)
+int		ft_conv_f(t_conv *lst_fct, va_list args, int flags)
 {
-	float_cast	d1;
+	t_float		d1;
 	char		*res_final;
 	char		*m_2;
 	int			size;

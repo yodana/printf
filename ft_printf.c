@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-#include "stdio.h"
 
 int		ft_is_attribut(const char format)
 {
@@ -32,7 +31,7 @@ int		ft_find_conv(const char *format, t_conv *lst_fct
 			lst_fct->champ = info->champ;
 			if (!(lst_fct->attribut = ft_strdup(info->attribut)))
 				return (1);
-			info->size = lst_fct->f(args, info->flags, lst_fct);
+			info->size = lst_fct->f(lst_fct, args, info->flags);
 			ft_strdel(&lst_fct->attribut);
 		}
 		lst_fct = lst_fct->next;
