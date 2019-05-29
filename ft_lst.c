@@ -24,6 +24,7 @@ static const t_init	g_tab_init[] = {
 	{'X', ft_conv_2, ft_calc_long_hexam},
 	{'f', ft_conv_f, NULL},
 	{'%', ft_conv_spe, NULL},
+	{'e', ft_conv_f, NULL},
 	{'\0', NULL, NULL},
 };
 

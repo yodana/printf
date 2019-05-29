@@ -58,4 +58,5 @@ char	*ft_check_attribut(int *i, const char *format, int k, int j);
 int		ft_check_flags(const char *format);
 int		ft_check_champ(int *i, const char *format);
 int		ft_check_precision(int *i, const char *format);
+char    *ft_conv_e(t_conv *lst_fct, char *res, int comma);
 #endif

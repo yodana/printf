@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-
+#include <stdio.h>
 int		ft_check_float_round(char *print, int precision)
 {
 	int i;

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
+#include <stdio.h>
 
 char	*ft_float_round(int i, char *print, int size)
 {
@@ -33,18 +34,16 @@ char	*ft_float_round(int i, char *print, int size)
 	}
 	return (ft_strsub(print, 0, size));
 }
-
 int		ft_calc_comma(char *res)
 {
 	int i;
 
 	i = 0;
-	while (res[i] != '.')
+	while (res[i] && res[i] != '.')
 		i++;
 	return (i);
 }
-
-char	*ft_print_float(char *res, int precision, int stop)
+char	*ft_print_float(char *res, t_conv *lst_fct, int stop)
 {
 	int		i;
 	char	*print;
@@ -59,16 +58,20 @@ char	*ft_print_float(char *res, int precision, int stop)
 		print[i] = res[i];
 		i++;
 	}
-	while (stop++ != precision + 20)
+	while (stop++ != lst_fct->precision + 20)
 	{
 		print[i] = res[i];
 		i++;
 	}
-	if (ft_check_float_round(&print[comma - 1], precision) == 1)
-		res = ft_float_round(i - 20, print, comma + precision);
-	ft_strdel(&print);
+	if (lst_fct->type == 'e' && lst_fct->precision == 0)
+		lst_fct->precision++;
+	if (ft_check_float_round(&print[comma - 1], lst_fct->precision) == 1)
+		res = ft_float_round(i - 20, print, comma + lst_fct->precision);
+			ft_strdel(&print);
 	comma = ft_calc_comma(res);
-	if (precision == 1)
+	if (lst_fct->type == 'e')
+		res = ft_conv_e(lst_fct, res, comma);
+	if (lst_fct->precision == 1)
 		return (ft_strsub(res, 0, comma));
 	return (res);
 }
@@ -108,6 +111,8 @@ int		ft_conv_f(t_conv *lst_fct, va_list args, int flags)
 	int			size;
 
 	lst_fct->precision = lst_fct->precision == 0 ? 7 : lst_fct->precision;
+	lst_fct->precision = lst_fct->type == 'e' ? lst_fct->precision - 1 : lst_fct->precision;
+//	printf("precision == %c\n",lst_fct->type);
 	d1.f = flags == FL ? va_arg(args, long double) : va_arg(args, double);
 	m_2 = ft_i_to_bi(d1.parts.m);
 	if ((size = ft_check_excep(d1.parts.e, m_2, d1.parts.sign, lst_fct)) != -1)
@@ -117,7 +122,7 @@ int		ft_conv_f(t_conv *lst_fct, va_list args, int flags)
 	}
 	res_final = ft_bi_to_dec(m_2, 0, 1, 66 + lst_fct->precision);
 	res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
-	lst_fct->final = ft_print_float(res_final, lst_fct->precision, 0);
+	lst_fct->final = ft_print_float(res_final, lst_fct, 0);
 	if (d1.parts.sign == 1)
 		lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
 	lst_fct->final = ft_attribut(d1.f, lst_fct);

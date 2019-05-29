@@ -497,8 +497,9 @@ int		nb;
 
 int main()
 {
-	long double e;
-	e = LDBL_MAX;
-	printf("reel : e -> %Le\n",e);
-	ft_printf("mine : e -> %.f\n\n",e);
+	double e;
+	e = 9.9;
+	printf("reel : e -> %.e\n",e);
+	ft_printf("mine : e -> %.e\n",e);
+	ft_printf("mine : f -> %.f\n\n",e);
 }
