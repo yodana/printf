@@ -15,6 +15,7 @@
 
 char	*ft_float_round(int i, char *print, int size)
 {
+	printf("round == %c\n",print[i]);
 	if (print[i] >= '5')
 	{
 		i--;
@@ -48,7 +49,10 @@ char	*ft_print_float(char *res, t_conv *lst_fct, int stop)
 	int		i;
 	char	*print;
 	int		comma;
-
+	int e;
+	e = 0;
+	if (lst_fct->type == 'e')
+		e++;
 	comma = ft_calc_comma(res);
 	i = 0;
 	if (!res || !(print = ft_strnew(ft_strlen(res) + 1)))
@@ -63,15 +67,19 @@ char	*ft_print_float(char *res, t_conv *lst_fct, int stop)
 		print[i] = res[i];
 		i++;
 	}
-	if (lst_fct->type == 'e' && lst_fct->precision == 0)
-		lst_fct->precision++;
+	//if (lst_fct->type == 'e' && lst_fct->precision == 0)
+		//lst_fct->precision++;
 	if (ft_check_float_round(&print[comma - 1], lst_fct->precision) == 1)
-		res = ft_float_round(i - 20, print, comma + lst_fct->precision);
-			ft_strdel(&print);
+	{
+		printf("lol");
+		res = ft_float_round(i - 20 + e, print, comma + lst_fct->precision);
+	}
+	//printf("res after precision %s", res);
+	ft_strdel(&print);
 	comma = ft_calc_comma(res);
 	if (lst_fct->type == 'e')
 		res = ft_conv_e(lst_fct, res, comma);
-	if (lst_fct->precision == 1)
+	if (lst_fct->precision == 1 && lst_fct->type != 'e')
 		return (ft_strsub(res, 0, comma));
 	return (res);
 }
@@ -111,7 +119,7 @@ int		ft_conv_f(t_conv *lst_fct, va_list args, int flags)
 	int			size;
 
 	lst_fct->precision = lst_fct->precision == 0 ? 7 : lst_fct->precision;
-	lst_fct->precision = lst_fct->type == 'e' ? lst_fct->precision - 1 : lst_fct->precision;
+	//lst_fct->precision = lst_fct->type == 'e' ? lst_fct->precision - 1 : lst_fct->precision;
 //	printf("precision == %c\n",lst_fct->type);
 	d1.f = flags == FL ? va_arg(args, long double) : va_arg(args, double);
 	m_2 = ft_i_to_bi(d1.parts.m);

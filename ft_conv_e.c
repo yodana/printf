@@ -6,9 +6,11 @@ char    *ft_conv_e(t_conv *lst_fct, char *res, int comma)
     size_t i;
     int j;
     char *str_comma; 
-    
-   printf("comma == %d",lst_fct->precision);
-    str_comma = ft_itoa(comma - 1);
+    int e = 1;
+
+   // if (lst_fct->precision == 0)
+     //   e--;
+    str_comma = ft_itoa(comma - e);
     j = 0;
     i = 0;
     new = ft_strnew(ft_strlen(res));
@@ -18,10 +20,10 @@ char    *ft_conv_e(t_conv *lst_fct, char *res, int comma)
             new[j] = res[i];
         if (j == 1)
             new[j] = '.';
-        if (i != (size_t)comma)
-            j++;
         if (j != 1)
             i++;
+        if (i != (size_t)comma)
+            j++;
     }
     if (comma < 10)
         str_comma = ft_strjoin_fr("0", str_comma, 2);
