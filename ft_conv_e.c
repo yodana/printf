@@ -14,16 +14,18 @@ char    *ft_conv_e(t_conv *lst_fct, char *res, int comma)
     j = 0;
     i = 0;
     new = ft_strnew(ft_strlen(res));
-    while (i <= (size_t)lst_fct->precision)
+    while (i <= (size_t)lst_fct->precision + comma)
     {
-        if (i != (size_t)comma)
-            new[j] = res[i];
-        if (j == 1)
-            new[j] = '.';
-        if (j != 1)
+        new[j] = res[i];
+        i++;
+        j++;
+        if (res[i] == '.')
             i++;
-        if (i != (size_t)comma)
+        if (j == 1)
+        {
+            new[j] = '.';
             j++;
+        }
     }
     if (comma < 10)
         str_comma = ft_strjoin_fr("0", str_comma, 2);

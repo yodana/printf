@@ -498,8 +498,8 @@ int		nb;
 int main()
 {
 	double e;
-	e = 1000000.9;
+	e = 11.2;
 	printf("reel : e -> %e\n",e);
-	ft_printf("mine : e -> %f\n",e);
+	ft_printf("mine : e -> %e\n",e);
 	//ft_printf("mine : f -> %.f\n\n",e);
 }

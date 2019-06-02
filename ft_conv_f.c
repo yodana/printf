@@ -119,7 +119,7 @@ int		ft_conv_f(t_conv *lst_fct, va_list args, int flags)
 	int			size;
 
 	lst_fct->precision = lst_fct->precision == 0 ? 7 : lst_fct->precision;
-	//lst_fct->precision = lst_fct->type == 'e' ? lst_fct->precision - 1 : lst_fct->precision;
+	lst_fct->precision = lst_fct->type == 'e' ? lst_fct->precision - 1 : lst_fct->precision;
 //	printf("precision == %c\n",lst_fct->type);
 	d1.f = flags == FL ? va_arg(args, long double) : va_arg(args, double);
 	m_2 = ft_i_to_bi(d1.parts.m);
