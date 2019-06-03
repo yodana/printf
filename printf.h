@@ -59,4 +59,6 @@ int		ft_check_flags(const char *format);
 int		ft_check_champ(int *i, const char *format);
 int		ft_check_precision(int *i, const char *format);
 char    *ft_conv_e(t_conv *lst_fct, char *res, int comma);
+char	*ft_float_round(int i, char *print, int size);
+
 #endif

@@ -15,7 +15,6 @@
 
 char	*ft_float_round(int i, char *print, int size)
 {
-	printf("round == %c\n",print[i]);
 	if (print[i] >= '5')
 	{
 		i--;
@@ -49,10 +48,7 @@ char	*ft_print_float(char *res, t_conv *lst_fct, int stop)
 	int		i;
 	char	*print;
 	int		comma;
-	int e;
-	e = 0;
-	if (lst_fct->type == 'e')
-		e++;
+	
 	comma = ft_calc_comma(res);
 	i = 0;
 	if (!res || !(print = ft_strnew(ft_strlen(res) + 1)))
@@ -67,14 +63,11 @@ char	*ft_print_float(char *res, t_conv *lst_fct, int stop)
 		print[i] = res[i];
 		i++;
 	}
-	//if (lst_fct->type == 'e' && lst_fct->precision == 0)
-		//lst_fct->precision++;
-	if (ft_check_float_round(&print[comma - 1], lst_fct->precision) == 1)
+	if (ft_check_float_round(&print[comma - 1], lst_fct->precision) == 1 && lst_fct->type != 'e')
 	{
-		printf("lol");
-		res = ft_float_round(i - 20 + e, print, comma + lst_fct->precision);
+		res = ft_float_round(i - 20, print, comma + lst_fct->precision);
 	}
-	//printf("res after precision %s", res);
+//	printf("res after precision %s", res);
 	ft_strdel(&print);
 	comma = ft_calc_comma(res);
 	if (lst_fct->type == 'e')
@@ -119,8 +112,8 @@ int		ft_conv_f(t_conv *lst_fct, va_list args, int flags)
 	int			size;
 
 	lst_fct->precision = lst_fct->precision == 0 ? 7 : lst_fct->precision;
-	lst_fct->precision = lst_fct->type == 'e' ? lst_fct->precision - 1 : lst_fct->precision;
-//	printf("precision == %c\n",lst_fct->type);
+	//lst_fct->precision = lst_fct->type == 'e' ? lst_fct->precision - 1 : lst_fct->precision;
+	//printf("precision == %d\n",lst_fct->precision);
 	d1.f = flags == FL ? va_arg(args, long double) : va_arg(args, double);
 	m_2 = ft_i_to_bi(d1.parts.m);
 	if ((size = ft_check_excep(d1.parts.e, m_2, d1.parts.sign, lst_fct)) != -1)
@@ -133,6 +126,8 @@ int		ft_conv_f(t_conv *lst_fct, va_list args, int flags)
 	lst_fct->final = ft_print_float(res_final, lst_fct, 0);
 	if (d1.parts.sign == 1)
 		lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
+		printf("precision == %s\n",lst_fct->final);
+
 	lst_fct->final = ft_attribut(d1.f, lst_fct);
 	ft_putstr(lst_fct->final);
 	ft_strdel(&res_final);
