@@ -67,7 +67,7 @@ char	*ft_print_float(char *res, t_conv *lst_fct, int stop)
 	{
 		res = ft_float_round(i - 20, print, comma + lst_fct->precision);
 	}
-//	printf("res after precision %s", res);
+	//printf("res after precision %s", res);
 	ft_strdel(&print);
 	comma = ft_calc_comma(res);
 	if (lst_fct->type == 'e')
