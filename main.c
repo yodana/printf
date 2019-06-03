@@ -499,7 +499,7 @@ int main()
 {
 	double e;
 	e = 99.99999999999;
-	printf("reel : e -> %.1e\n",e);
-	ft_printf("mine : e -> %.1e\n",e);
+	printf("reel : e -> %.e\n",e);
+	ft_printf("mine : e -> %.e\n",e);
 	//ft_printf("mine : f -> %.2f\n\n",e);
 }

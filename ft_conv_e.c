@@ -31,8 +31,9 @@ char    *ft_conv_e(t_conv *lst_fct, char *res, int comma)
         new[1] = '.';
         new[j] = '0';
     }
-
         str_comma = ft_itoa(comma - 1);
+    if (lst_fct->precision == 1)
+	    new = ft_strsub(new, 0, 1);
     if (comma < 10)
         str_comma = ft_strjoin_fr("0", str_comma, 2);
     new = ft_strjoin_fr(new, "e+", 1);
