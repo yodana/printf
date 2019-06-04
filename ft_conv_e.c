@@ -23,7 +23,7 @@ char    *ft_conv_e(t_conv *lst_fct, char *res, int comma)
     }
     if (ft_check_float_round(new, lst_fct->precision) == 1)
     new = ft_float_round(i - 21, new,
-   lst_fct->precision + 21);
+   lst_fct->precision + 1);
    j = 0;
    while (new[j] != '.')
         j++;

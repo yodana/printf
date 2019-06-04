@@ -501,11 +501,11 @@ int main()
 	e = -4.500000000000001;
 	printf("reel : e -> %.Le\n",e);
 	ft_printf("mine : e -> %.Le\n",e);
-	/*printf("reel : e -> %6Le\n",e);
+	printf("reel : e -> %6Le\n",e);
 	ft_printf("mine : e -> %6Le\n",e);
 	printf("reel : e -> %.9Le\n",e);
 	ft_printf("mine : e -> %.9Le\n",e);
 	printf("reel : e -> %#.Le\n",e);
-	ft_printf("mine : e -> %#.Le\n",e);*/
+	ft_printf("mine : e -> %#.Le\n",e);
 	return 0;
 }
