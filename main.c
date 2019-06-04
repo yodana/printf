@@ -497,9 +497,15 @@ int		nb;
 
 int main()
 {
-	double e;
-	e = 99.99999999999;
-	printf("reel : e -> %.e\n",e);
-	ft_printf("mine : e -> %.e\n",e);
-	//ft_printf("mine : f -> %.2f\n\n",e);
+	long double e;
+	e = -4.500000000000001;
+	printf("reel : e -> %.Le\n",e);
+	ft_printf("mine : e -> %.Le\n",e);
+	/*printf("reel : e -> %6Le\n",e);
+	ft_printf("mine : e -> %6Le\n",e);
+	printf("reel : e -> %.9Le\n",e);
+	ft_printf("mine : e -> %.9Le\n",e);
+	printf("reel : e -> %#.Le\n",e);
+	ft_printf("mine : e -> %#.Le\n",e);*/
+	return 0;
 }
