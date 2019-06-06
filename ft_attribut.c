@@ -85,7 +85,8 @@ char	*ft_attribut(long long i, t_conv *lst_fct)
 	if (lst_fct->type == 'f' || lst_fct->type == 'e')
 		lst_fct->precision--;
 	if (lst_fct->final != NULL
-		&& lst_fct->precision != 0 && (lst_fct->type != 'f' && lst_fct->type != 'e'))
+		&& lst_fct->precision != 0 && (lst_fct->type != 'f'
+			&& lst_fct->type != 'e'))
 		lst_fct->final = ft_precision(i, lst_fct, 0, ft_strlen(lst_fct->final));
 	if (lst_fct->final != NULL && ft_strrchr(lst_fct->attribut, '+')
 			&& i >= 0 && ft_strrchr(lst_fct->final, '-') == NULL)

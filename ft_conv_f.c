@@ -63,12 +63,11 @@ char	*ft_print_float(char *res, t_conv *lst_fct, int stop)
 		print[i] = res[i];
 		i++;
 	}
-	if (ft_check_float_round(&print[comma - 1], lst_fct->precision) == 1 && lst_fct->type != 'e')
+	if (ft_check_float_round(&print[comma - 1], lst_fct->precision) == 1
+		&& lst_fct->type != 'e')
 		res = ft_float_round(i - 20, print, comma + lst_fct->precision);
 	comma = ft_calc_comma(res);
-	if (lst_fct->type == 'e')
-		res = ft_conv_e(lst_fct, print, comma);
-		ft_strdel(&print);
+	ft_strdel(&print);
 	if (lst_fct->precision == 1 && lst_fct->type != 'e')
 		return (ft_strsub(res, 0, comma));
 	return (res);

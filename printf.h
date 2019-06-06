@@ -58,7 +58,10 @@ char	*ft_check_attribut(int *i, const char *format, int k, int j);
 int		ft_check_flags(const char *format);
 int		ft_check_champ(int *i, const char *format);
 int		ft_check_precision(int *i, const char *format);
-char    *ft_conv_e(t_conv *lst_fct, char *res, int comma);
+int     ft_conv_e(t_conv *lst_fct,va_list args, int flags);
 char	*ft_float_round(int i, char *print, int size);
-
+char	*ft_print_float(char *res, t_conv *lst_fct, int stop);
+int		ft_check_excep(unsigned int exposant, char *m
+, int signe, t_conv *lst_fct);
+int		ft_calc_comma(char *res);
 #endif
