@@ -15,75 +15,42 @@
 #include <math.h>
 #include <float.h>
 #include <limits.h>
-
-
-/*int main()
-{	//int nb = 0;
-	char	*a = "trolol";
-	char	b = '~';
-long double c = 9223372036854775807;
-	short int f = 32767;
+//int main()
+//{
+	//char	*a = "trolol";
+	//char	b = '~';
+	//long long c = 9223372036854775807;
+	//short int f = 32767;
 //	printf("reel printf: %c\n",'f');
-	//ft_printf("size + space:% 5d ", nb);
-	ft_printf("mine: %5c|\n\n",'f');
-	//printf("reel printf:  %s\n","lol");
+//	ft_printf("mine: %c\n\n",'f');
+
+	/*printf("reel printf:  %s\n","lol");
 	ft_printf("mine:  %s\n\n","lol");
 
+	printf("reel printf:  caratctere = %c || chaine = %s\n",'f',"lol");
 	ft_printf("mine:  caractere = %c || chaine = %s\n\n",'f',"lol");
 
-	//printf("reel printf: pointer -> %p\n",&a);
+	printf("reel printf: pointer -> %p\n",&a);
 	ft_printf("mine: pointer -> %p\n\n",&a);
 
 	printf("reel printf: f -> %d\n",2147483647);
 	ft_printf("mine : f -> %d\n\n",2147483647);
 
-	//printf("reel printf: hhf -> %hhd\n",b);
+	printf("reel printf: hhf -> %hhd\n",b);
 	ft_printf("mine : hhf -> %hhd\n\n",b);
 
+	printf("reel printf: f -> %d\n",-1);
 	ft_printf("mine : f -> %d\n\n",-1);
 
-	//printf("reel printf: hf -> %hd\n",f);
-	ft_printf("mine : hf -> %hd\n\n",f);
+	printf("reel printf: hf -> %hd\n",f);
+	ft_printf("mine : hf -> %hd\n\n",f);*/
 
-	//printf("reel printf: lf -> %lf\n",2147483650);
-	float nb = 1.0/0.0;
-    
-    ft_printf("space + prec + hash:%# .0f\n", nb);
-    ft_printf("space + prec + hash:% #.0f\n", nb);
-    ft_printf("Plus + prec / grande:%+.5f\n", nb);
-    ft_printf("Plus + prec / petite:%+.0f\n", nb);
-    ft_printf("Plus + prec + hash:%#+.0f\n", nb);
-    ft_printf("Prec + 0:%0.5f\n", nb);
-    ft_printf("Prec + minus:%-.5f\n", nb);
-    ft_printf("size:%5f\n", nb);
-    ft_printf("size + space:% 5f\n", nb);
-    ft_printf("size + plus:%+5f\n", nb);
-    ft_printf("size + space:%# 5f\n", nb);
-    ft_printf("size + plus:%#+5f\n", nb);
-    ft_printf("size + minus:%-5f\n", nb);
-    ft_printf("size + 0:%05f\n", nb);
-    ft_printf("size + 0 + plus:%+05f\n", nb);
-    ft_printf("size + 0 + plus:%0+5f\n", nb);
-    ft_printf("size + 0 + prec:%05.3f\n", nb);
-    ft_printf("size + 0 + prec + hash:%0#5.0f\n", nb);
-    ft_printf("size + minus + prec:%-5.3f\n", nb);
-    ft_printf("size + minus + prec + hash:%-#5.0f\n", nb);
-    ft_printf("size + plus + 0 + prec:%+05.3f\n", nb);
-    ft_printf("size + plus + 0 + prec + hash:%+0#5.0f|\n", nb);
-	printf("size + plus + 0 + prec + hash:%+0#5.0f|\n", nb);
-   ft_printf("size + espace + zero + prec:%0 5.3f|\n", nb);
-   printf("size + espace + zero + prec:%0 5.3f|\n", nb);
-    ft_printf("size + espace + zero + prec:% 05.3f|\n", nb);
-	printf("size + espace + zero + prec:% 05.3f|\n", nb);
-    ft_printf("size + espace + zero + prec + hash:%#0 5.0f|\n", nb);
-	printf("size + espace + zero + prec + hash:%#0 5.0f|\n", nb);
-    ft_printf("size + minus + plus + prec:%-+5.3f|\n", nb);
-	printf("size + minus + plus + prec:%-+5.3f|\n", nb);
-    ft_printf("size + minus + plus + prec + hash:%-#+5.0f|\n", nb);
-	printf("size + minus + plus + prec + hash:%-#+5.0f|\n", nb);
+	/*printf("reel printf: lf -> %lf\n",2147483650);
+	ft_printf("mine : lf -> %lf\n\n",2147483650);
 
-	ft_printf("mine : llf -> %Lf\n\n",c);
-	printf("reel : llf -> %Lf\n\n",c);
+	printf("reel printf: llf -> %llf\n",c);
+	ft_printf("mine : llf -> %llf\n\n",c);
+
 	printf("reel printf: i -> %i\n",033);
 	ft_printf("mine : i -> %i\n\n",033);
 	
@@ -93,6 +60,8 @@ long double c = 9223372036854775807;
 	printf("reel printf: li -> %li\n",2147483650);
 	ft_printf("mine : li -> %li\n\n",2147483650);
 
+	printf("reel printf: lli -> %lli\n",c);
+	ft_printf("mine : lli -> %lli\n\n",c);
 
 	printf("reel printf: o -> %o\n",33);
 	ft_printf("mine : o -> %o\n\n",33);
@@ -124,6 +93,8 @@ long double c = 9223372036854775807;
 	printf("reel printf: lu -> %lu\n",2147483650);
 	ft_printf("mine : lu -> %lu\n\n",2147483650);
 
+	printf("reel printf: llu -> %llu\n",c);
+	ft_printf("mine : llu -> %llu\n\n",c);
 
 	printf("reel printf: x -> %x\n",2000);
 	ft_printf("mine : x -> %x\n\n",2000);
@@ -137,7 +108,8 @@ long double c = 9223372036854775807;
 	printf("reel printf: lx -> %lx\n",2147483650);
 	ft_printf("mine : lx -> %lx\n\n",2147483650);
 
-	
+	printf("reel printf: llx -> %llx\n",c);
+	ft_printf("mine : llx -> %llx\n\n",c);
 	
 	printf("reel printf: X -> %X\n",2000);
 	ft_printf("mine : X -> %X\n\n",2000);
@@ -151,12 +123,14 @@ long double c = 9223372036854775807;
 	printf("reel printf: lX -> %lX\n",2147483650);
 	ft_printf("mine : lX -> %lX\n\n",2147483650);
 
+	printf("reel printf: llX -> %llX\n",c);
+	ft_printf("mine : llX -> %llX\n\n",c);
 
 	double i = 253.99999;
 	float k = 253.999999;
 	double inf = 1.0/0.0;
 	double inf_neg = -1.0/0.0;
-	double test2 = 1.0/10.0;
+	double test2 = 1.0/10;
 	double zero = 0;
 	double not_number = sqrt(-1);
 	
@@ -199,8 +173,8 @@ long double c = 9223372036854775807;
 	ft_printf("mine : f -> %f\n\n",42.25648985585);
 	double maxi = DBL_MAX;
 	
-	printf("reel printf : f ->%f\n",maxi + 10.0);
-	ft_printf("mine: f -> %f\n\n",maxi + 10.0);
+	printf("reel printf : f ->%f\n",maxi + 10);
+	ft_printf("mine: f -> %f\n\n",maxi + 10);
 	float t = 23.9999999;
 	printf("reel printf : lf ->%f\n",t);
 	ft_printf("mine : lf-> %f\n\n",t);
@@ -235,28 +209,28 @@ long double c = 9223372036854775807;
 	printf("reel : # with f -> %#f\n",10.0);
 	ft_printf("mine : # with f -> %#f\n\n",10.0);
 
-	printf("reel : 0 with f -> %0d\n",1);
-	ft_printf("mine : 0 with f -> %0d\n\n",1);
+	printf("reel : 0 with f -> %0f\n",1);
+	ft_printf("mine : 0 with f -> %0f\n\n",1);
 
 
-	printf("reel : + with f -> %+d\n",2);
-	ft_printf("mine : + with f -> %+d\n\n",2);
+	printf("reel : + with f -> %+f\n",2);
+	ft_printf("mine : + with f -> %+f\n\n",2);
 
 
-	printf("\nreel : espace with f -> % d|\n",0);
-	ft_printf("mine : espace with f -> % d|\n\n",0);
+	printf("\nreel : espace with f -> % f|\n",0);
+	ft_printf("mine : espace with f -> % f|\n\n",0);
 
-	printf("reel : champ with f -> % 5f|\n",10.0);
-	ft_printf("mine : champ with f -> % 5f|\n\n",10.0);
+	printf("reel : champ with f -> % 5f|\n",10);
+	ft_printf("mine : champ with f -> % 5f|\n\n",10);
 
-	printf("reel : champ anf - with f -> %-5f|\n",10.0);
-	ft_printf("mine : champ anf - with f -> %-5f|\n\n",10.0);
+	printf("reel : champ anf - with f -> %-5f|\n",10);
+	ft_printf("mine : champ anf - with f -> %-5f|\n\n",10);
 
-	printf("reel : champ anf - with f neg -> %5f|\n",-10.0);
-	ft_printf("mine : champ anf - with f neg -> %5f|\n\n",-10.0);
+	printf("reel : champ anf - with f neg -> %5f|\n",-10);
+	ft_printf("mine : champ anf - with f neg -> %5f|\n\n",-10);
 
-	printf("reel : champ anf + with f -> %+5f|\n",10.0);
-	ft_printf("mine : champ anf + with f -> %+5f|\n\n",10.0);
+	printf("reel : champ anf + with f -> %+5f|\n",10);
+	ft_printf("mine : champ anf + with f -> %+5f|\n\n",10);
 
 	printf("reel : champ anf + with f neg -> %20x|\n",-10);
 	ft_printf("mine : champ anf + with f neg -> %20x|\n\n",-10);
@@ -273,59 +247,59 @@ long double c = 9223372036854775807;
 	printf("reel : champ anf - with s -> %-5s|\n","lol");
 	ft_printf("mine : champ anf - with s -> %-5s|\n\n","lol");
 
-	int o = 10.0;
+	int o = 10;
 	printf("reel : champ with p -> %30p|\n",&o);
 	ft_printf("mine : champ with p -> %30p|\n\n",&o);
 
 	printf("reel : champ anf - with p -> %-30p|\n",&o);
 	ft_printf("mine : champ anf - with p -> %-30p|\n\n",&o);
 
-	printf("reel : champ anf + anf # with f -> %#5x|\n",10.0);
-	ft_printf("mine : champ anf + anf # with f -> %#5x|\n\n",10.0);
+	printf("reel : champ anf + anf # with f -> %#5x|\n",10);
+	ft_printf("mine : champ anf + anf # with f -> %#5x|\n\n",10);
 
-	printf("reel : champ anf # anf - with f -> %#-5x|\n",10.0);
-	ft_printf("mine : champ anf # anf - with f -> %#-5x|\n\n",10.0);
+	printf("reel : champ anf # anf - with f -> %#-5x|\n",10);
+	ft_printf("mine : champ anf # anf - with f -> %#-5x|\n\n",10);
 
 	printf("reel : champ with f -> %f|\n",1.0);
 	ft_printf("mine : champ with f -> %f|\n\n",1.0);
 
-	printf("reel : champ anf + with f -> % 010.0f|\n",1.0);
-	ft_printf("mine : champ anf + with f -> % 010.0f|\n\n",1.0);
+	printf("reel : champ anf + with f -> % 010f|\n",1.0);
+	ft_printf("mine : champ anf + with f -> % 010f|\n\n",1.0);
 
-	printf("reel : champ with f -> %10.0f|\n",1.0);
-	ft_printf("mine : champ with f -> %10.0f|\n\n",1.0);
+	printf("reel : champ with f -> %10f|\n",1.0);
+	ft_printf("mine : champ with f -> %10f|\n\n",1.0);
 
 	printf("reel : champ with f -> %-30f|\n",-1.0);
 	ft_printf("mine : champ with f -> %-30f|\n\n",-1.0);
 
-	printf("reel : champ anf 0 with f -> %05f|\n",10.0);
-	ft_printf("mine : champ amf 0 with f -> %05f|\n\n",10.0);
+	printf("reel : champ anf 0 with f -> %05f|\n",10);
+	ft_printf("mine : champ amf 0 with f -> %05f|\n\n",10);
 
 	printf("reel : champ with c -> %5c|\n",'p');
 	ft_printf("mine : champ with c -> %5c|\n\n",'p');
 
-	printf("reel : champ anf 0 with f -> % 020f|\n",-10.0.0);
-	ft_printf("mine : champ anf 0 with f -> % 020f|\n\n",-10.0.0);
+	printf("reel : champ anf 0 with f -> % 020f|\n",-10.0);
+	ft_printf("mine: champ anf 0 with f -> % 020f|\n\n",-10.0);
 
-	printf("reel : precision with f -> %10.0.05f|\n",-10.0);
-	ft_printf("mine : precision with f -> %10.0.05f|\n\n",-10.0);
+	printf("reel : precision with f -> %10.05f|\n",-10);
+	ft_printf("mine : precision with f -> %10.05f|\n\n",-10);
 	
-	printf("reel : precision with s-> %.5s|\n","10.0");
-	ft_printf("mine : precision with s-> %.5s|\n","10.0");
+	printf("reel : precision with s-> %.5s|\n","10");
+	ft_printf("mine : precision with s-> %.5s|\n","10");
 	
-	//printf("reel : precision with f -> %.5f|\n",10.0.0);
+	//printf("reel : precision with f -> %.5f|\n",10.0);
 	
 	printf("reel : %-20f|\n",42.42);
-	ft_printf("mine : %-20f|\n",42.42);
-	return (0);
-}*/
+	ft_printf("mine : %-20f|\n",42.42);*/
+	//return (0);
+//}
 
 /*int		main()
 {
 
-	double nb = -0;
+	fouble nb = 0;
 
-    nb = -0.0;
+    nb = 0.0;
 	ft_printf("space:% f|\n", nb);
 	printf("space:% f|\n", nb);
     ft_printf("plus:%+f|\n", nb);
@@ -452,9 +426,8 @@ int		nb;
 	printf("Minus + size / petite:%-5s|\n", str);
 	ft_printf("Minus + size / granfe:%-15s|\n", str);
 	printf("Minus + size / granfe:%-15s|\n", str);
-	ft_printf("Minus" GREEN "+ size + prec :%-15.5s|"END_COLOR"\n", str);
+	ft_printf("Minus + size + prec:%-15.5s|\n", str);
 	printf("Minus + size + prec:%-15.5s|\n", str);
-	ft_printf(GREEN"%Lf\n"END_COLOR,LDBL_MAX);
 	ft_printf("NULL:%12s|\n", NULL);
 	printf("NULL:%12s|\n", NULL);
 	ft_printf("NULL:%1s|\n", NULL);
@@ -473,39 +446,13 @@ int		nb;
 	printf("empty:%1.4s|\n", "");
 	ft_printf("empty:%23s|\n", "");
 	printf("empty:%23s|\n", "");
-	ft_printf("%.15f\n",1345.1);
-	printf("%.15f",1345.1);
-	ft_printf("%.0s|\n", "");
-	printf("%.0s|\n", "");
-	ft_printf("%.0s|\n", NULL);
-	printf("%.0s|\n", NULL);
-	ft_printf("%%|\n");
-	printf("%%|\n\n");
-	ft_printf("%5%|\n");
-	printf("%5%|\n\n");
-	ft_printf("%-5%|\n");
-	printf("%-5%|\n\n");
-	ft_printf("%.5%|\n");
-	printf("%.5%|\n\n");
-	ft_printf("% %|\n");
-	printf("% %|\n\n");
+	//ft_printf("%.15f\n",1345.1);
+	//printf("%.15f",1345.1);
+	//ft_printf("%.0s|\n", "");
+	//dprintf(2, "%.0s|\n", "");
+	//ft_printf("%.0s|\n", NULL);
+	//dprintf(2, "%.0s|\n", NULL);
 	//int i = ft_printf("%.0s|\n", "Okalm");
 	//ft_printf("%D %C %F\n", 123, 'A', 1235.123);
-	
 	return 0;
 }*/
-
-int main()
-{
-	long double e;
-	e = -1.000000009;
-	printf("reel : e -> %.Lf\n",e);
-	ft_printf("mine : e -> %.Lf\n",e);
-	/*printf("reel : e -> %6Le\n",e);
-	ft_printf("mine : e -> %6Le\n",e);
-	printf("reel : e -> %.9Le\n",e);
-	ft_printf("mine : e -> %.9Le\n",e);
-	printf("reel : e -> %#.Le\n",e);
-	ft_printf("mine : e -> %#.Le\n",e);*/
-	return 0;
-}
