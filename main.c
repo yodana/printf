@@ -456,3 +456,18 @@ int		nb;
 	//ft_printf("%D %C %F\n", 123, 'A', 1235.123);
 	return 0;
 }*/
+
+int main()
+{
+	long double e;
+	e = LDBL_MAX;
+	printf("reel : e -> %Lg\n",e);
+	ft_printf("mine : e -> %Lg\n",e);
+	printf("reel : e -> %6Lg\n",e);
+	ft_printf("mine : e -> %6Lg\n",e);
+	printf("reel : e -> %.9Lg\n",e);
+	ft_printf("mine : e -> %.9Lg\n",e);
+	printf("reel : e -> %#.Lg\n",e);
+	ft_printf("mine : e -> %#.Lg\n",e);
+	return 0;
+}

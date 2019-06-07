@@ -42,6 +42,8 @@ char    *ft_scientific(t_conv *lst_fct, char *res)
     str_comma = ft_itoa(comma - 1);
     if (lst_fct->precision == 1)
 	    new = ft_strsub_fr(new, 0, 1);
+    if (lst_fct->type == 'g')
+        new = ft_sup_zero(new);
     if (lst_fct->precision <= 1  && ft_strrchr(lst_fct->attribut, '#') != NULL)
     new = ft_strjoin_fr(new, ".", 1);
     if (comma <= 10)

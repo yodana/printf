@@ -64,4 +64,8 @@ char	*ft_print_float(char *res, t_conv *lst_fct, int stop);
 int		ft_check_excep(unsigned int exposant, char *m
 , int signe, t_conv *lst_fct);
 int		ft_calc_comma(char *res);
+int		ft_conv_g(t_conv *lst_fct, va_list args, int flags);
+char    *ft_sup_zero(char *res);
+char    *ft_e_zero(t_conv *lst_fct, t_float d1);
+char    *ft_scientific(t_conv *lst_fct, char *res);
 #endif
