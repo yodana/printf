@@ -39,8 +39,6 @@ char *ft_g_science(t_float d1, t_conv *lst_fct)
         ft_strdel(&m_2);
         ft_strdel(&res_final);
     }
-   if (d1.parts.sign == 1)
-            lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
     return (lst_fct->final);
 }
 
@@ -68,12 +66,12 @@ int		ft_conv_g(t_conv *lst_fct, va_list args, int flags)
         res_final = ft_bi_to_dec(m_2, 0, 1, 66 + lst_fct->precision);
         res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
         lst_fct->final = ft_print_float(res_final, lst_fct, 0);
-        if (d1.parts.sign == 1)
-            lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
         lst_fct->final = ft_sup_zero(lst_fct->final);
         ft_strdel(&res_final);
 	    ft_strdel(&m_2);
     }
+    if (d1.parts.sign == 1)
+            lst_fct->final = ft_strjoin_fr("-", lst_fct->final, 2);
 	lst_fct->final = ft_attribut(d1.f, lst_fct);
 	ft_putstr(lst_fct->final);
 	size = ft_strlen(lst_fct->final);
