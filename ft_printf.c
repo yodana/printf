@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-
+#include <stdio.h>
 int		ft_is_attribut(const char format)
 {
 	if (format == '#' || format == '0' || format == '-' ||
@@ -23,6 +23,7 @@ int		ft_is_attribut(const char format)
 int		ft_find_conv(const char *format, t_conv *lst_fct
 , va_list args, t_info *info)
 {
+	(void)args;
 	while (lst_fct != NULL)
 	{
 		if (format[info->i] == lst_fct->type)
@@ -52,8 +53,8 @@ int		ft_init_conv(const char *format, t_conv *lst_fct, va_list args, int *d)
 		return (1);
 	if (!(info->attribut = ft_check_attribut(&i, &format[i], 0, 0)))
 		return (1);
-	info->champ = ft_check_champ(&i, &format[i]);
-	info->precision = ft_check_precision(&i, &format[i]);
+	info->champ = ft_check_champ(&i, &format[i], args);
+	info->precision = ft_check_precision(&i, &format[i], args);
 	info->flags = ft_check_flags(&format[i]);
 	i = i + (info->flags % 3);
 	info->i = i;

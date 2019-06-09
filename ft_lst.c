@@ -26,6 +26,7 @@ static const t_init	g_tab_init[] = {
 	{'%', ft_conv_spe, NULL},
 	{'e', ft_conv_e, NULL},
 	{'g', ft_conv_g, NULL},
+	{'b', ft_conv_b, NULL},
 	{'\0', NULL, NULL},
 };
 

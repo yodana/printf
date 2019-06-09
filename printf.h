@@ -56,8 +56,8 @@ char	*ft_precision(long long i, t_conv *lst_fct, int d, int size);
 char	*ft_zero(long long i, t_conv *lst_fct, int d, int size);
 char	*ft_check_attribut(int *i, const char *format, int k, int j);
 int		ft_check_flags(const char *format);
-int		ft_check_champ(int *i, const char *format);
-int		ft_check_precision(int *i, const char *format);
+int		ft_check_champ(int *i, const char *format, va_list args);
+int		ft_check_precision(int *i, const char *format, va_list args);
 int     ft_conv_e(t_conv *lst_fct,va_list args, int flags);
 char	*ft_float_round(int i, char *print, int size);
 char	*ft_print_float(char *res, t_conv *lst_fct, int stop);
@@ -65,7 +65,8 @@ int		ft_check_excep(unsigned int exposant, char *m
 , int signe, t_conv *lst_fct);
 int		ft_calc_comma(char *res);
 int		ft_conv_g(t_conv *lst_fct, va_list args, int flags);
-char    *ft_sup_zero(char *res);
+char    *ft_sup_zero(char *res, int precision);
 char    *ft_e_zero(t_conv *lst_fct, t_float d1);
 char    *ft_scientific(t_conv *lst_fct, char *res);
+int     ft_conv_b(t_conv *lst_fct,va_list args, int flags);
 #endif

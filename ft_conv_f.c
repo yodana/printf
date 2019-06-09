@@ -15,6 +15,7 @@
 
 char	*ft_float_round(int i, char *print, int size)
 {
+
 	if (print[i] >= '5')
 	{
 		i--;
@@ -66,10 +67,12 @@ char	*ft_print_float(char *res, t_conv *lst_fct, int stop)
 	if (ft_check_float_round(&print[comma - 1], lst_fct->precision) == 1
 		&& lst_fct->type != 'e')
 		res = ft_float_round(i - 20, print, comma + lst_fct->precision);
+	else
+		res = ft_strdup(res);
 	comma = ft_calc_comma(res);
 	ft_strdel(&print);
 	if (lst_fct->precision == 1 && lst_fct->type != 'e')
-		return (ft_strsub(res, 0, comma));
+		return (ft_strsub_fr(res, 0, comma));
 	return (res);
 }
 

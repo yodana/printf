@@ -2,20 +2,24 @@
 #include <stdio.h>
 
 
-char    *ft_sup_zero(char *res)
+char    *ft_sup_zero(char *res, int precision)
 {
     char *new; 
     int i;
+    int comma;
 
-    i = ft_strlen(res) - 1;
-    while (res[i] == '0')
+    comma = ft_calc_comma(res);
+    i = precision;
+    while (res[i] == '0' && res[i] != '.')
+        i--;
+    if (res[i] == '.')
         i--;
     new = ft_strsub(res, 0, i + 1);
     ft_strdel(&res);
     return (new);
 }
 
-char *ft_g_science(t_float d1, t_conv *lst_fct)
+char    *ft_g_science(t_float d1, t_conv *lst_fct)
 {
     char		*res_final;
 	char		*m_2;
@@ -36,8 +40,8 @@ char *ft_g_science(t_float d1, t_conv *lst_fct)
         res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
         lst_fct->final = ft_print_float(res_final, lst_fct, 0);
 	    lst_fct->final = ft_scientific(lst_fct, lst_fct->final);
-        ft_strdel(&m_2);
-        ft_strdel(&res_final);
+         ft_strdel(&m_2);
+         ft_strdel(&res_final);
     }
     return (lst_fct->final);
 }
@@ -53,8 +57,8 @@ int		ft_conv_g(t_conv *lst_fct, va_list args, int flags)
     if (lst_fct->precision == 1)
         lst_fct->precision = 2; 
     lst_fct->precision = lst_fct->precision == 0 ? 7 : lst_fct->precision;
-    if ((d1.parts.e - 16383) < -4 || ((d1.parts.e - 16383) >= lst_fct->precision - 1))
-        lst_fct->final = ft_g_science(d1, lst_fct);
+   if ((d1.parts.e - 16383) < -4 || ((d1.parts.e - 16383) >= lst_fct->precision - 1))
+         lst_fct->final = ft_g_science(d1, lst_fct);
     else
     {
         m_2 = ft_i_to_bi(d1.parts.m);
@@ -66,7 +70,7 @@ int		ft_conv_g(t_conv *lst_fct, va_list args, int flags)
         res_final = ft_bi_to_dec(m_2, 0, 1, 66 + lst_fct->precision);
         res_final = ft_calc_exposant(d1.f, res_final, d1.parts.e);
         lst_fct->final = ft_print_float(res_final, lst_fct, 0);
-        lst_fct->final = ft_sup_zero(lst_fct->final);
+        lst_fct->final = ft_sup_zero(lst_fct->final, lst_fct->precision);
         ft_strdel(&res_final);
 	    ft_strdel(&m_2);
     }

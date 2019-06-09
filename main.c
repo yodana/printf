@@ -459,10 +459,10 @@ int		nb;
 
 int main()
 {
-	long double e;
-	e = -LDBL_MAX;
-	printf("reel : e -> %Lg\n",e);
-	ft_printf("mine : e -> %Lg\n",e);
+	double e;
+	e = 0.999;
+	printf("reel : e -> %.f\n",e);
+	ft_printf("mine : e -> %b\n",e);
 	/*printf("reel : e -> %6Lg\n",e);
 	ft_printf("mine : e -> %6Lg\n",e);
 	printf("reel : e -> %.9Lg\n",e);
