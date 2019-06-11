@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:41:00 by yodana            #+#    #+#             */
-/*   Updated: 2019/05/28 05:04:26 by yodana           ###   ########.fr       */
+/*   Updated: 2019/06/11 00:47:45 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,18 @@ char	*ft_check_attribut(int *i, const char *format, int k, int j);
 int		ft_check_flags(const char *format);
 int		ft_check_champ(int *i, const char *format, va_list args);
 int		ft_check_precision(int *i, const char *format, va_list args);
-int     ft_conv_e(t_conv *lst_fct,va_list args, int flags);
+int		ft_conv_e(t_conv *lst_fct, va_list args, int flags);
 char	*ft_float_round(int i, char *print, int size);
-char	*ft_print_float(char *res, t_conv *lst_fct, int stop);
+char	*ft_print_float(char *res, t_conv *lst_fct, int stop, int comma);
 int		ft_check_excep(unsigned int exposant, char *m
 , int signe, t_conv *lst_fct);
 int		ft_calc_comma(char *res);
 int		ft_conv_g(t_conv *lst_fct, va_list args, int flags);
-char    *ft_sup_zero(char *res, int precision);
-char    *ft_e_zero(t_conv *lst_fct, t_float d1);
-char    *ft_scientific(t_conv *lst_fct, char *res);
-int     ft_conv_b(t_conv *lst_fct,va_list args, int flags);
+char	*ft_sup_zero(char *res, int precision);
+char	*ft_e_zero(t_conv *lst_fct, t_float d1, int i, int size);
+char	*ft_scientific(t_conv *lst_fct, char *res);
+int		ft_conv_b(t_conv *lst_fct, va_list args, int flags);
+char	*ft_calc_float(char *m_2, t_conv *lst_fct, t_float d1);
+int		ft_check_number(char *res);
+
 #endif

@@ -60,7 +60,7 @@ char	*ft_zero(long long i, t_conv *lst_fct, int d, int size)
 	ft_strdel(&lst_fct->final);
 	return (res);
 }
-#include <stdio.h>
+
 char	*ft_precision(long long i, t_conv *lst_fct, int d, int size)
 {
 	char *res;

@@ -33,9 +33,9 @@ static char	*ft_create(int size, long long n, int neg)
 
 char		*ft_itoa(long long n)
 {
-	long long i;
-	int size;
-	int neg;
+	long long	i;
+	int			size;
+	int			neg;
 
 	neg = 0;
 	size = 0;

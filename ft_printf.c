@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
+
 int		ft_is_attribut(const char format)
 {
 	if (format == '#' || format == '0' || format == '-' ||

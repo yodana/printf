@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int 	ft_check(char nptr)
+int		ft_check(char nptr)
 {
 	if (nptr == 32 || nptr == '\f' || nptr == '\t'
 			|| nptr == '\n' || nptr == '\r' || nptr == '\v'

@@ -6,11 +6,28 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/09 22:19:46 by yodana            #+#    #+#             */
-/*   Updated: 2019/06/09 22:20:16 by yodana           ###   ########.fr       */
+/*   Updated: 2019/06/11 00:40:42 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "printf.h"
+
+char	*ft_sup_zero(char *res, int precision)
+{
+	char	*new;
+	int		i;
+	int		comma;
+
+	comma = ft_calc_comma(res);
+	i = precision;
+	while (res[i] == '0' && res[i] != '.')
+		i--;
+	if (res[i] == '.')
+		i--;
+	new = ft_strsub(res, 0, i + 1);
+	ft_strdel(&res);
+	return (new);
+}
 
 int		ft_conv_b(t_conv *lst_fct, va_list args, int flags)
 {
