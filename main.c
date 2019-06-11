@@ -294,10 +294,10 @@
 	//return (0);
 //}
 
-/*int		main()
+int		main()
 {
 
-	fouble nb = 0;
+	double nb = 0;
 
     nb = 0.0;
 	ft_printf("space:% f|\n", nb);
@@ -369,7 +369,7 @@
     ft_printf("size + minus + plus + prec + hash:%-#+5.0f|\n", nb);	
 	printf("size + minus + plus + prec + hash:%-#+5.0f|\n", nb);
 	return (0);
-}*/
+}
 
 /*int main()
 {
@@ -457,17 +457,25 @@ int		nb;
 	return 0;
 }*/
 
-int main()
+/*int main()
 {
-	double e;
-	e = 0.999;
-	printf("reel : e -> %.f\n",e);
-	ft_printf("mine : e -> %b\n",e);
-	/*printf("reel : e -> %6Lg\n",e);
-	ft_printf("mine : e -> %6Lg\n",e);
-	printf("reel : e -> %.9Lg\n",e);
-	ft_printf("mine : e -> %.9Lg\n",e);
-	printf("reel : e -> %#.Lg\n",e);
-	ft_printf("mine : e -> %#.Lg\n",e);*/
+	long double e;
+	e = 245.9999;
+	printf("reel : e -> %Le\n",e);
+	ft_printf("mine : e -> %Le\n",e);
+	printf("reel : e -> %6Le\n",e);
+	ft_printf("mine : e -> %6Le\n",e);
+	printf("reel : e -> %.9Le\n",e);
+	ft_printf("mine : e -> %.9Le\n",e);
+	printf("reel : e -> %#.Le\n",e);
+	ft_printf("mine : e -> %#.Le\n",e);
 	return 0;
-}
+}*/
+
+/*int main()
+{
+	int data = ft_printf("%c", 'a');
+	int data_1 = printf("%c", 'a');
+	printf("data == %d && data_1 == %d\n\n",data, data_1);
+	return (0);
+}*/

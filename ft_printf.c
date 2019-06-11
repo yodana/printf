@@ -14,8 +14,8 @@
 
 int		ft_is_attribut(const char format)
 {
-	if (format == '#' || format == '0' || format == '-' ||
-			format == '+' || format == ' ')
+	if (format == '#' || format == '0' || format == '-'
+		|| format == '+' || format == ' ')
 		return (1);
 	return (0);
 }

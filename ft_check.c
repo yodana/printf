@@ -116,8 +116,8 @@ char	*ft_check_attribut(int *i, const char *format, int k, int j)
 		return (NULL);
 	if (!(attributs = ft_fill_attribut()))
 		return (NULL);
-	while (format[*i] == '+' || format[*i] == '-' || format[*i] == ' ' ||
-			format[*i] == '#' || format[*i] == '0')
+	while (format[*i] == '+' || format[*i] == '-' || format[*i] == ' '
+		|| format[*i] == '#' || format[*i] == '0')
 	{
 		while (attributs[j])
 		{

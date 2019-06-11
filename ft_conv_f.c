@@ -117,6 +117,7 @@ int		ft_conv_f(t_conv *lst_fct, va_list args, int flags)
 		return (size);
 	}
 	lst_fct->final = ft_calc_float(m_2, lst_fct, d1);
+	lst_fct->final = ft_attribut(d1.f, lst_fct);
 	ft_putstr(lst_fct->final);
 	size = ft_strlen(lst_fct->final);
 	ft_strdel(&lst_fct->final);
