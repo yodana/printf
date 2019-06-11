@@ -21,7 +21,7 @@ char	*ft_e_final(char *new, t_conv *lst_fct, char *str_comma, int comma)
 		new = ft_strjoin_fr(new, ".", 1);
 	if (comma <= 10)
 		str_comma = ft_strjoin_fr("0", str_comma, 2);
-	if (comma - 1 != 0)
+	if (comma - 1 < 0)
 		new = ft_strjoin_fr(new, "e-", 1);
 	else
 		new = ft_strjoin_fr(new, "e+", 1);

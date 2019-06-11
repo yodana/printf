@@ -15,6 +15,7 @@
 int		ft_conv_spe(t_conv *lst_fct, va_list args, int flags)
 {
 	char *res;
+	int size;
 
 	(void)args;
 	(void)flags;
@@ -24,7 +25,8 @@ int		ft_conv_spe(t_conv *lst_fct, va_list args, int flags)
 		return (1);
 	lst_fct->final = ft_space(1, lst_fct, ft_strlen(lst_fct->final));
 	ft_putstr(lst_fct->final);
+	size = ft_strlen(lst_fct->final);
 	ft_strdel(&res);
 	ft_strdel(&lst_fct->final);
-	return (1);
+	return (size);
 }

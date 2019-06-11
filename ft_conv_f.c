@@ -27,6 +27,8 @@ char	*ft_float_round(int i, char *print, int size)
 		{
 			print[i] = '0';
 			print = ft_strjoin("1", print);
+			if (ft_calc_comma(print) >= 2)
+				return (ft_strsub_fr(print, 0, size + 1));
 		}
 		else
 			print[i] = print[i] + 1;

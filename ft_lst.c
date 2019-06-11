@@ -19,7 +19,7 @@ static const t_init	g_tab_init[] = {
 	{'d', ft_conv, ft_itoa},
 	{'i', ft_conv, ft_itoa},
 	{'o', ft_conv_2, ft_calc_octa},
-	{'u', ft_conv_2, ft_itoa},
+	{'u', ft_conv_2, ft_itoa_u},
 	{'x', ft_conv_2, ft_calc_long_hexa},
 	{'X', ft_conv_2, ft_calc_long_hexam},
 	{'f', ft_conv_f, NULL},

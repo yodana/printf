@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/28 04:20:01 by yodana            #+#    #+#             */
-/*   Updated: 2019/05/28 04:20:05 by yodana           ###   ########.fr       */
+/*   Updated: 2019/06/11 18:14:13 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ char	*ft_add_forget(char *res, t_conv *lst_fct, long long i)
 	if (res && (i < 0 || ft_strrchr(lst_fct->final, '-') != NULL))
 		res = ft_strjoin_fr("-", res, 2);
 	if (res && (ft_strrchr(lst_fct->attribut, ' ') && i >= 0
-			&& ft_strrchr(lst_fct->final, '-') == NULL))
+				&& ft_strrchr(lst_fct->final, '-') == NULL))
 		res = ft_strjoin_fr(" ", res, 2);
 	if (res && (ft_strrchr(lst_fct->attribut, '+') && i >= 0
-			&& ft_strrchr(lst_fct->final, '-') == NULL))
+				&& ft_strrchr(lst_fct->final, '-') == NULL))
 		res = ft_strjoin_fr("+", res, 2);
 	if (res && ((lst_fct->type == 'x' || lst_fct->type == 'X')
-			&& ft_strrchr(lst_fct->attribut, '#')))
+				&& ft_strrchr(lst_fct->attribut, '#')))
 	{
 		if (lst_fct->type == 'x')
 			res = ft_strjoin_fr("0x", res, 2);
@@ -37,20 +37,19 @@ char	*ft_zero(long long i, t_conv *lst_fct, int d, int size)
 {
 	char	*res;
 
-	while ((lst_fct->final[d] == ' ' || lst_fct->final[d] == '+'
-		|| lst_fct->final[d] == '-'))
+	res = ft_strdup(lst_fct->final);
+	while (res && (lst_fct->final[d] == ' ' || lst_fct->final[d] == '+'
+				|| lst_fct->final[d] == '-'))
 	{
 		d++;
-		res = ft_strsub(lst_fct->final, d, size);
+		res = ft_strsub_fr(res, d, size);
 	}
 	if (res && ((lst_fct->type == 'x' || lst_fct->type == 'X')
-			&& ft_strrchr(lst_fct->attribut, '#') != NULL))
+				&& ft_strrchr(lst_fct->attribut, '#') != NULL))
 	{
 		d = 1;
-		res = ft_strsub(lst_fct->final, 2, size);
+		res = ft_strsub_fr(res, 2, size);
 	}
-	else if (res && d == 0)
-		res = ft_strdup(lst_fct->final);
 	while (res && (size < lst_fct->precision || size < lst_fct->champ))
 	{
 		res = ft_strjoin_fr("0", res, 2);
