@@ -6,7 +6,7 @@
 /*   By: yodana <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/04/01 15:39:30 by yodana            #+#    #+#             */
-/*   Updated: 2019/04/01 15:40:50 by yodana           ###   ########.fr       */
+/*   Updated: 2019/06/11 02:24:37 by yodana           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		ft_is_attribut(const char format)
 {
-	if (format == '#' || format == '0' || format == '-' ||
-			format == '+' || format == ' ')
+	if (format == '#' || format == '0' || format == '-'
+			|| format == '+' || format == ' ')
 		return (1);
 	return (0);
 }
