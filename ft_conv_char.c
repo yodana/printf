@@ -79,7 +79,8 @@ int		ft_pointer(t_conv *lst_fct, va_list args, int flags)
 	p = va_arg(args, void *);
 	res = ft_strnew(0);
 	res = ft_strjoin_fr("0x", res, 2);
-	res = ft_strjoin_fr(res, ft_calc_hexa((unsigned long)p), 3);
+	if (!(p == NULL && lst_fct->precision > 0))
+		res = ft_strjoin_fr(res, ft_calc_hexa((unsigned long)p), 3);
 	lst_fct->final = res;
 	if (lst_fct->final)
 		lst_fct->final = ft_space(1, lst_fct, ft_strlen(lst_fct->final));

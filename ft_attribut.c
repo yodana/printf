@@ -11,26 +11,30 @@
 /* ************************************************************************** */
 
 #include "printf.h"
-#include <stdio.h>
-int		ft_check_u(char c)
-{
-	if (c == 'u' || c == 'o' || c == 'x' || c == 'X')
-		return (-1);
-	return (1);
-}
 
 char	*ft_put_space(char *res, int d, int size, t_conv *lst_fct)
 {
+	char *c;
+
+	c = ft_strnew(1);
+	if (ft_strchr(lst_fct->attribut, '0') != NULL && lst_fct->type == '%')
+		c[0] = '0';
+	else
+		c[0] = ' ';
 	while (res && (d > size && ft_strrchr(lst_fct->attribut, '-') == NULL))
 	{
-		res = ft_strjoin_fr(" ", res, 2);
+		res = ft_strjoin_fr(c, res, 2);
 		d--;
 	}
 	while (res && (d > size && ft_strrchr(lst_fct->attribut, '-') != NULL))
 	{
-		res = ft_strjoin_fr(res, " ", 1);
+		res = ft_strjoin_fr(res, c, 1);
 		size++;
 	}
+	if (ft_strchr(lst_fct->attribut, ' ') && lst_fct->type == 'd'
+		&& size == 0 && lst_fct->precision == 1)
+		res = ft_strjoin_fr(res, " ", 1);
+	ft_strdel(&c);
 	return (res);
 }
 
@@ -39,9 +43,9 @@ char	*ft_space(long long i, t_conv *lst_fct, int size)
 	char *res;
 
 	res = ft_strdup(lst_fct->final);
-	if (res && ft_check_u(lst_fct->type) != -1 && ((ft_strrchr(lst_fct->attribut, ' ') && res[0] != '\0'))
-			&& i >= 0 && !(ft_strrchr(lst_fct->final, '-')
-				&& lst_fct->type != '%'))
+	if (res && ft_check_u(lst_fct->type) != -1 && ((ft_strrchr(lst_fct->attribut
+			, ' ') && res[0] != '\0')) && i >= 0 && !(ft_strrchr(lst_fct->final
+				, '-') && lst_fct->type != '%'))
 	{
 		res = ft_strjoin_fr(" ", res, 2);
 		if (res && lst_fct->type == 'f')
@@ -52,7 +56,7 @@ char	*ft_space(long long i, t_conv *lst_fct, int size)
 		size++;
 	}
 	if ((ft_strrchr(lst_fct->attribut, '-') == NULL
-		&& ft_strrchr(lst_fct->attribut, '0') != NULL)
+		&& (ft_strrchr(lst_fct->attribut, '0') != NULL && lst_fct->type != '%'))
 			&& (lst_fct->precision < 1 || lst_fct->type == 'f'))
 	{
 		ft_strdel(&res);
@@ -97,12 +101,14 @@ char	*ft_attribut(long long i, t_conv *lst_fct)
 			&& lst_fct->type != 'e'))
 		lst_fct->final = ft_precision(i, lst_fct, 0, ft_strlen(lst_fct->final));
 	if (lst_fct->final != NULL && ft_strrchr(lst_fct->attribut, '+')
-			&& i >= 0 && ft_strrchr(lst_fct->final, '-') == NULL  && ft_check_u(lst_fct->type) != -1)
+			&& i >= 0 && ft_strrchr(lst_fct->final, '-') == NULL
+				&& ft_check_u(lst_fct->type) != -1)
 		lst_fct->final = ft_plus(lst_fct);
 	if (lst_fct->final != NULL && ft_strrchr(lst_fct->attribut, '#') != NULL)
 		lst_fct->final = ft_hachtag(i, lst_fct);
 	if (lst_fct->final != NULL && ((ft_strrchr(lst_fct->attribut, ' ') != NULL
-				&& ft_strrchr(lst_fct->attribut, '+') == NULL) || lst_fct->champ != 0))
+				&& ft_strrchr(lst_fct->attribut, '+') == NULL)
+					|| lst_fct->champ != 0))
 		lst_fct->final = ft_space(i, lst_fct, ft_strlen(lst_fct->final));
 	if (lst_fct->final != NULL && ft_strrchr(lst_fct->attribut, '0')
 			&& (lst_fct->precision < 1 || lst_fct->type == 'f')

@@ -71,5 +71,6 @@ char	*ft_scientific(t_conv *lst_fct, char *res);
 int		ft_conv_b(t_conv *lst_fct, va_list args, int flags);
 char	*ft_calc_float(char *m_2, t_conv *lst_fct, t_float d1);
 int		ft_check_number(char *res);
+int		ft_check_u(char c);
 
 #endif
